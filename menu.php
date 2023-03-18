@@ -34,9 +34,6 @@
 				<div class="">
 					<div class="main-menu-header">
 						<img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
-						<div class="user-details">
-							<div id="more-details">UX Designer <i class="fa fa-caret-down"></i></div>
-						</div>
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
@@ -65,9 +62,7 @@
 					        <li><a href="bc_badges.php">Badges</a></li>
 					        <li><a href="bc_breadcrumb-pagination.php">Breadcrumb & paggination</a></li>
 					        <li><a href="bc_collapse.php">Collapse</a></li>
-					        <li><a href="bc_grid.php">Grid system</a></li>
 					        <li><a href="bc_progress.php">Progress</a></li>
-					        
 					        <li><a href="bc_tabs.php">Tabs & pills</a></li>
 					        <li><a href="bc_typography.php">Typography</a></li>
 					        <li><a href="bc_tooltip-popover.php">Tooltip & popovers</a></li>
@@ -214,21 +209,19 @@
 			
 	</header>
 	<!-- [ Header ] end -->
+	
+	
 
-
-    
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/js/plugins/bootstrap.min.js"></script>
     <script src="assets/js/ripple.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
+	<!-- Apex Chart -->
+	<script src="assets/js/plugins/apexcharts.min.js"></script>
+	<!-- custom-chart js -->
+	<script src="assets/js/pages/dashboard-main.js"></script>
+	<script src="assets/js/pages/chart-apex.js"></script>
 
-<!-- Apex Chart -->
-<script src="assets/js/plugins/apexcharts.min.js"></script>
-
-
-<!-- custom-chart js -->
-<script src="assets/js/pages/dashboard-main.js"></script>
 </body>
-
 </html>
