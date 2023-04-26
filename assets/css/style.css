@@ -11522,6 +11522,11 @@ a.text-dark:hover, a.text-dark:focus {
     content: "\e8ac";
 }
 
+.icon-printer:before {
+    content: "\e8ac";
+    width: 20%;
+}
+
 .icon-play-circle:before {
     content: "\e8ad";
 }

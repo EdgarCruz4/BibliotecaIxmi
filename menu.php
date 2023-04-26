@@ -11,6 +11,7 @@
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+	<script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
 
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -75,10 +76,15 @@
 					    <a href="form_elements.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Forms</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Chart & Maps</label>
+					    <label>Alcances</label>
 					</li>
-					<li class="nav-item">
-					    <a href="chart-apex.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
+
+					<li class="nav-item pcoded-hasmenu">
+					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
+					    <ul class="pcoded-submenu">
+					        <li><a href="planning_charts.php">Planeación</a></li>
+					        <li><a href="organization_charts.php">Organización</a></li>
+					    </ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Pages</label>
@@ -218,7 +224,7 @@
     <script src="assets/js/ripple.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
 	<!-- Apex Chart -->
-	<script src="assets/js/plugins/apexcharts.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<!-- custom-chart js -->
 	<script src="assets/js/pages/dashboard-main.js"></script>
 	<script src="assets/js/pages/chart-apex.js"></script>
