@@ -47,10 +47,22 @@
 				
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Navigation</label>
+					    <label></label>
 					</li>
 					<li class="nav-item">
-					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Inicio</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Archivos</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Auditoría</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="alcances.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Alcances</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>UI Element</label>
