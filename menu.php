@@ -90,13 +90,9 @@
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Alcances</label>
 					</li>
-
-					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
-					    <ul class="pcoded-submenu">
-					        <li><a href="planning_charts.php">Planeación</a></li>
-					        <li><a href="organization_charts.php">Organización</a></li>
-					    </ul>
+					<li class="nav-item">
+					    <a href="planning_charts.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
+					</li>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Pages</label>
