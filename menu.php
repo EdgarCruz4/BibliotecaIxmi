@@ -50,7 +50,7 @@
 					    <label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Auditoria</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>UI Element</label>
