@@ -101,76 +101,72 @@ td {
 						<div class="card-header">
 							<h5>Auditoria</h5>
 						</div>
-                        <form>
+                        <div class="card-body">
+                            <form action="encuesta.php" method="post">
+                                <table class="">
+                                    <thead align="center">
+                                        <tr>
+                                            <th>Pregunta</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $i=1;
+                                    foreach($data as $dat){
+                                        $i ++;
+                                    ?>
+                                        <tr>
+                                            <th>
+                                                <?php echo $dat ['pregunta']?>
+                                            </th>
 
-
-        <form>
-		<style>
-		td {
-			padding: 10px;
-		}
-		label {
-			display: inline-block;
-			margin-right: 10px;
-		}
-		.radio-container {
-			display: inline-block;
-		}
-		input[type="radio"] {
-			display: inline-block;
-			margin-right: 5px;
-		}
-        
-	</style>
-</head>
-<body>
-	<form>
-		<table>
-            <thead align="center">
-                <th>Pregunta</th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-            </thead>
-			<tbody>
-			<?php
-			foreach($data as $dat){
-			?>
-				<tr>
-					<td>
-						<?php echo $dat ['pregunta']?>
-					</td>
-
-					<td align="center">
-						<div class="radio-container">
-                            <label for="opcion1-pregunta1"></label>
-							<input type="radio" name="pregunta1" value="1">
-							<th><label for="opcion2-pregunta1"></label>
-							<input type="radio" name="pregunta1" value="2"></th>
-							<th><label for="opcion3-pregunta1"></label>
-							<input type="radio" name="pregunta1" value="3"></th>
-							<th><label for="opcion4-pregunta1"></label>
-							<input type="radio" name="pregunta1" value="4"></th>
-						</div>
-					</td>
-
-					<?php
-			}
-					?>
-					
-				</tr>
-				<tr>
-
-			</tbody>
-		</table>
-	</form>
+                                            <div class="radios">
+                                                <td>
+                                                    <div class="ml-4 mb-2">
+                                                        <input class="form-check-input"  type="radio" value="1" name="pregunta<?php echo $i?>">
+                                                        <label for=""></label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="ml-4 mb-2">
+                                                        <input class="form-check-input" type="radio" value="2" name="pregunta <?php echo $i?>">
+                                                        <label for=""></label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="ml-4 mb-2">
+                                                        <input class="form-check-input" type="radio" value="3" name="pregunta <?php echo $i?>">
+                                                        <label for=""></label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="ml-4 mb-2">
+                                                        <input class="form-check-input" type="radio" value="4" name="pregunta <?php echo $i?>">
+                                                        <label for=""></label>
+                                                    </div>
+                                                </td>
+                                            </div>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-sm float-right"><i class="fa-solid fa-floppy-disk"></i>  &nbsp Enviar</button>
+                                </div>
+                            </form>
+                        </div>
 					</div>
 				</div>
             </div>
+        </div>
+    </div>
             
-           
-
             
 </body>
 

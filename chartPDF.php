@@ -30,7 +30,7 @@
  $pdf->Cell(200,10,'Resultados totales obtenidos en la auditoria Enero Abril 2023',0,1,'L',0);
  $img1 = explode(',',$pastel,2)[1];
  $pic1 = 'data://text/plain;base64,'. $img1;
- $pdf->image($pic1, -20,50,300,0,'png');
+ $pdf->image($pic1, -20,40,270,0,'png');
  
 //  $pdf->Cell(200,10,'Resultados obtenido mes con mes',0,1,'L',0);
 //  $img2 = explode(',',$barra,2)[1];
