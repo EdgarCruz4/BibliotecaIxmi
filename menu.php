@@ -47,22 +47,10 @@
 				
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption">
-					    <label></label>
+					    <label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Inicio</span></a>
-					</li>
-					<li class="nav-item">
-					    <a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Archivos</span></a>
-					</li>
-					<li class="nav-item">
-					    <a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Auditoría</span></a>
-					</li>
-					<li class="nav-item">
-					    <a href="alcances.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Alcances</span></a>
-					</li>
-					<li class="nav-item">
-					    <a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
+					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Auditoria</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>UI Element</label>
@@ -90,9 +78,13 @@
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Alcances</label>
 					</li>
-					<li class="nav-item">
-					    <a href="planning_charts.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
-					</li>
+
+					<li class="nav-item pcoded-hasmenu">
+					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
+					    <ul class="pcoded-submenu">
+					        <li><a href="planning_charts.php">Planeación</a></li>
+					        <li><a href="organization_charts.php">Organización</a></li>
+					    </ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Pages</label>
