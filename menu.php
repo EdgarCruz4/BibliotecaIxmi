@@ -1,3 +1,10 @@
+<?php
+	require 'assets/class/consultas.php';
+	$consulta = new consultas();
+	
+	$name = $consulta->session_star_menu();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +57,7 @@
 					    <label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Auditoria</span></a>
+					    <a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Auditoria</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>UI Element</label>
@@ -79,12 +86,8 @@
 					    <label>Alcances</label>
 					</li>
 
-					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
-					    <ul class="pcoded-submenu">
-					        <li><a href="planning_charts.php">Planeación</a></li>
-					        <li><a href="organization_charts.php">Organización</a></li>
-					    </ul>
+					<li class="nav-item">
+					    <a href="planning_charts.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Pages</label>
@@ -131,8 +134,8 @@
 					<ul class="navbar-nav ml-auto">
 						<li>
 							<div class="dropdown">
-								<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
-								<div class="dropdown-menu dropdown-menu-right notification">
+								<!-- <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a> -->
+								<!-- <div class="dropdown-menu dropdown-menu-right notification">
 									<div class="noti-head">
 										<h6 class="d-inline-block m-b-0">Notifications</h6>
 										<div class="float-right">
@@ -187,26 +190,14 @@
 									<div class="noti-footer">
 										<a href="#!">show all</a>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</li>
 						<li>
 							<div class="dropdown drp-user">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="feather icon-user"></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right profile-notification">
-									<div class="pro-head">
-										<img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-										<span>John Doe</span>
-										<a href="auth-signin.php" class="dud-logout" title="Logout">
-											<i class="feather icon-log-out"></i>
-										</a>
-									</div>
-									<ul class="pro-body">
-										<li><a href="auth-signin.php" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-									</ul>
-								</div>
+								<form action="assets/user.php" method="POST">
+									<button type="submit"class="btn btn-link" name="exit"><i class="feather icon-log-out text-white"></i></button>
+								</form>
 							</div>
 						</li>
 					</ul>
