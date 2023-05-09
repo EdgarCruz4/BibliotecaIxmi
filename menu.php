@@ -231,11 +231,6 @@
     <script src="assets/js/plugins/bootstrap.min.js"></script>
     <script src="assets/js/ripple.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
-	<!-- Apex Chart -->
-	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-	<!-- custom-chart js -->
-	<script src="assets/js/pages/dashboard-main.js"></script>
-	<script src="assets/js/pages/chart-apex.js"></script>
 
 </body>
 </html>

@@ -15,10 +15,6 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- pdf -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/js/pdf.js"></script>
-
 </head>
 <body class="">
     <!-- Menu start -->
@@ -50,34 +46,36 @@
             </div>
             <!-- [ breadcrumb ] end -->
             <!-- [ Main Content ] start -->
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Resultados de las encuestas realizadas Enero-Abril</h5>
-                            <a href="chartPDF.html" id="btnCrearPdf"><span class="float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</span></a>
-                            <!-- <button id="btnCrearPdf">pdf</button> -->
+            <form action="chartPdf.php" method="post">
+                <!-- <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Resultados de las encuestas realizadas Enero-Abril</h5>
+                                <input type="hidden" id="barImg" name="bar">
+                                <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
+                            </div>
+                            <div class="card-body">
+                                <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <div id="planeacion"></div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <input type="hidden" id="pieImg" name="pie">
+                                <h5>Resultados de las encuestas realizadas Enero-Abril</h5>
+                                <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
+                            </div>
+                            <div class="card-body">
+                                <div id="pie" style="width: 100%; height: 450px;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Resultados de las encuestas realizadas Enero-Abril</h5>
-                            <a href="chartPDF.html" id="btnCrearPdf"><span class="float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</span></a>
-                            <!-- <button id="btnCrearPdf">pdf</button> -->
-                        </div>
-                        <div class="card-body">
-                            <div id="generalChart" class=" text-center"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
             <!-- [ Main Content ] end -->
             
         </div>
@@ -85,4 +83,53 @@
 	<!-- [ Main Content ] end -->
 
 </body>
+<!-- Google Charts -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- Script para crear el grafico -->
+<script type="text/javascript">
+    // google.charts.load('current', {'packages':['bar']});
+    // google.charts.setOnLoadCallback(drawChartColumn);
+
+    // function drawChartColumn() {
+    //     var data = google.visualization.arrayToDataTable([
+    //         ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+    //         'Western', 'Literature', { role: 'annotation' } ],
+    //         ['2010', 10, 24, 20, 32, 18, 5, ''],
+    //         ['2020', 16, 22, 23, 30, 16, 9, ''],
+    //         ['2030', 28, 19, 29, 30, 12, 13, '']
+    //     ]);
+
+    //     var options = {
+    //         legend: { position: 'top', maxLines: 3 },
+    //         bar: { groupWidth: '30%' },
+    //         isStacked: true,
+    //     };
+
+    //     var chart = new google.visualization.ColumnChart(document.getElementById('bar'));
+
+    //     chart.draw(data, options);
+    //     document.getElementById('barImg').value = chart.getImageURI();
+    // }
+
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChartPie);
+    function drawChartPie() {
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Siempre',     11],
+            ['Casi siempre',      2],
+            ['Algunas veces',  2],
+            ['Inexistente', 2],
+        ]);
+        var options = {
+            is3D: true,
+            colors: ['#3366CC', '#109618', '#FF9900', '#DC3912']
+        };
+            
+        var chart = new google.visualization.PieChart(document.getElementById('pie'));
+        chart.draw(data, options);
+        document.getElementById('pieImg').value=chart.getImageURI();
+    }
+
+</script>
 </html>
