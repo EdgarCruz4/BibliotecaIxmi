@@ -1,3 +1,15 @@
+<?php
+include_once 'assets/conexion.php';
+$objeto = new Conexion();
+$conexion = $objeto->Conectar();
+
+$consulta = "SELECT * FROM preguntas";
+$resultado = $conexion->prepare($consulta);
+$resultado->execute();
+$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
 <Style>
     
   table {
@@ -122,92 +134,34 @@ td {
                 <th>4</th>
             </thead>
 			<tbody>
+			<?php
+			foreach($data as $dat){
+			?>
 				<tr>
 					<td>
-						<label for="pregunta1">¿La institución cuenta con visón?</label>
+						<?php echo $dat ['pregunta']?>
 					</td>
+
 					<td align="center">
 						<div class="radio-container">
                             <label for="opcion1-pregunta1"></label>
-							<input type="radio" id="1" name="pregunta1" value="1">
+							<input type="radio" name="pregunta1" value="1">
 							<th><label for="opcion2-pregunta1"></label>
-							<input type="radio" id="2" name="pregunta1" value="2"></th>
+							<input type="radio" name="pregunta1" value="2"></th>
 							<th><label for="opcion3-pregunta1"></label>
-							<input type="radio" id="3" name="pregunta1" value="3"></th>
+							<input type="radio" name="pregunta1" value="3"></th>
 							<th><label for="opcion4-pregunta1"></label>
-							<input type="radio" id="4" name="pregunta1" value="4"></th>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="pregunta2"> ¿La visión de la organización constituye una declaración fundamental de sus valores, aspiraciones y metas?</label>
-					</td>
-					<td>
-						<div class="radio-container">
-							<label for="opcion1-pregunta2"></label>
-							<input type="radio" id="1" name="pregunta2" value="1">
-							<th><label for="opcion2-pregunta2"></label>
-							<input type="radio" id="2" name="pregunta2" value="2"></th>
-							<th><label for="opcion3-pregunta2"></label>
-							<input type="radio" id="3" name="pregunta2" value="3"></th>
-							<th><label for="opcion4-pregunta2"></label>
-							<input type="radio" id="4" name="pregunta2" value="4"></th>
-						</div>
-					</td>
-                    </tr>
-				<tr>
-                    <td>
-						<label for="pregunta2">¿Es la visión un elemento de juicio para poder perfilar las estrategias?</label>
-					</td>
-					<td>
-						<div class="radio-container">
-							<label for="opcion1-pregunta3"></label>
-							<input type="radio" id="1" name="pregunta3" value="1">
-							<th><label for="opcion2-pregunta3"></label>
-							<input type="radio" id="2" name="pregunta3" value="2"></th>
-							<th><label for="opcion3-pregunta3"></label>
-							<input type="radio" id="3" name="pregunta3" value="3"></th>
-							<th><label for="opcion4-pregunta3"></label>
-							<input type="radio" id="4" name="pregunta3" value="4"></th>
-						</div>
-					</td>
-                    </tr>
-				<tr>
-                    <td>
-						<label for="pregunta2">¿La esencia de la visión considera a todos y cada uno de los indicadores, metas y servicios que ofrecen las bibliotecas?</label>
-					</td>
-					<td>
-						<div class="radio-container">
-							<label for="opcion1-pregunta3"></label>
-							<input type="radio" id="1" name="pregunta4" value="1">
-							<th><label for="opcion2-pregunta3"></label>
-							<input type="radio" id="2" name="pregunta4" value="2"></th>
-							<th><label for="opcion3-pregunta3"></label>
-							<input type="radio" id="3" name="pregunta4" value="3"></th>
-							<th><label for="opcion4-pregunta3"></label>
-							<input type="radio" id="4" name="pregunta4" value="4"></th>
+							<input type="radio" name="pregunta1" value="4"></th>
 						</div>
 					</td>
 
-                    </tr>
-				<tr>
-                    <td>
-						<label for="pregunta2">¿Es la visión un elemento de juicio para poder perfilar las estrategias?</label>
-					</td>
-					<td>
-						<div class="radio-container" >
-							<label for="opcion1-pregunta3"></label>
-							<input type="radio" id="1" name="pregunta5" value="1">
-							<th><label for="opcion2-pregunta3"></label>
-							<input type="radio" id="2" name="pregunta5" value="2"></th>
-							<th><label for="opcion3-pregunta3"></label>
-							<input type="radio" id="3" name="pregunta5" value="3"></th>
-							<th><label for="opcion4-pregunta3"></label>
-							<input type="radio" id="4" name="pregunta5" value="4"></th>
-						</div>
-					</td>
+					<?php
+			}
+					?>
+					
 				</tr>
+				<tr>
+
 			</tbody>
 		</table>
 	</form>
