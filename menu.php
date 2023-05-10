@@ -54,11 +54,26 @@
 				
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Navigation</label>
+					    <label>Menú</label>
 					</li>
 					<li class="nav-item">
-					    <a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Auditoria</span></a>
+					    <a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
+					<li class="nav-item">
+					    <a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-circle"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
+					</li>
+
+                    <li class="nav-item pcoded-menu-caption">
+					    <label>Alcances</label>
+					</li>
+
+					<li class="nav-item">
+					    <a href="planning_charts.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
+					</li>
+
 					<li class="nav-item pcoded-menu-caption">
 					    <label>UI Element</label>
 					</li>
@@ -82,13 +97,7 @@
 					<li class="nav-item">
 					    <a href="form_elements.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Forms</span></a>
 					</li>
-					<li class="nav-item pcoded-menu-caption">
-					    <label>Alcances</label>
-					</li>
-
-					<li class="nav-item">
-					    <a href="planning_charts.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
-					</li>
+					
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Pages</label>
 					</li>
