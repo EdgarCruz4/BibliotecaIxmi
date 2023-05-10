@@ -138,52 +138,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="table-data">
-
-                                        <?php
-                                        include_once("./backend/functions.php");
-
-                                        $result = db_query("SELECT archivos.id AS i, archivos.nombre AS n, archivos.fecha AS f, bibliotecas.nombre AS b FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca");
-                                        while ($row = mysqli_fetch_object($result))
-                                        { ?>
-
-                                        <tr>
-                                            <td>
-                                                <div class="chk-option">
-                                                    <label
-                                                        class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
-                                                        <input type="checkbox" class="custom-control-input">
-                                                        <span class="custom-control-label"></span>
-                                                    </label>
-                                                </div>
-                                                <!-- <div class="d-inline-block align-middle">
-<img src="assets/images/user/avatar-4.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
-<div class="d-inline-block">
-<h6>John Deo</h6>
-<p class="text-muted m-b-0">Graphics Designer</p>
-</div>
-</div> -->
-                                            </td>
-                                            <td>
-                                                <?php echo ($row->n); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo ($row->f); ?>
-                                            </td>
-                                            <td>
-                                                <?php echo ($row->b); ?>
-                                            </td>
-                                            <td class="text-right">
-                                                <button type="button" data-id="<?php echo ($row->n); ?>"
-                                                    class="btn btn-primary btn-sm btn-download">Descargar</button>
-                                                <button type="button" data-id="<?php echo ($row->i); ?>"
-                                                    data-name="<?php echo ($row->n); ?>"
-                                                    class="btn btn-danger btn-sm btn-delete">Eliminar</button>
-                                            </td>
-                                        </tr>
-
-                                        <?php
-                                        }
-                                        ?>
                                     </tbody>
                                 </table>
                             </div>
