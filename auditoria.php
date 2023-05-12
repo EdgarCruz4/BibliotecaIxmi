@@ -148,13 +148,14 @@ for ($step=1; $step <= 8; $step++) {
 <h5 class="text-center form-title">Visión</h5>
 
 <table class="table-sm table-striped table-bordered" style="width: 100%;">
-<thead class="thead-dark">
+<thead class="thead-dark" align="center">
 <tr>
 <th scope="col" >Pregunta</th>
-<th scope="col" >1</th>
-<th scope="col" >2</th>
-<th scope="col" >3</th>
-<th scope="col" >4</th>
+<th scope="col" >Inexistente, nunca, no y N/A<br>1 
+</th>
+<th scope="col" >No se encuentra definido, algunas veces, inadecuado<br>2 </th>
+<th scope="col" >Regular, Casi siempre<br>3</th>
+<th scope="col" >Totalmente, siempre, muy eficaz y sí<br>4</th>
 </tr>
 </thead>
 <tbody>
@@ -310,13 +311,13 @@ for (; $step <= 23; $step++) {
 <h6 class="text-center form-title">Organización</h6>
 
 <table class="table-sm table-striped table-bordered" style="width: 100%;">
-<thead class="thead-dark">
+<thead class="thead-dark" align="center">
 <tr>
 <th scope="col" >Pregunta</th>
-<th scope="col" >1</th>
-<th scope="col" >2</th>
-<th scope="col" >3</th>
-<th scope="col" >4</th>
+<th scope="col" >Inexistente, nunca, no y N/A<br>1</th>
+<th scope="col" >No se encuentra definido, algunas veces, inadecuado<br>2</th>
+<th scope="col" >Regular, Casi siempre<br>3</th>
+<th scope="col" >Totalmente, siempre, muy eficaz y sí<br>4</th>
 </tr>
 </thead>
 <tbody>
@@ -337,7 +338,7 @@ for (; $count < $total; $count++)
             $step == 20 && $count > 233 ||
             $step == 21 && $count > 236 ||
             $step == 22 && $count > 249 ||
-            $step == 23 && $count > 258)
+            $step == 23 && $count > 259)
             break;
 ?>
 <tr>
