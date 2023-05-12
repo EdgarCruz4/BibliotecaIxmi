@@ -47,30 +47,39 @@
             <!-- [ breadcrumb ] end -->
             <!-- [ Main Content ] start -->
             <form action="chartPdf.php" method="post">
-                <!-- <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Resultados de las encuestas realizadas Enero-Abril</h5>
-                                <input type="hidden" id="barImg" name="bar">
-                                <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
-                            </div>
-                            <div class="card-body">
-                                <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="row">
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <input type="hidden" id="pieImg" name="pie">
-                                <h5>Resultados de las encuestas realizadas Enero-Abril</h5>
-                                <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>Resultados de auditoria</h5>
+                                        <input type="hidden" id="barImg" name="bar">
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <select class="custom-select custom-select-sm float-right">
+                                            <option selected hidden>Fecha de auditoria</option>
+                                            <?php
+                                                $result = $consulta->getSurveyDate();
+                                                foreach($result as $data){
+                                                    $numberMonth = $data['mes'] -1;
+                                                    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                                                    $mes = $meses[$numberMonth];
+                                                    ?>
+                                                    <option value=""><?php echo $mes."-".$data['año'];?></option>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <div id="pie" style="width: 100%; height: 450px;"></div>
+                                <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
                             </div>
                         </div>
                     </div>
@@ -87,48 +96,34 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Script para crear el grafico -->
 <script type="text/javascript">
-    // google.charts.load('current', {'packages':['bar']});
-    // google.charts.setOnLoadCallback(drawChartColumn);
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChartColumn);
 
-    // function drawChartColumn() {
-    //     var data = google.visualization.arrayToDataTable([
-    //         ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
-    //         'Western', 'Literature', { role: 'annotation' } ],
-    //         ['2010', 10, 24, 20, 32, 18, 5, ''],
-    //         ['2020', 16, 22, 23, 30, 16, 9, ''],
-    //         ['2030', 28, 19, 29, 30, 12, 13, '']
-    //     ]);
-
-    //     var options = {
-    //         legend: { position: 'top', maxLines: 3 },
-    //         bar: { groupWidth: '30%' },
-    //         isStacked: true,
-    //     };
-
-    //     var chart = new google.visualization.ColumnChart(document.getElementById('bar'));
-
-    //     chart.draw(data, options);
-    //     document.getElementById('barImg').value = chart.getImageURI();
-    // }
-
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChartPie);
-    function drawChartPie() {
+    function drawChartColumn() {
         var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Siempre',     11],
-            ['Casi siempre',      2],
-            ['Algunas veces',  2],
-            ['Inexistente', 2],
+            ["Element", "Density", { role: "style" } ],
+            ["Siempre", 8.94, "#3366CC"],
+            ["Casi siempre", 10.49, "#109618"],
+            ["Algunas veces", 19.30, "#FF9900"],
+            ["Inexistente", 21.45, "color: #DC3912"]
         ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                        { calc: "stringify",
+                            sourceColumn: 1,
+                            type: "string",
+                            role: "annotation" },
+                        2]);
+
         var options = {
-            is3D: true,
-            colors: ['#3366CC', '#109618', '#FF9900', '#DC3912']
+            bar: {groupWidth: "60%"},
+            legend: { position: "none" },
         };
-            
-        var chart = new google.visualization.PieChart(document.getElementById('pie'));
-        chart.draw(data, options);
-        document.getElementById('pieImg').value=chart.getImageURI();
+        var chart = new google.visualization.ColumnChart(document.getElementById("bar"));
+        chart.draw(view, options);
+        document.getElementById('barImg').value=chart.getImageURI();
+
     }
 
 </script>
