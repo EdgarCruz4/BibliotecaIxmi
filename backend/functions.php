@@ -44,34 +44,8 @@ function init() {
  */
 function db_query($query)
 {
-    # PHP error reporting. supported values are given below.
-    # 0 - Turn off all error reporting
-    # 1 - Running errors
-    # 2 - Running errors + notices
-    # 3 - All errors except notices and warnings
-    # 4 - All errors except notices
-    # 5 - All errors
-    error_reporting(5);
-    @session_start();
-    global $host;
-    global $username;
-    global $password;
-    global $dbname;
-    global $port;
-    global $conn;
-    if (isset($_SESSION["username"]) && isset($_SESSION["password"]))
-    {
-        $username = $_SESSION["username"];
-        $password = $_SESSION["password"];
-    }
-    /*
-     If mysqli error reporting is enabled (MYSQLI_REPORT_ERROR) and the requested operation fails, a warning is generated.
-     If, in addition, the mode is set to MYSQLI_REPORT_STRICT, a mysqli_sql_exception is thrown instead.
-     */
-    // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    // mysqli_report(MYSQLI_REPORT_OFF);
-    $conn = @mysqli_connect($host, $username, $password, $dbname, $port);
-    // mysqli_autocommit($conn, false);
+    if (!$conn = init())
+        return null;
     $result = @mysqli_query($conn, $query);
     return $result;
 }
