@@ -129,6 +129,7 @@ class="btn btn-danger btn-sm btn-delete">Eliminar</button>
 
       document.querySelectorAll(".btn-delete").forEach((btn) => {
         btn.addEventListener("click", (e) => {
+          e.preventDefault();
           let id_archivo = btn.getAttribute("data-id");
           let archivo = btn.getAttribute("data-name");
           if (!confirm("¿Borrar?")) return;

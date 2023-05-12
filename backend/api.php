@@ -24,7 +24,7 @@ if (isset($_POST) && !empty($_POST))
             echo (json_encode(array('status' => @unlink(ROOT_PATH . '/src/archivos/' . $filename) && deleteByID("archivos", $_POST["id_archivo"]) == true ? 'ok' : 'failed')));
             break;
         case 'read':
-            unset($_POST['read']);
+            unset($_POST['function']);
             $rows = array();
             $result = db_query("SELECT archivos.id AS i, archivos.nombre AS n, archivos.fecha AS f, bibliotecas.nombre AS b FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca");
             while ($row = mysqli_fetch_object($result))
