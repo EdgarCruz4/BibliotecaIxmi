@@ -1,7 +1,7 @@
 
 /*---------signup-step-------------*/
 .signup-step-container{
-	padding: 80px 0px;
+	padding: 0px 0px;
 	padding-bottom: 10px;
 }
 /*----------step-wizard------------*/
@@ -138,9 +138,6 @@ span.round-tab i{
 
 @media (max-width: 767px)
 {
-    .wizard .nav-tabs > li a i {
-    display: none;
-    }
     span.round-tab {
     font-size: 11px;
     color: #0e214b;
