@@ -74,7 +74,7 @@
 					    <a href="planning_charts.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
 					</li>
 
-					<li class="nav-item pcoded-menu-caption">
+					<!-- <li class="nav-item pcoded-menu-caption">
 					    <label>UI Element</label>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
@@ -107,7 +107,7 @@
 					        <li><a href="auth-signup.php" target="_blank">Sign up</a></li>
 					        <li><a href="auth-signin.php" target="_blank">Sign in</a></li>
 					    </ul>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
