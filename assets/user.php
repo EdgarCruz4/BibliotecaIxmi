@@ -18,6 +18,9 @@
             $data=$result->fetch(PDO::FETCH_ASSOC);
             $user = $data['usuario'];
             $password = $data['contraseña'];
+            // almacena el id de la biblioteca actual 
+            $id_biblioteca = $data['id_biblioteca'];
+            $_SESSION['id_biblioteca'] = $id_biblioteca;
             $_SESSION['user'] = $user;
             $_SESSION['password'] = $password;
             header("location:../index.php");

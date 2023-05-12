@@ -5,13 +5,8 @@
 require_once('config.php');
 // Sets the global variable for root path
 define('ROOT_PATH', dirname(dirname(__FILE__)));
-/**
- * @param string $query
- * init the connection and
- * Performs a query against the database.
- */
-function db_query($query)
-{
+
+function init() {
     # PHP error reporting. supported values are given below.
     # 0 - Turn off all error reporting
     # 1 - Running errors
@@ -39,11 +34,31 @@ function db_query($query)
     // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     // mysqli_report(MYSQLI_REPORT_OFF);
     $conn = @mysqli_connect($host, $username, $password, $dbname, $port);
+    return $conn;
     // mysqli_autocommit($conn, false);
-    if (!$conn)
+}
+/**
+ * @param string $query
+ * init the connection and
+ * Performs a query against the database.
+ */
+function db_query($query)
+{
+    if (!$conn = init())
         return null;
     $result = @mysqli_query($conn, $query);
     return $result;
+}
+function multi_insert($table, $sql_array)
+{
+    if (!$conn = init())
+        return false;
+    $query = "";
+    foreach ($sql_array as $sql) {
+        $fields = array_keys($sql);
+        $query .= 'INSERT INTO ' . $table . '(' . implode(',', $fields) . ")  VALUES('" . implode("','", $sql) . "');";
+    }
+    return mysqli_multi_query($conn, $query);
 }
 /**
  * @param string $table

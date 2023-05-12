@@ -19,16 +19,22 @@
 
     <!-- Css personalizado -->
     <!-- <link rel="stylesheet" href="assets/css/myStyle.css"> -->
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
-<body class="">
-   <!-- Menu start -->
-    <?php
-    include_once 'menu.php';
-    $today = date('Y-m-d');
-    $time = date('h:i:s');
-    ?>
-    <!-- Menu end -->
+<body>
+<!-- Menu start -->
+<?php
+include_once 'menu.php';
+$today = date('Y-m-d');
+$time = date('h:i:s');
+$count = 0;
+$id_biblioteca = @$_SESSION['id_biblioteca'];
+$result = $consulta->getForm();
+$total = count($result);
+?>
+<!-- Menu end -->
+
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-content">
@@ -96,57 +102,52 @@
                         </div>
                         <div class="card-body p-2">
 
-
-
-<section class="signup-step-container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-10">
-                    <div class="wizard col-11">
-                        <div class="wizard-inner">
-                            <div class="connecting-line"></div>
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab"><span class="round-tab">1 </span> <i>Misión</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"><span class="round-tab">2</span> <i>Visión</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab"><span class="round-tab">3</span> <i>Objetivos</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab"><span class="round-tab">4</span> <i>Metas</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab"><span class="round-tab">5</span> <i>Procesos</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step6" data-toggle="tab" aria-controls="step6" role="tab"><span class="round-tab">6</span> <i>Procedimientos</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step7" data-toggle="tab" aria-controls="step7" role="tab"><span class="round-tab">7</span> <i>Programas</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step8" data-toggle="tab" aria-controls="step8" role="tab"><span class="round-tab">8</span> <i>Metas</i></a>
-                                </li>
-                            </ul>
-                        </div>
+<!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+<section id="section-1" class="signup-step-container" style="display: block;">
+<div class="row d-flex justify-content-center">
+<div class="col-md-10">
+<div class="wizard col-11">
+<div class="wizard-inner">
+<div class="connecting-line"></div>
+    <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+    <a data-toggle="tab" aria-controls="#step1" data-title="Visión" role="tab"><span class="round-tab">1 </span> <i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step2" data-title="Misión" role="tab"><span class="round-tab">2</span> <i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step3" data-title="Objetivos" role="tab"><span class="round-tab">3</span> <i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step4" data-title="Metas" role="tab"><span class="round-tab">4</span> <i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step5" data-title="Procesos" role="tab"><span class="round-tab">5</span> <i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step6" data-title="Procedimientos" role="tab"><span class="round-tab">6</span> <i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step7" data-title="Programas" role="tab"><span class="round-tab">7</span> <i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step8" data-title="Metas" role="tab"><span class="round-tab">8</span> <i></i></a>
+    </li>
+    </ul>
+</div>
         
-<form role="form" action="index.html" class="login-box">
+<form id="form-1" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form" class="needs-validation" novalidate>
 <div class="tab-content" id="main_form">
 
 <?php
-$count = 0;
-$total = 200;
-
-$result = $consulta->getForm();
 for ($step=1; $step <= 8; $step++) {
 ?>
 
 <div class="tab-pane <?php if ($step == 1) echo('active'); ?>" role="tabpanel" id="step<?php echo($step); ?>">
-<h4 class="text-center">step <?php echo($step); ?></h4>
+<h5 class="text-center form-title">Visión</h5>
 
-<table class="table-sm table-striped table-bordered" style="row-gap: 5px;">
+<table class="table-sm table-striped table-bordered" style="width: 100%;">
 <thead class="thead-dark">
 <tr>
 <th scope="col" >Pregunta</th>
@@ -158,8 +159,7 @@ for ($step=1; $step <= 8; $step++) {
 </thead>
 <tbody>
 <?php
-// foreach($result as $dat) {
-for (; $count < count($result); $count++)
+for (; $count < $total; $count++)
     {
         if ($step == 1 && $count > 7||
             $step == 2 && $count > 11 ||
@@ -172,29 +172,202 @@ for (; $count < count($result); $count++)
             break;
 ?>
 <tr>
-<th>
+<td>
 <?php echo $result[$count]['pregunta']; ?>
-</th>
+</td>
 
-<div class="radios">
+<div class="form-group">
 <td>
-<div class="ml-4 mb-2">
-<input class="form-check-input"  type="radio" value="1" name="pregunta<?php echo $count ?>">
+<div class="ml-4 mb-2 radio">
+<input data-answer="1" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" required class="form-check-input"  type="radio" name="pregunta<?php echo $count ?>">
 </div>
 </td>
 <td>
-<div class="ml-4 mb-2">
-<input class="form-check-input" type="radio" value="2" name="pregunta<?php echo $count ?>">
+<div class="ml-4 mb-2 radio">
+<input data-answer="2" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 </div>
 </td>
 <td>
-<div class="ml-4 mb-2">
-<input class="form-check-input" type="radio" value="3" name="pregunta<?php echo $count ?>">
+<div class="ml-4 mb-2 radio">
+<input data-answer="3" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 </div>
 </td>
 <td>
-<div class="ml-4 mb-2">
-<input class="form-check-input" type="radio" value="4" name="pregunta<?php echo $count ?>">
+<div class="ml-4 mb-2 radio">
+<input data-answer="4" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+</div>
+</td>
+</div>
+</tr>
+<?php
+}
+?>
+</tbody>
+</table>
+
+<ul class="list-inline pull-right">
+<?php
+if ($step > 1)
+{
+?>
+<li><button type="button" class="btn btn-primary prev-step">Back</button></li>
+<?php
+}
+if ($step == 8)
+{
+?>
+<li><button type="submit" class="btn btn-info submit-form-1">Continuar</button></li>
+<?php
+} else
+{
+?>
+<!-- <li><button type="button" class="default-btn next-step skip-btn">Skip</button></li> -->
+<li><button type="button" class="btn btn-info next-step">Continuar</button></li>
+<?php
+}
+?>
+</ul>
+</div>
+
+<?php
+}
+?>
+<div class="clearfix"></div>
+</div>
+</form>
+    </div>
+            </div>
+        </div>
+</section>
+
+
+
+<!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+<section id="section-2" class="signup-step-container" style="display: none;">
+<div class="row d-flex justify-content-center">
+<div class="col-md-10">
+<div class="wizard col-11">
+<div class="wizard-inner">
+<div class="connecting-line"></div>
+    <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+    <a data-toggle="tab" aria-controls="#step9" role="tab" data-title="Organización"><span class="round-tab">9</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step10" role="tab" data-title="División y distribución de funciones"><span class="round-tab">10</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step11" role="tab" data-title="Cultura organizacional"><span class="round-tab">11</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step12" role="tab" data-title="Recursos humanos"><span class="round-tab">12</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step13" role="tab" data-title="Reclutamiento, selección, contratación, inducción y socializacion"><span class="round-tab">13</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step14" role="tab" data-title="Normatividad"><span class="round-tab">14</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step15" role="tab" data-title="Renumeracion del personal"><span class="round-tab">15</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step16" role="tab" data-title="Capacitación y desarrollo"><span class="round-tab">16</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step17" role="tab" data-title="Seguridad e higiene"><span class="round-tab">17</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step18" role="tab" data-title="Evaluación del desempeño"><span class="round-tab">18</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step19" role="tab" data-title="Inteligencia emocional"><span class="round-tab">19</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step20" role="tab" data-title="Valores"><span class="round-tab">20</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step21" role="tab" data-title="Ética"><span class="round-tab">21</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step22" role="tab" data-title="Cambio organizacional"><span class="round-tab">22</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled">
+    <a data-toggle="tab" aria-controls="#step23" role="tab" data-title="Instrumentos técnicos de apoyo"><span class="round-tab">23</span><i></i></a>
+    </li>
+    </ul>
+</div>
+        
+<form id="form-2" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form" class="needs-validation" novalidate>
+<div class="tab-content">
+
+<?php
+for (; $step <= 23; $step++) {
+?>
+
+<div class="tab-pane <?php if ($step == 9) echo('active'); ?>" role="tabpanel" id="step<?php echo($step); ?>">
+<h6 class="text-center form-title">Organización</h6>
+
+<table class="table-sm table-striped table-bordered" style="width: 100%;">
+<thead class="thead-dark">
+<tr>
+<th scope="col" >Pregunta</th>
+<th scope="col" >1</th>
+<th scope="col" >2</th>
+<th scope="col" >3</th>
+<th scope="col" >4</th>
+</tr>
+</thead>
+<tbody>
+<?php
+for (; $count < $total; $count++)
+    {
+        if ($step == 9 && $count > 134||
+            $step == 10 && $count > 148 ||
+            $step == 11 && $count > 168 ||
+            $step == 12 && $count > 179 ||
+            $step == 13 && $count > 190 ||
+            $step == 14 && $count > 194 ||
+            $step == 15 && $count > 197 ||
+            $step == 16 && $count > 212 ||
+            $step == 17 && $count > 220 ||
+            $step == 18 && $count > 224 ||
+            $step == 19 && $count > 227 ||
+            $step == 20 && $count > 233 ||
+            $step == 21 && $count > 236 ||
+            $step == 22 && $count > 249 ||
+            $step == 23 && $count > 258)
+            break;
+?>
+<tr>
+<td>
+<?php echo $result[$count]['pregunta']; ?>
+</td>
+
+<div class="form-group">
+<td>
+<div class="ml-4 mb-2 radio">
+<input data-answer="1" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" required class="form-check-input"  type="radio" name="pregunta<?php echo $count ?>">
+<div class="invalid-feedback">Please choose a username.</div>
+</div>
+</td>
+<td>
+<div class="ml-4 mb-2 radio">
+<input data-answer="2" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<div class="invalid-feedback">Please choose a username.</div>
+</div>
+</td>
+<td>
+<div class="ml-4 mb-2 radio">
+<input data-answer="3" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<div class="invalid-feedback">Please choose a username.</div>
+</div>
+</td>
+<td>
+<div class="ml-4 mb-2 radio">
+<input data-answer="4" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<div class="invalid-feedback">Please choose a username.</div>
 </div>
 </td>
 </div>
@@ -208,43 +381,51 @@ for (; $count < count($result); $count++)
 
 <ul class="list-inline pull-right">
 <?php
-if ($step > 1)
+if ($step > 9)
 {
 ?>
-<li><button type="button" class="default-btn prev-step">Back</button></li>
+<li><button type="button" class="btn btn-primary prev-step">Back</button></li>
 <?php
-}?>
+}
+if ($step >= 23)
+{
+?>
+<li><button type="submit" class="btn btn-success submit-form-2">Finalizar</button></li>
+<?php
+} else
+{
+?>
 <!-- <li><button type="button" class="default-btn next-step skip-btn">Skip</button></li> -->
-<li><button type="button" class="default-btn next-step">Continuar</button></li>
+<li><button type="button" class="btn btn-info next-step">Continuar</button></li>
+<?php
+}
+?>
 </ul>
 </div>
 
 <?php
 }
 ?>
-
-
-
 <div class="clearfix"></div>
 </div>
 </form>
-                    </div>
-                </div>
-            </div>
-    </section>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ Main Content ] end -->
-        </div>
     </div>
-    <!-- [ Main Content ] end -->
+            </div>
+        </div>
+</section>
 
-    <script src="js/auditoria.js"></script>
-</body>
+<!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
 
+
+
+</div>
+    </div>
+        </div>
+            </div>
+                <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        <!-- [ Main Content ] end -->
+        <script src="js/auditoria.js"></script>
+    </body>
 </html>
