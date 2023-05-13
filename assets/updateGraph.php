@@ -30,7 +30,7 @@
             $regular ++;
         }
         elseif($score == 4){
-            $nonExistent;
+            $nonExistent ++;
         }else{
             echo "ocurrio un error";
         }

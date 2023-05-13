@@ -19,8 +19,10 @@
             $user = $data['usuario'];
             // almacena el id de la biblioteca actual 
             $id_biblioteca = $data['id_biblioteca'];
+            $nameUser = $data['nombre'];
             $_SESSION['id_biblioteca'] = $id_biblioteca;
             $_SESSION['user'] = $user;
+            $_SESSION['nameUser'] = $nameUser;
             header("location:../index.php");
         }else{
             header("location:../auth-signin.php?error=1");

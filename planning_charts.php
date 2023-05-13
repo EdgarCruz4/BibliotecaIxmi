@@ -20,7 +20,7 @@
     <!-- Menu start -->
 	<?php
         include_once 'menu.php';
-        $today = date('m');
+        $today = date('m-Y');
         $time = date('h:i:s');
 	?>
 	<!-- Menu end -->	
@@ -58,7 +58,7 @@
                                         <input type="hidden" id="barImg" name="bar">
                                     </div>
                                     <div class="col-md-auto">
-                                        <select class="custom-select custom-select-sm float-right" id="tyme">
+                                        <select class="custom-select custom-select-sm float-right" id="tyme" name="tyme">
                                             <option selected hidden>Fecha de auditoria</option>
                                             <?php
                                                 $months = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -74,6 +74,8 @@
                                         </select>
                                     </div>
                                     <div class="col-md-auto">
+                                        <input type="hidden" name="today" value="<?php echo $today;?>">
+                                        <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser']?>">
                                         <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
                                     </div>
                                 </div>
