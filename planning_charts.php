@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <input type="text" id="dataTest" value="">
+                                <input type="hidden" id="dataTest" value="">
                                 <input type="hidden" id="user" value="<?php echo $_SESSION['id_biblioteca']?>">
                                 <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
                             </div>
@@ -105,9 +105,9 @@
     $(function(){
         $("#tyme").on('change', function(){
             var tyme = $("#tyme").val();
+            var user = $("#user").val();
             var flag = true;
             var ruta = "tyme="+tyme+"&flag="+flag+"&user="+user;
-
             $.ajax({
             url: 'assets/updateGraph.php',
             type: 'POST',
@@ -126,7 +126,6 @@
         var currentYear = today.getFullYear();
         var flag = false;
         var user = $("#user").val();
-        console.log(user);
         var ruta = "currentMonth="+currentMonth+"&currentYear="+currentYear+"&flag="+flag+"&user="+user;
         $.ajax({
             url: 'assets/updateGraph.php',

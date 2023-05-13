@@ -7,7 +7,6 @@
         $tyme = $_POST['tyme'];
         $partes = explode("-", $tyme);
         $data = $consultas->testResults($partes[0], $partes[1],$_POST['user']);
-        
     }elseif($_POST['flag'] == "false"){
         $currentMonth = $_POST['currentMonth'];
         $currentYear = $_POST['currentYear'];
