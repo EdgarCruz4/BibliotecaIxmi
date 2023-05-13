@@ -40,5 +40,22 @@
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
             return $data;
         }
+
+        public function testResults($mes, $año,$library){
+            include_once 'conexion.php';
+            $objeto = new Conexion();
+            $conexion = $objeto->Conectar();
+            if($library == 1){
+            $query= "SELECT * FROM encuesta, respuestas 
+                WHERE MONTH(fecha) = '$mes' and YEAR(fecha) = '$año' and id_encuesta = fk_encuesta;";
+            }else{
+                $query= "SELECT * FROM encuesta, respuestas 
+                WHERE fk_id_biblioteca = '$library' AND MONTH(fecha) = '$mes' and YEAR(fecha) = '$año' and id_encuesta = fk_encuesta;";
+            }
+            $resultado = $conexion->prepare($query);
+            $resultado->execute();
+            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
     }
 ?>

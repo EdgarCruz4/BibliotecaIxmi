@@ -1,7 +1,6 @@
 <?php
 	require 'assets/class/consultas.php';
 	$consulta = new consultas();
-	date_default_timezone_set('America/Mexico_City');
 	$name = $consulta->session_star_menu();
 ?>
 
