@@ -247,7 +247,7 @@ for (; $count < $total; $count++)
             $step == 20 && $count > 233 ||
             $step == 21 && $count > 236 ||
             $step == 22 && $count > 249 ||
-            $step == 23 && $count > 258)
+            $step == 23 && $count > 259)
             break;
 ?>
 <tr>

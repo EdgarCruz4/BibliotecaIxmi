@@ -20,7 +20,7 @@
     <!-- Menu start -->
 	<?php
         include_once 'menu.php';
-        $today = date('Y-m-d');
+        $today = date('m-Y');
         $time = date('h:i:s');
 	?>
 	<!-- Menu end -->	
@@ -58,27 +58,31 @@
                                         <input type="hidden" id="barImg" name="bar">
                                     </div>
                                     <div class="col-md-auto">
-                                        <select class="custom-select custom-select-sm float-right">
+                                        <select class="custom-select custom-select-sm float-right" id="tyme" name="tyme">
                                             <option selected hidden>Fecha de auditoria</option>
                                             <?php
+                                                $months = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                                                 $result = $consulta->getSurveyDate();
                                                 foreach($result as $data){
                                                     $numberMonth = $data['mes'] -1;
-                                                    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-                                                    $mes = $meses[$numberMonth];
+                                                    $month = $months[$numberMonth];
                                                     ?>
-                                                    <option value=""><?php echo $mes."-".$data['año'];?></option>
+                                                    <option value="<?php echo $data['mes']."-".$data['año'];?>"><?php echo $month."-".$data['año'];?></option>
                                                     <?php
                                                 }
                                             ?>
                                         </select>
                                     </div>
                                     <div class="col-md-auto">
+                                        <input type="hidden" name="today" value="<?php echo $today;?>">
+                                        <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser']?>">
                                         <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
+                                <input type="hidden" id="dataTest" value="">
+                                <input type="hidden" id="user" value="<?php echo $_SESSION['id_biblioteca']?>">
                                 <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
                             </div>
                         </div>
@@ -94,37 +98,7 @@
 </body>
 <!-- Google Charts -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <!-- Script para crear el grafico -->
-<script type="text/javascript">
-    google.charts.load("current", {packages:['corechart']});
-    google.charts.setOnLoadCallback(drawChartColumn);
-
-    function drawChartColumn() {
-        var data = google.visualization.arrayToDataTable([
-            ["Element", "Density", { role: "style" } ],
-            ["Siempre", 8.94, "#3366CC"],
-            ["Casi siempre", 10.49, "#109618"],
-            ["Algunas veces", 19.30, "#FF9900"],
-            ["Inexistente", 21.45, "color: #DC3912"]
-        ]);
-
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-                        { calc: "stringify",
-                            sourceColumn: 1,
-                            type: "string",
-                            role: "annotation" },
-                        2]);
-
-        var options = {
-            bar: {groupWidth: "60%"},
-            legend: { position: "none" },
-        };
-        var chart = new google.visualization.ColumnChart(document.getElementById("bar"));
-        chart.draw(view, options);
-        document.getElementById('barImg').value=chart.getImageURI();
-
-    }
-
-</script>
+<script type="text/javascript" src="assets/js/chart.js"></script>
 </html>
