@@ -1,6 +1,11 @@
 const API_URL = window.location.origin.concat('/bibliotecaixmi').concat('/backend/api.php');
+
 // ------------step-wizard-------------
 $(document).ready(function () {
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    });
+    
     // $('.nav-tabs > li a[title]').tooltip('show');
     
     // Wizard
@@ -12,45 +17,37 @@ $(document).ready(function () {
             return false;
         }
     });
-
-    $(" #form-1 .next-step").click(function (e) {
-
-        var active = $('#section-1 .wizard .nav-tabs li.active');
-        // active.next().removeClass('disabled');
-        $('#section-1 .nav-tabs li.active').removeClass('active');
-        let el = active.next();
-        el.removeClass('disabled');
-        el.addClass('active');
-        nextTab(active, '#form-1');
-    });
-    $("#form-1 .prev-step").click(function (e) {
-
-        var active = $('#section-1 .wizard .nav-tabs li.active');
-        $('#section-1 .nav-tabs li.active').removeClass('active');
-        let el = active.prev();
-        el.addClass('disabled');
-        el.addClass('active');
-        prevTab(active, '#form-1');
-    });
     
-    // Section 2
-    $("#form-2 .next-step").click(function (e) {
+    $('li.section-2').hide();
 
-        let active = $('#section-2 .wizard .nav-tabs li.active');
-        $('#section-2 .nav-tabs li.active').removeClass('active');
+    $("#form-encuesta .next-step").click(function (e) {
+
+        var active = $('.wizard .nav-tabs li.active');
+        // active.next().removeClass('disabled');
+        $('.nav-tabs li.active').removeClass('active');
         let el = active.next();
+        if (el.hasClass('section-2'))
+        {
+            $('li.section-1').hide();
+            $('li.section-2').show();
+        }
         el.removeClass('disabled');
         el.addClass('active');
-        nextTab(active, '#form-2');
+        nextTab(active, '#form-encuesta');
     });
-    $("#form-2 .prev-step").click(function (e) {
+    $("#form-encuesta .prev-step").click(function (e) {
 
-        let active = $('#section-2 .wizard .nav-tabs li.active');
-        $('#section-2 .nav-tabs li.active').removeClass('active');
+        var active = $('.wizard .nav-tabs li.active');
+        $('.nav-tabs li.active').removeClass('active');
         let el = active.prev();
+        if (el.hasClass('section-1'))
+        {
+            $('li.section-2').hide();
+            $('li.section-1').show();
+        }
         el.addClass('disabled');
         el.addClass('active');
-        prevTab(active, '#form-2');
+        prevTab(active, '#form-encuesta');
     });
 });
 
@@ -73,51 +70,45 @@ function prevTab(elem, id = '') {
 
 var formData = new FormData();
 var answers = new Array();
-var isDone = false;
 
-document.querySelector('#form-1').addEventListener('submit', (e) => {
+document.querySelector('#form-encuesta').addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    if (isDone) return;
     
     formData.append('id_biblioteca', e.target.getAttribute("data-id-biblioteca"));
     formData.append('function', 'answers');
     
-    document.querySelectorAll('#form-1 input[type="radio"]').forEach(radio => {
+    document.querySelectorAll('#form-encuesta input[type="radio"]').forEach(radio => {
         if (radio.checked) {
             answers.push({'fk_pregunta': radio.getAttribute('data-id'), 'respuesta': radio.getAttribute('data-answer')});
         }
     });
-    document.querySelector('#section-1').style.display = 'none';
-    document.querySelector('#section-2').style.display = 'block';
+    if (answers.length > 0 && saveAnswers()) {
+        $('#encuesta-finalizada').modal('show').on('hidden.bs.modal', function (e) {
+            window.location.href = '../auditoria.php';
+        });
+    }
+    else
+    {
+        $('#encuesta-finalizada').modal('show').on('show.bs.modal', function (e) {
+            var modal = $(this)
+            modal.find('.modal-body h6').html('Ocurrio un error.\nPorfavor intenta más tarde.');
+        });
+    }
 });
 
-document.querySelector('#form-2').addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    if (isDone) { saveAnswers(); return; }
-    
-    document.querySelectorAll('#form-2 input[type="radio"]').forEach(radio => {
-        if (radio.checked) {
-            answers.push({'fk_pregunta': radio.getAttribute('data-id'), 'respuesta': radio.getAttribute('data-answer')});
-        }
-    });
-    isDone = true;
-    saveAnswers();
-});
-
-function saveAnswers()
+async function saveAnswers()
 {
     formData.append('respuestas', JSON.stringify(answers));
-    fetch(API_URL, {
+    await fetch(API_URL, {
         method: 'POST',
         body: formData
     }
-    ).then(response => response.text()
+    ).then(response => response.json()
     ).then(data => {
-        console.log(data);
+        if (data?.status == 'ok') return true;
+        else return false;
     }
     ).catch(error => {
-        console.error(error);
+        return false;
     });
 }
