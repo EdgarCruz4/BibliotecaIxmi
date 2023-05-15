@@ -201,7 +201,7 @@ $step = 1;
     </ul>
 </div>
 
-<form id="form-encuesta" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form" class="was-validated" novalidate>
+<form id="form-encuesta" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form" novalidate>
 <div class="tab-content">
 <?php
 for (; $step <= 23; $step++) {

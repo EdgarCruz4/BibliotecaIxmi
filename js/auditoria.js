@@ -71,8 +71,17 @@ function prevTab(elem, id = '') {
 var formData = new FormData();
 var answers = new Array();
 
-document.querySelector('#form-encuesta').addEventListener('submit', (e) => {
-    e.preventDefault();
+document.querySelector('#form-encuesta').addEventListener('submit', (e) => e.preventDefault() );
+
+document.querySelector('#form-encuesta').onsubmit = function(e) {
+    if (!e.target.checkValidity()) {
+        $('#encuesta-finalizada').on('show.bs.modal', function (e) {
+        var modal = $(this);
+        modal.find('.modal-body h6').text('Aún no has completado la encuesta.');
+        }).modal('show');
+        e.target.classList.add('was-validated');
+        return false;
+    }
     
     formData.append('id_biblioteca', e.target.getAttribute("data-id-biblioteca"));
     formData.append('function', 'answers');
@@ -83,18 +92,18 @@ document.querySelector('#form-encuesta').addEventListener('submit', (e) => {
         }
     });
     if (answers.length > 0 && saveAnswers()) {
-        $('#encuesta-finalizada').modal('show').on('hidden.bs.modal', function (e) {
+        $('#encuesta-finalizada').on('hidden.bs.modal', function (e) {
             window.location.href = '../auditoria.php';
-        });
+        }).modal('show');
     }
     else
     {
-        $('#encuesta-finalizada').modal('show').on('show.bs.modal', function (e) {
+        $('#encuesta-finalizada').on('show.bs.modal', function (e) {
             var modal = $(this)
-            modal.find('.modal-body h6').html('Ocurrio un error.\nPorfavor intenta más tarde.');
-        });
+        }).modal('show');
     }
-});
+            modal.find('.modal-body h6').html('Ocurrió un error.\nPorfavor intenta más tarde.');
+};
 
 async function saveAnswers()
 {
