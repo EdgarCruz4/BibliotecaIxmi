@@ -40,7 +40,10 @@
 				
 				<div class="">
 					<div class="main-menu-header">
-						<img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
+						<!-- <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image"> -->
+                        <?php
+                        echo '<img class="img-radius" src="data:image/jpeg;base64,'.base64_encode(@$_SESSION['foto_miniatura']).'" alt="thumbnail"/>';
+                        ?>
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
@@ -120,8 +123,8 @@
 					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
 					<a href="#!" class="b-brand">
 						<!-- ========   change your logo hear   ============ -->
-						<img src="assets/images/logo.png" alt="" class="logo">
-						<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">
+<!--						<img src="assets/images/logo.png" alt="" class="logo">
+						<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">-->
 					</a>
 					<a href="#!" class="mob-toggler">
 						<i class="feather icon-more-vertical"></i>
@@ -129,7 +132,7 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
+<!--						<li class="nav-item">
 							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
 							<div class="search-bar">
 								<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
@@ -137,13 +140,13 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-						</li>
+						</li>-->
 					</ul>
 					<ul class="navbar-nav ml-auto">
-						<li>
+<!--						<li>
 							<div class="dropdown">
-								<!-- <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a> -->
-								<!-- <div class="dropdown-menu dropdown-menu-right notification">
+								 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+								 <div class="dropdown-menu dropdown-menu-right notification">
 									<div class="noti-head">
 										<h6 class="d-inline-block m-b-0">Notifications</h6>
 										<div class="float-right">
@@ -198,24 +201,20 @@
 									<div class="noti-footer">
 										<a href="#!">show all</a>
 									</div>
-								</div> -->
+								</div>
 							</div>
-						</li>
+						</li>-->
 						<li>
 							<div class="dropdown drp-user">
 								<form action="assets/user.php" method="POST">
-									<button type="submit"class="btn btn-link" name="exit"><i class="feather icon-log-out text-white"></i></button>
+									<button type="submit" class="btn btn-link" name="exit"><i class="feather icon-log-out text-white"></i></button>
 								</form>
 							</div>
 						</li>
 					</ul>
 				</div>
-				
-			
 	</header>
 	<!-- [ Header ] end -->
-	
-	
 
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
