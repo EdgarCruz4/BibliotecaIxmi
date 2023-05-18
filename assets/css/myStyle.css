@@ -1,27 +1,5 @@
-table {
-    border-collapse: collapse;
-    border: black 1px solid;
-
-  margin: 15px;
-  padding: 15px;
-}
-
-th{
-    border: black 1px solid;
-}
-
-tbody {
-    border: black 1px solid;
-  margin: 15px;
-  padding: 15px;
-}
-tr {
-    border: black 1px solid;
-  margin: 15px;
-  padding: 15px;
-}
-td {
-    border: black 1px solid;
-  margin: 15px;
-  padding: 15px;
+@media screen and (max-width: 768px) {
+  #imprimir {
+    display: none;
+  }
 }

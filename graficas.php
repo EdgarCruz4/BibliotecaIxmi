@@ -34,7 +34,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10"><?php echo($_SESSION['biblioteca']); ?></h5>
+                                <h5 class="m-b-10"><?php echo $_SESSION['nameUser']; ?></h5>
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php"><i class="feather icon-home"></i></a></li>
@@ -76,7 +76,7 @@
                                     <div class="col-md-auto">
                                         <input type="hidden" name="today" value="<?php echo $today;?>">
                                         <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser']?>">
-                                        <button type="submit" class="btn btn-outline-primary btn-sm float-right"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
+                                        <button type="submit" class="btn btn-outline-primary btn-sm float-right" id="imprimir"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
                                     </div>
                                 </div>
                             </div>

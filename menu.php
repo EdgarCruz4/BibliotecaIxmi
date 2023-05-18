@@ -22,7 +22,8 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
     
-    
+	<!-- Css personalizado -->
+    <link rel="stylesheet" href="assets/css/myStyle.css">
 
 </head>
 <body class="">
@@ -73,26 +74,16 @@
 					</li>
 
 					<li class="nav-item">
-					    <a href="planning_charts.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
+					    <a href="graficas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
 					</li>
-
-					<!-- <li class="nav-item pcoded-menu-caption">
-					    <label>UI Element</label>
+						
+					<li class="nav-item pcoded-menu-caption">
+					    <label></label>
 					</li>
-					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Basic</span></a>
-					    <ul class="pcoded-submenu">
-					        <li><a href="bc_alert.php">Alert</a></li>
-					        <li><a href="bc_button.php">Button</a></li>
-					        <li><a href="bc_badges.php">Badges</a></li>
-					        <li><a href="bc_breadcrumb-pagination.php">Breadcrumb & paggination</a></li>
-					        <li><a href="bc_collapse.php">Collapse</a></li>
-					        <li><a href="bc_progress.php">Progress</a></li>
-					        <li><a href="bc_tabs.php">Tabs & pills</a></li>
-					        <li><a href="bc_typography.php">Typography</a></li>
-					        <li><a href="bc_tooltip-popover.php">Tooltip & popovers</a></li>
-					    </ul>
+					<li class="nav-item">
+						<a href="#" class="bg-primary text-white" id="buttonExit"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></a>
 					</li>
+					<!--
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Forms &amp; table</label>
 					</li>
@@ -120,16 +111,16 @@
 		
 			
 				<div class="m-header">
-					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-					<a href="#!" class="b-brand">
-						<!-- ========   change your logo hear   ============ -->
-<!--						<img src="assets/images/logo.png" alt="" class="logo">
-						<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">-->
-					</a>
-					<a href="#!" class="mob-toggler">
-						<i class="feather icon-more-vertical"></i>
-					</a>
+					<div>
+						<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+						<a href="#!" class="b-brand">
+							<!-- ========   change your logo hear   ============ -->
+							<!-- <img src="assets/images/logo.png" alt="" class="logo">
+							<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">-->
+						</a>
+					</div>
 				</div>
+				
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
 <!--						<li class="nav-item">
@@ -204,13 +195,6 @@
 								</div>
 							</div>
 						</li>-->
-						<li>
-							<div class="dropdown drp-user">
-								<form action="assets/user.php" method="POST">
-									<button type="submit" class="btn btn-link" name="exit"><i class="feather icon-log-out text-white"></i></button>
-								</form>
-							</div>
-						</li>
 					</ul>
 				</div>
 	</header>
@@ -221,6 +205,7 @@
     <script src="assets/js/plugins/bootstrap.min.js"></script>
     <script src="assets/js/ripple.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
+	<script src="assets/js/exit.js"></script>
 
 </body>
 </html>
