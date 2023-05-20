@@ -1,3 +1,9 @@
+<?php
+	require 'assets/class/consultas.php';
+	$consulta = new consultas();
+	$name = $consulta->session_star_menu();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,11 +17,13 @@
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+	<script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
 
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
     
-    
+	<!-- Css personalizado -->
+    <link rel="stylesheet" href="assets/css/myStyle.css">
 
 </head>
 <body class="">
@@ -33,7 +41,10 @@
 				
 				<div class="">
 					<div class="main-menu-header">
-						<img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
+						<!-- <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image"> -->
+                        <?php
+                        echo '<img class="img-radius" src="data:image/jpeg;base64,'.base64_encode(@$_SESSION['foto_miniatura']).'" alt="thumbnail"/>';
+                        ?>
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
@@ -46,40 +57,40 @@
 				
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Navigation</label>
+					    <label>Menú</label>
 					</li>
 					<li class="nav-item">
-					    <a href="index.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					    <a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
+					<li class="nav-item">
+					    <a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
+					</li>
+					<li class="nav-item">
+					    <a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-circle"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
+					</li>
+
+                    <li class="nav-item pcoded-menu-caption">
+					    <label>Alcances</label>
+					</li>
+
+					<li class="nav-item">
+					    <a href="graficas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
+					</li>
+						
 					<li class="nav-item pcoded-menu-caption">
-					    <label>UI Element</label>
+					    <label></label>
 					</li>
-					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Basic</span></a>
-					    <ul class="pcoded-submenu">
-					        <li><a href="bc_alert.php">Alert</a></li>
-					        <li><a href="bc_button.php">Button</a></li>
-					        <li><a href="bc_badges.php">Badges</a></li>
-					        <li><a href="bc_breadcrumb-pagination.php">Breadcrumb & paggination</a></li>
-					        <li><a href="bc_collapse.php">Collapse</a></li>
-					        <li><a href="bc_progress.php">Progress</a></li>
-					        <li><a href="bc_tabs.php">Tabs & pills</a></li>
-					        <li><a href="bc_typography.php">Typography</a></li>
-					        <li><a href="bc_tooltip-popover.php">Tooltip & popovers</a></li>
-					    </ul>
+					<li class="nav-item">
+						<a href="#" class="bg-primary text-white" id="buttonExit"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></a>
 					</li>
+					<!--
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Forms &amp; table</label>
 					</li>
 					<li class="nav-item">
 					    <a href="form_elements.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Forms</span></a>
 					</li>
-					<li class="nav-item pcoded-menu-caption">
-					    <label>Chart & Maps</label>
-					</li>
-					<li class="nav-item">
-					    <a href="chart-apex.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
-					</li>
+					
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Pages</label>
 					</li>
@@ -89,7 +100,7 @@
 					        <li><a href="auth-signup.php" target="_blank">Sign up</a></li>
 					        <li><a href="auth-signin.php" target="_blank">Sign in</a></li>
 					    </ul>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -100,19 +111,19 @@
 		
 			
 				<div class="m-header">
-					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-					<a href="#!" class="b-brand">
-						<!-- ========   change your logo hear   ============ -->
-						<img src="assets/images/logo.png" alt="" class="logo">
-						<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">
-					</a>
-					<a href="#!" class="mob-toggler">
-						<i class="feather icon-more-vertical"></i>
-					</a>
+					<div>
+						<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+						<a href="#!" class="b-brand">
+							<!-- ========   change your logo hear   ============ -->
+							<!-- <img src="assets/images/logo.png" alt="" class="logo">
+							<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">-->
+						</a>
+					</div>
 				</div>
+				
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
+<!--						<li class="nav-item">
 							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
 							<div class="search-bar">
 								<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
@@ -120,13 +131,13 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-						</li>
+						</li>-->
 					</ul>
 					<ul class="navbar-nav ml-auto">
-						<li>
+<!--						<li>
 							<div class="dropdown">
-								<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
-								<div class="dropdown-menu dropdown-menu-right notification">
+								 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+								 <div class="dropdown-menu dropdown-menu-right notification">
 									<div class="noti-head">
 										<h6 class="d-inline-block m-b-0">Notifications</h6>
 										<div class="float-right">
@@ -183,45 +194,18 @@
 									</div>
 								</div>
 							</div>
-						</li>
-						<li>
-							<div class="dropdown drp-user">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="feather icon-user"></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right profile-notification">
-									<div class="pro-head">
-										<img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-										<span>John Doe</span>
-										<a href="auth-signin.php" class="dud-logout" title="Logout">
-											<i class="feather icon-log-out"></i>
-										</a>
-									</div>
-									<ul class="pro-body">
-										<li><a href="auth-signin.php" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-									</ul>
-								</div>
-							</div>
-						</li>
+						</li>-->
 					</ul>
 				</div>
-				
-			
 	</header>
 	<!-- [ Header ] end -->
-	
-	
 
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/js/plugins/bootstrap.min.js"></script>
     <script src="assets/js/ripple.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
-	<!-- Apex Chart -->
-	<script src="assets/js/plugins/apexcharts.min.js"></script>
-	<!-- custom-chart js -->
-	<script src="assets/js/pages/dashboard-main.js"></script>
-	<script src="assets/js/pages/chart-apex.js"></script>
+	<script src="assets/js/exit.js"></script>
 
 </body>
 </html>

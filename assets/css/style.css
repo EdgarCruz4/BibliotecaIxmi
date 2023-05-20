@@ -6299,7 +6299,7 @@ a.close.disabled {
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    padding: 20px 20px-0.25rem;
+    padding: 20px calc(20px - 0.25rem);
     border-top: 1px solid #e3eaef;
     border-bottom-right-radius: calc(0.3rem - 1px);
     border-bottom-left-radius: calc(0.3rem - 1px);
@@ -11520,6 +11520,11 @@ a.text-dark:hover, a.text-dark:focus {
 
 .icon-pie-chart:before {
     content: "\e8ac";
+}
+
+.icon-printer:before {
+    content: "\e8ac";
+    width: 20%;
 }
 
 .icon-play-circle:before {
@@ -18062,6 +18067,20 @@ a.badge-light-dark.active, a.badge-light-dark:active, a.badge-light-dark:focus, 
 /**  =====================
       Custom css start
 ==========================  **/
+
+.page-header-title {
+width: 100%;
+display: flex;
+justify-content: center;
+font-size: 34px;
+}
+
+.page-header-title h5 {
+font-size: 20px;
+font-weight: bold;
+text-transform: uppercase;
+}
+
 body {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;

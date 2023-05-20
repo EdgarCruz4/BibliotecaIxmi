@@ -1,0 +1,227 @@
+
+/*---------signup-step-------------*/
+.signup-step-container{
+	margin: 20px auto;
+}
+/*----------step-wizard------------*/
+.wizard .nav-tabs {
+margin-bottom: 0;
+border-bottom-color: transparent;
+display: flex;
+justify-content: space-evenly;
+margin-left: 0;
+padding-left: 0;
+}
+
+.wizard > div.wizard-inner {
+position: relative;
+text-align: center;
+margin-bottom: 50px;
+}
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 15px;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 2;
+    position: absolute;
+    left: -15px;
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    top: 15px;
+}
+span.round-tab i{
+    color:#555555;
+}
+.wizard li.active span.round-tab {
+    background: #4680FF;
+    color: #fff;
+    border-color: #4680FF;
+}
+.wizard li.active span.round-tab i{
+    color: #5bc0de;
+}
+.wizard .nav-tabs > li.active > a i{
+	color: #4680FF;
+}
+
+.wizard li:after {
+    content: "";
+    position: absolute;
+    /* left: 50%;
+    transform: translate(-50%, -50%); */
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    transition: 0.1s ease-in-out;
+}
+
+.wizard .nav-tabs > li a {
+    width: 30px;
+    height: 30px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+    top: 0;
+}
+
+.wizard .nav-tabs > li a i{
+	position: absolute;
+    top: -5px;
+    font-style: normal;
+    font-weight: 400;
+    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: 700;
+    color: #000;
+}
+
+.wizard .nav-tabs > li a:hover {
+    background: transparent;
+}
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 0px;
+}
+
+
+.wizard h3 {
+    margin-top: 0;
+}
+.prev-step, .next-step, .next-form, .btn-submit {
+    margin-top: 30px;
+}
+
+.step-head{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.list-inline li{
+    display: inline-block;
+}
+.pull-right{
+    float: right;
+}
+
+@media (max-width: 767px)
+{
+    span.round-tab {
+    font-size: 11px;
+    color: #0e214b;
+    }
+    .signup-step-container {
+    margin: 0;
+    padding-top: 10px;
+    }
+}
+
+table {
+table-layout: fixed;
+width: 100%;
+border: 1px solid #cccccc;
+}
+
+table thead tr th {
+background-color: #4680FF !important;
+color: white !important;
+font-weight: bold !important;
+}
+
+table tr td:nth-child(1) {
+word-wrap: break-word;
+white-space: break-spaces;
+}
+
+table tr th:nth-child(n+2) {
+width: 50px;
+}
+
+table tr:nth-child(even) {
+background-color: #ECF0F5;
+}
+
+table tr td:nth-child(n+2) {
+text-align: center;
+vertical-align: middle;
+}
+
+/* table tr:nth-child(even) {
+background-color: #ECF0F5;
+}
+
+table tr td:nth-child(n+2) {
+text-align: center;
+vertical-align: middle;
+height: 60px;
+
+border-style: solid;
+border-color: #cccccc;
+border-width: 1px;
+}
+
+
+table tr td {
+vertical-align: middle;
+text-align: left;
+}
+
+table tr th {
+vertical-align: middle;
+text-align: left;
+
+font-weight: bold;
+background-color: #4680FF;
+color: white;
+height: 50px;
+}
+
+table {
+width: 100%;
+border-style: solid;
+border-color: #cccccc;
+border-width: 1px;
+background-color: white;
+
+border-spacing: 1px;
+border-collapse: separate;
+border-radius: 10px;
+}
+
+table tr {
+border-style: solid;
+border-color: #cccccc;
+border-width: 1px;
+} */
