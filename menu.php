@@ -62,9 +62,15 @@
 					<li class="nav-item">
 					    <a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
-					<li class="nav-item">
-					    <a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
-					</li>
+					<?php
+						if($_SESSION['nameUser'] != 'Administrador'){
+						?>
+							<li class="nav-item">
+								<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
+							</li>
+						<?php
+						}
+					?>
 					<li class="nav-item">
 					    <a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-circle"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
 					</li>

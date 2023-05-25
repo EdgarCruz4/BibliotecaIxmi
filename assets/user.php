@@ -23,8 +23,8 @@
             $_SESSION['id_biblioteca'] = $id_biblioteca;
             $_SESSION['biblioteca'] = $nameUser;
             $_SESSION['foto_miniatura'] = $data['foto_miniatura'];
-            $_SESSION['user'] = $user;
-            $_SESSION['nameUser'] = $nameUser;
+            $_SESSION['user'] = $user; 
+            $_SESSION['nameUser'] = $nameUser; 
             header("location:../index.php");
         }else{
             header("location:../auth-signin.php?error=1");
