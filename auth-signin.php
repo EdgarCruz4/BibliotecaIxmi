@@ -36,7 +36,7 @@
 				<div class="col-md-12">
 					<div class="card-body">
 						<img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
-						<h4 class="mb-3 f-w-400">Iniciar sesión</h4>
+						<h4 class="mb-3 f-w-400"><b>Iniciar sesión</b></h4>
 						<form action="assets/user.php" method="post">
 							<div class="form-group mb-3">
 								<label class="floating-label" for="user">Usuario</label>
