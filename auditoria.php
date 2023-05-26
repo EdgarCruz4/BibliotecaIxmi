@@ -211,10 +211,10 @@ for (; $step <= 23; $step++) {
 <thead>
 <tr>
 <th>Pregunta</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
+<th>1<br>Inexistente<br> nunca<br> no y N/A </th>
+<th>2<br>No se encuentra definido<br> algunas veces<br> inadecuado</th>
+<th>3<br>Regular<br> Casi siempre</th>
+<th>4<br>totalmente<br> siempre<br>muy eficaz<br> sí</th>
 <th style="width: 40px;"></th>
 </tr>
 </thead>
