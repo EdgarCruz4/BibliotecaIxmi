@@ -1,4 +1,3 @@
-
 /*---------signup-step-------------*/
 .signup-step-container{
 	margin: 20px auto;
@@ -7,8 +6,12 @@
 .wizard .nav-tabs {
 margin-bottom: 0;
 border-bottom-color: transparent;
+display: -webkit-box;
+display: -ms-flexbox;
 display: flex;
-justify-content: space-evenly;
+-webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+        justify-content: space-evenly;
 margin-left: 0;
 padding-left: 0;
 }
@@ -17,6 +20,7 @@ padding-left: 0;
 position: relative;
 text-align: center;
 margin-bottom: 50px;
+height: 0px;
 }
 
 .connecting-line {
@@ -52,7 +56,7 @@ span.round-tab {
     color: #000000;
     font-weight: 500;
     border: 1px solid #ddd;
-    top: 15px;
+    /* top: 15px; */
 }
 span.round-tab i{
     color:#555555;
@@ -72,24 +76,22 @@ span.round-tab i{
 .wizard li:after {
     content: "";
     position: absolute;
-    /* left: 50%;
-    transform: translate(-50%, -50%); */
     opacity: 0;
     margin: 0 auto;
     bottom: 0px;
     border: 5px solid transparent;
+    -webkit-transition: 0.1s ease-in-out;
+    -o-transition: 0.1s ease-in-out;
     transition: 0.1s ease-in-out;
 }
 
 .wizard .nav-tabs > li a {
     width: 30px;
     height: 30px;
-    margin: 20px auto;
     border-radius: 100%;
     padding: 0;
     background-color: transparent;
     position: relative;
-    top: 0;
 }
 
 .wizard .nav-tabs > li a i{
@@ -99,7 +101,9 @@ span.round-tab i{
     font-weight: 400;
     white-space: nowrap;
     left: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     font-size: 12px;
     font-weight: 700;
     color: #000;
@@ -154,10 +158,39 @@ width: 100%;
 border: 1px solid #cccccc;
 }
 
-table thead tr th {
+table thead tr th:nth-child(1) {
 background-color: #4680FF !important;
 color: white !important;
 font-weight: bold !important;
+font-size: 14px !important;
+text-transform: uppercase !important;
+height: 50px;
+line-height: 50px;
+}
+
+table thead tr th {
+height: 20px;
+line-height: 20px;
+vertical-align: top;
+margin: 0;
+padding: 0;
+white-space: break-spaces !important;
+}
+
+table thead tr th:nth-child(n+2) {
+background-color: #4680FF !important;
+color: white !important;
+font-weight: bold !important;
+font-size: 12px !important;
+text-transform: capitalize !important;
+vertical-align: top;
+width: 100px;
+/* white-space: break-spaces !important; */
+}
+
+table thead tr th ul {
+list-style:disc;
+padding: 0;
 }
 
 table tr td:nth-child(1) {
@@ -165,9 +198,9 @@ word-wrap: break-word;
 white-space: break-spaces;
 }
 
-table tr th:nth-child(n+2) {
-width: 50px;
-}
+/* table tr th:nth-child(n+2) {
+width: 80px;
+} */
 
 table tr:nth-child(even) {
 background-color: #ECF0F5;
