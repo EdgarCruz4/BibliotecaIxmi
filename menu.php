@@ -82,12 +82,8 @@
 					<li class="nav-item">
 					    <a href="graficas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
 					</li>
-						
-					<li class="nav-item pcoded-menu-caption">
-					    <label></label>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="bg-primary text-white" id="buttonExit"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></a>
+					<li class="nav-item mt-5">
+						<a href="#" class="bg-danger text-white" id="buttonExit"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></a>
 					</li>
 					<!--
 					<li class="nav-item pcoded-menu-caption">

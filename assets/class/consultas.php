@@ -64,5 +64,17 @@
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
             return $data;
         }
+
+        public function getLibrary(){
+            include_once 'assets/conexion.php';
+            $objeto = new Conexion();
+            $conexion = $objeto->Conectar();
+
+            $consulta = "SELECT * FROM bibliotecas WHERE id_biblioteca BETWEEN 2 AND 11;";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
     }
 ?>
