@@ -34,7 +34,9 @@ $name = $consulta->getLibrary();
 <body class="" style="background-color: #ecf0f5;">
     <div class="text-center pt-4" style="background-color: #4680ff; height: 130px; border-radius: 5px;">
         <h1 class="font-weight-bold text-white">Sistema administrativo de auditorias </h1>
-        <h4><p class="font-weight-normal text-white">Ixmiquilpan</p></h4>
+        <h4>
+            <p class="font-weight-normal text-white">Ixmiquilpan</p>
+        </h4>
     </div>
     <div class="container">
         <div class="row mt-4 mb-4">
@@ -53,12 +55,16 @@ $name = $consulta->getLibrary();
                                 <?php
                                 foreach ($name as $resul) {
                                 ?>
-                                    <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-aos="fade-up">
+                                    <div class="col-lg-3 col-md-5 portfolio-item filter-app" data-aos="fade-up">
                                         <h5 class="text-center"><?php echo $resul['nombre']; ?></h5>
                                         <div class="portfolio-wrap">
-                                            <img src="assets/images/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+                                            <!-- <img src="assets/images/portfolio/portfolio-2.jpg" class="img-fluid" alt=""> -->
+                                            <img src="data:image/jpeg;base64,<?php echo base64_encode($resul['foto_miniatura']) ?>" class="img-fluid" alt="">
                                             <div class="portfolio-links">
-                                                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="idBiblioteca" value="<?php echo $resul['id_biblioteca']; ?>">
+                                                    <button class="btn btn-link" type="submit"><a href="#"><i class="bi bi-link"></i></a></button>
+                                                </form>
                                             </div>
                                             <div class="portfolio-info">
                                             </div>
