@@ -58,13 +58,9 @@ $name = $consulta->getLibrary();
                                     <div class="col-lg-3 col-md-5 portfolio-item filter-app" data-aos="fade-up">
                                         <h5 class="text-center"><?php echo $resul['nombre']; ?></h5>
                                         <div class="portfolio-wrap">
-                                            <!-- <img src="assets/images/portfolio/portfolio-2.jpg" class="img-fluid" alt=""> -->
                                             <img src="data:image/jpeg;base64,<?php echo base64_encode($resul['foto_miniatura']) ?>" class="img-fluid" alt="">
                                             <div class="portfolio-links">
-                                                <form action="graficas.php" method="POST">
-                                                    <input type="hidden" name="currentLibraryId" value="<?php echo $resul['id_biblioteca']; ?>">
-                                                    <button class="btn btn-link" type="submit"><a href="#"><i class="bi bi-link"></i></a></button>
-                                                </form>
+                                                <a href="#" title="Más detalles" onclick="currentLibraryId(<?php echo $resul['id_biblioteca'];?>)"><i class="bi bi-link"></i></a>
                                             </div>
                                             <div class="portfolio-info">
                                             </div>
@@ -101,8 +97,5 @@ $name = $consulta->getLibrary();
 <script src="assets/js/pcoded.min.js"></script>
 <!-- Scripts propios -->
 <script src="assets/js/exit.js"></script>
-<script>
-    AOS.init();
-</script>
 
 </html>

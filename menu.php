@@ -70,7 +70,7 @@
 							</li>
 						<?php
 						}else{
-							$currentLibraryId = $_POST['currentLibraryId']; 
+							$currentLibraryId = $_COOKIE['currentLibraryId'];
 						}
 					?>
 					<li class="nav-item">
