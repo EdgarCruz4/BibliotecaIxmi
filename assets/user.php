@@ -23,9 +23,9 @@
             $_SESSION['id_biblioteca'] = $id_biblioteca;
             $_SESSION['biblioteca'] = $nameUser;
             $_SESSION['foto_miniatura'] = $data['foto_miniatura'];
-            $_SESSION['user'] = $user; 
+            $_SESSION['user'] = $user;
             $_SESSION['nameUser'] = $nameUser; 
-            if($id_biblioteca == 1){
+            if($id_biblioteca == 1) {
                 header("location:../bibliotecas.php");
             }else{
                 header("location:../index.php");

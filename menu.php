@@ -63,7 +63,7 @@
 					    <a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
 					<?php
-						if($_SESSION['nameUser'] != 'Administrador'){
+						if($name != 'admin'){
 						?>
 							<li class="nav-item">
 								<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>

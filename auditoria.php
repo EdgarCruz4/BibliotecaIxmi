@@ -1,3 +1,11 @@
+<?php
+$name = @$_SESSION['user'];
+if ($name == 'admin')
+{
+    header("location: index.php", true, 301);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

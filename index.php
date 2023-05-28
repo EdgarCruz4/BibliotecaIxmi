@@ -1,9 +1,13 @@
 <?php
     session_start();
-    if(isset($_SESSION['user'])){
+    if(isset($_SESSION['user']) && $_SESSION['user'] != "admin")
+    {
         header("location: auditoria.php");
     }
-    else{
+    elseif (isset($_SESSION['user']) && $_SESSION['user'] == "admin") {
+        header("location: archivos.php");
+    }
+    else {
         header("location: auth-signin.php");
     }
 ?>
