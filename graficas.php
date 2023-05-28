@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="card-body">
                                     <input type="hidden" id="dataTest" value="">
-                                    <input type="hidden" id="user" value="<?php echo $_SESSION['id_biblioteca'] ?>">
+                                    <input type="hidden" id="user" value="<?php echo $currentLibraryId; ?>">
                                     <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
                                 </div>
                             </div>
