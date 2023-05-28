@@ -13,6 +13,6 @@ $('#buttonExit').click(function(event){
 })
 function currentLibraryId(libraryId){
     document.cookie = "currentLibraryId="+libraryId+"; path=/";
-    location.href = 'sugerencias.php';
+    location.href = 'admin/sugerencias.php';
 }
 AOS.init();
