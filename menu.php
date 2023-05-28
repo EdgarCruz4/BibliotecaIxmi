@@ -69,6 +69,8 @@
 								<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
 							</li>
 						<?php
+						}else{
+							$currentLibraryId = $_POST['currentLibraryId']; 
 						}
 					?>
 					<li class="nav-item">

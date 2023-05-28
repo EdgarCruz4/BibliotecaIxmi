@@ -61,8 +61,8 @@ $name = $consulta->getLibrary();
                                             <!-- <img src="assets/images/portfolio/portfolio-2.jpg" class="img-fluid" alt=""> -->
                                             <img src="data:image/jpeg;base64,<?php echo base64_encode($resul['foto_miniatura']) ?>" class="img-fluid" alt="">
                                             <div class="portfolio-links">
-                                                <form action="" method="POST">
-                                                    <input type="hidden" name="idBiblioteca" value="<?php echo $resul['id_biblioteca']; ?>">
+                                                <form action="graficas.php" method="POST">
+                                                    <input type="hidden" name="currentLibraryId" value="<?php echo $resul['id_biblioteca']; ?>">
                                                     <button class="btn btn-link" type="submit"><a href="#"><i class="bi bi-link"></i></a></button>
                                                 </form>
                                             </div>
