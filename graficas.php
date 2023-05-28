@@ -24,6 +24,9 @@
     include_once 'menu.php';
     $today = date('m-Y');
     $time = date('h:i:s');
+    if(empty($currentLibraryId)){
+        $currentLibraryId = $_SESSION['id_biblioteca'];
+    }
     ?>
     <!-- Menu end -->
 
