@@ -96,64 +96,12 @@ class="feather icon-trash"></i> remove</a></li>
 <br>
 
 <div class="col-md-auto">
- <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-comments fa-lg" title="Sugerencia"></i> 
-&nbsp Nueva sugerencia
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ingresar sugerencia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-  <form method="post" enctype="multipart/form-data" class=" justify-content-between p-2" id="upload-file-form">
-  <div class="form-group">
-    <label for="Comentario">Comentario</label>
-    <input type="text" class="form-control" id="Comentario" placeholder="Escribe el comentario">
-    <br>
-    <label for="Comentario">Archivo (opcional)</label>
-  </div>
-  
-      <div class="input-group col-md-4 m-1">
-      <!-- <input type="file" class="form-control" aria-label="Upload"> -->
-     <div class="custom-file">
-    
-     <label class="custom-file-label" for="upload-btn"></label>
-     <input type="file" name="files[]" multiple class="custom-file-input" id="upload-btn" required>
-       
-      </div>
-      <button class="btn btn-primary" type="submit">Subir</button>
-        </div>
-  </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Crear sugerencia</button>
-      </div>
-    </div>
-  </div>
-</div>
- </div><!--termina la Modal -->
-
-
+     <button type="submit" class="btn btn-outline-primary btn-sm float-right" id="Sugerencia"><i class="fa-solid fa-comments fa-lg" title="Sugerencia"></i> &nbsp Crear sugerencia</button>
+ </div>
 
 <div class="card-body p-5">
 <div class="container">
-<div class="row">
-
-<?php
-require_once("backend/functions.php");
-$rows = queryAll("sugerencias", "WHERE mostrar=1");
-while ($row = mysqli_fetch_object($rows))
-{
-?>
+  <div class="row">
 
 <div class="col-lg-6 mx-auto">
 <div class="card">
@@ -165,30 +113,53 @@ while ($row = mysqli_fetch_object($rows))
 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 <a href="#" class="btn btn-primary">Go somewhere</a> -->
 <div class="form-group">
-<textarea readonly style="background: none; resize:none;" rows="5" class="form-control border-0" aria-label="With textarea">
-<?php echo($row->sugerencia); ?>
+<textarea readonly style="background: none; resize:none;" rows="5" class="form-control border-0" aria-label="With textarea">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod nunc et aliquam auctor. Nulla maximus vitae ante eget faucibus. Aliquam porta tortor elit, sed convallis dolor sagittis in. Curabitur aliquam id nunc a pellentesque. Aenean eget rutrum diam. Aenean felis dui, finibus vel elementum ac, suscipit finibus libero.
 </textarea>
 </div>
 <div class="d-flex flex-row">
 <b>Archivo</b>
 </div>
-<form action="backend/download.php" method="post">
+<form action="" method="post">
 <div class="d-flex flex-row justify-content-between">
-<p><?php echo(basename($row->archivo)); ?></p>
-<input type="hidden" name="filename" data-src="<?php echo(basename($row->archivo)) ?>">
+<p>documento.pdf</p>
 <button type="submit" class="btn btn-primary">Descargar</button>
 </div>
 </form>
 </div>
 <div class="card-footer text-muted">
-<?php echo($row->fecha); ?>
+2 days ago
 </div>
 </div>
 </div>
 
-<?php
-}
-?>
+<div class="col-lg-6 mx-auto">
+<div class="card">
+<div class="card-header">
+<!-- Featured -->
+</div>
+<div class="card-body p-4">
+<!-- <h5 class="card-title">Special title treatment</h5>
+<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+<a href="#" class="btn btn-primary">Go somewhere</a> -->
+<div class="form-group">
+<textarea readonly style="background: none; resize:none;" rows="5" class="form-control border-0" aria-label="With textarea">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod nunc et aliquam auctor. Nulla maximus vitae ante eget faucibus. Aliquam porta tortor elit, sed convallis dolor sagittis in. Curabitur aliquam id nunc a pellentesque. Aenean eget rutrum diam. Aenean felis dui, finibus vel elementum ac, suscipit finibus libero.
+</textarea>
+</div>
+<div class="d-flex flex-row">
+<b>Archivo</b>
+</div>
+<form action="" method="post">
+<div class="d-flex flex-row justify-content-between">
+<p>documento.pdf</p>
+<button type="submit" class="btn btn-primary">Descargar</button>
+</div>
+</form>
+</div>
+<div class="card-footer text-muted">
+2 days ago
+</div>
+</div>
+</div>
 
 
 
