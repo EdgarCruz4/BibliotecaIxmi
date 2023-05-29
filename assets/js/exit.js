@@ -15,4 +15,4 @@ function currentLibraryId(libraryId){
     document.cookie = "currentLibraryId="+libraryId+"; path=/";
     location.href = 'sugerencias.php';
 }
-AOS.init();
+//AOS.init();

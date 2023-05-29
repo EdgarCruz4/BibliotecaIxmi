@@ -95,52 +95,7 @@ class="feather icon-trash"></i> remove</a></li>
 </div>
 <br>
 
-<div class="col-md-auto">
- <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-comments fa-lg" title="Sugerencia"></i> 
-&nbsp Nueva sugerencia
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ingresar sugerencia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-  <form method="post" enctype="multipart/form-data" class=" justify-content-between p-2" id="upload-file-form">
-  <div class="form-group">
-    <label for="Comentario">Comentario</label>
-    <input type="text" class="form-control" id="Comentario" placeholder="Escribe el comentario">
-    <br>
-    <label for="Comentario">Archivo (opcional)</label>
-  </div>
-  
-      <div class="input-group col-md-4 m-1">
-      <!-- <input type="file" class="form-control" aria-label="Upload"> -->
-     <div class="custom-file">
-    
-     <label class="custom-file-label" for="upload-btn"></label>
-     <input type="file" name="files[]" multiple class="custom-file-input" id="upload-btn" required>
-       
-      </div>
-      <button class="btn btn-primary" type="submit">Subir</button>
-        </div>
-  </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Crear sugerencia</button>
-      </div>
-    </div>
-  </div>
-</div>
- </div><!--termina la Modal -->
 
 
 

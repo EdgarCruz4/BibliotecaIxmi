@@ -115,9 +115,9 @@ function delete($table, $field_name, $field_value)
  * Deletes a row with the especified condition: id = $id
  * Returns the current row of a result set as an object
  */
-function deleteByID($table, $id)
+function deleteByID($table, $field_name, $id)
 {
-    $sql = 'DELETE FROM ' . $table . ' WHERE id = "' . $id . '"';
+    $sql = 'DELETE FROM ' . $table . ' WHERE ' . $field_name . ' = "' . $id . '"';
     $db = db_query($sql);
     return $db;
 }

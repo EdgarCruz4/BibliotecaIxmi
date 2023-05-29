@@ -20,10 +20,10 @@
 	<script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
 
     <!-- vendor css -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/bibliotecaixmi/assets/css/style.css">
     
 	<!-- Css personalizado -->
-    <link rel="stylesheet" href="assets/css/myStyle.css">
+    <link rel="stylesheet" href="/bibliotecaixmi/assets/css/myStyle.css">
 
 </head>
 <body class="">
@@ -43,7 +43,7 @@
 					<div class="main-menu-header">
 						<!-- <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image"> -->
                         <?php
-                        echo '<img class="img-radius" src="data:image/jpeg;base64,'.base64_encode(@$_SESSION['foto_miniatura']).'" alt="thumbnail"/>';
+                        echo '<img class="img-radius" src="data:image/jpeg;base64,'.base64_encode(@$_SESSION['foto_miniatura'] ?? '').'" alt="thumbnail"/>';
                         ?>
 					</div>
 					<div class="collapse" id="nav-user-link">
@@ -205,11 +205,11 @@
 	<!-- [ Header ] end -->
 
     <!-- Required Js -->
-    <script src="assets/js/vendor-all.min.js"></script>
-    <script src="assets/js/plugins/bootstrap.min.js"></script>
-    <script src="assets/js/ripple.js"></script>
-    <script src="assets/js/pcoded.min.js"></script>
-	<script src="assets/js/exit.js"></script>
+    <script src="/bibliotecaixmi/assets/js/vendor-all.min.js"></script>
+    <script src="/bibliotecaixmi/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="/bibliotecaixmi/assets/js/ripple.js"></script>
+    <script src="/bibliotecaixmi/assets/js/pcoded.min.js"></script>
+	<script src="/bibliotecaixmi/assets/js/exit.js"></script>
 
 </body>
 </html>
