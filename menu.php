@@ -2,6 +2,7 @@
 	require 'assets/class/consultas.php';
 	$consulta = new consultas();
 	$name = $consulta->session_star_menu();
+	$currentLibraryId = "";
 ?>
 
 <!DOCTYPE html>
