@@ -265,6 +265,7 @@ function postData(formData)
     setTimeout(() => {
     document.querySelector('#sugerencias-form [type="submit"]').removeAttribute('disabled');
     $('#exampleModal').modal('hide');
+    window.location.reload();
     }, 2000);
   }
   }).catch (error => {
