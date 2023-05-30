@@ -1,3 +1,11 @@
+<?php
+$name = @$_SESSION['user'];
+if ($name == 'admin')
+{
+    header("location: index.php", true, 301);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -204,17 +212,18 @@ $step = 1;
 for (; $step <= 23; $step++) {
 ?>
 
-<div class="tab-pane <?php if ($step == 1) echo('active'); ?>" role="tabpanel" id="step<?php echo($step); ?>">
+<div class="tab-pane <?php if ($step == 1)
+        echo ('active'); ?>" role="tabpanel" id="step<?php echo ($step); ?>">
 <h3 class="text-center form-title">Visión</h3>
 <div class="table-responsive">
 <table class="table">
 <thead>
 <tr>
 <th>Pregunta</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
+<th>1<ul><li>Inexistente</li><li>Nunca</li><li>No y N/A</li></ul></th>
+<th>2<ul><li>No se encuentra definido</li><li>Algunas veces</li><li>Inadecuado</li></ul></th>
+<th>3<ul><li>Regular</li><li>Casi siempre</li></ul></th>
+<th>4<ul><li>totalmente</li><li>siempre</li><li>muy eficaz</li><li>sí</li></ul></th>
 <th style="width: 40px;"></th>
 </tr>
 </thead>

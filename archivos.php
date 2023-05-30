@@ -33,7 +33,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10"><?php echo($_SESSION['nameUser']); ?></h5>
+                                <h5 class="m-b-10"><?php echo(@$_SESSION['nameUser']); ?></h5>
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php"><i class="feather icon-home"></i></a>
@@ -89,59 +89,58 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body p-0">
+                                <div class="card-body p-0">
 
-
-                            <form method="post" enctype="multipart/form-data" class="row justify-content-between p-2"
-                                id="upload-file-form">
-                                <div class="input-group col-md-4 m-1">
-                                    <input id="in-search" type="text" class="form-control" placeholder="Buscar archivo">
-                                    <button id="btn-search" type="button" class="btn btn-primary">Buscar</button>
-                                </div>
-                                <div class="input-group col-md-4 m-1">
-                                    <!-- <input type="file" class="form-control" aria-label="Upload"> -->
-                                    <div class="custom-file">
-                                        <input type="file" name="files[]" multiple class="custom-file-input"
-                                            id="upload-btn" required>
-                                        <label class="custom-file-label" for="upload-btn">Elegir archivo...</label>
+                                <form method="post" enctype="multipart/form-data" class="row justify-content-between p-2"
+                                    id="upload-file-form">
+                                    <div class="input-group col-md-4 m-1">
+                                        <input id="in-search" type="text" class="form-control" placeholder="Buscar archivo">
+                                        <button id="btn-search" type="button" class="btn btn-primary">Buscar</button>
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Subir</button>
+                                    <div class="input-group col-md-4 m-1">
+                                        <!-- <input type="file" class="form-control" aria-label="Upload"> -->
+                                        <div class="custom-file">
+                                            <input type="file" name="files[]" multiple class="custom-file-input"
+                                                id="upload-btn" required>
+                                            <label class="custom-file-label" for="upload-btn">Elegir archivo...</label>
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">Subir</button>
+                                    </div>
+                                </form>
+
+                                <div id="progress-bar" class="progress m-l-5 m-r-5" style="display: none; height: 20px;">
+                                    <div id="upload-progress"
+                                        class="progress-bar progress-bar-striped progress-bar-animated"
+                                        style="height: 20px;" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                            </form>
-
-                            <div id="progress-bar" class="progress m-l-5 m-r-5" style="display: none; height: 20px;">
-                                <div id="upload-progress"
-                                    class="progress-bar progress-bar-striped progress-bar-animated"
-                                    style="height: 20px;" role="progressbar" style="width: 0%;" aria-valuenow="0"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
 
 
-                            <div class="input-group m-10"></div>
-                            <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="chk-option">
-                                                    <label
-                                                        class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
-                                                        <input type="checkbox" class="custom-control-input">
-                                                        <span class="custom-control-label"></span>
-                                                    </label>
-                                                </div>
-                                            </th>
-                                            <th>Nombre</th>
-                                            <th>Fecha</th>
-                                            <th>Biblioteca</th>
-                                            <th class="text-right">Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-data">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                <div class="input-group m-10"></div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div class="chk-option">
+                                                        <label
+                                                            class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
+                                                            <input type="checkbox" class="custom-control-input">
+                                                            <span class="custom-control-label"></span>
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                                <th>Nombre</th>
+                                                <th>Fecha</th>
+                                                <th>Biblioteca</th>
+                                                <th class="text-right">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-data">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
                     </div>
                 </div>
             </div>
@@ -192,6 +191,9 @@
 
         </div>
     </div>
+
+
+
     <!-- [ Main Content ] end -->
 
     <script src="js/archivos.js"></script>

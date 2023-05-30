@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
     <!-- Meta -->
@@ -16,14 +17,18 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
+
 <body class="">
     <!-- Menu start -->
-	<?php
-        include_once 'menu.php';
-        $today = date('m-Y');
-        $time = date('h:i:s');
-	?>
-	<!-- Menu end -->	
+    <?php
+    include_once 'menu.php';
+    $today = date('m-Y');
+    $time = date('h:i:s');
+    if(empty($currentLibraryId)){
+        $currentLibraryId = $_SESSION['id_biblioteca'];
+    }
+    ?>
+    <!-- Menu end -->
 
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
@@ -51,49 +56,49 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <h5>Resultados de auditoria</h5>
-                                        <input type="hidden" id="barImg" name="bar">
-                                    </div>
-                                    <div class="col-md-auto">
-                                        <select class="custom-select custom-select-sm float-right" id="tyme" name="tyme">
-                                            <option selected hidden>Fecha de auditoria</option>
-                                            <?php
-                                                $months = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Resultados de auditoria</h5>
+                                            <input type="hidden" id="barImg" name="bar">
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <select class="custom-select custom-select-sm float-right" id="tyme" name="tyme">
+                                                <option selected hidden>Fecha de auditoria</option>
+                                                <?php
+                                                $months = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
                                                 $result = $consulta->getSurveyDate();
-                                                foreach($result as $data){
-                                                    $numberMonth = $data['mes'] -1;
+                                                foreach ($result as $data) {
+                                                    $numberMonth = $data['mes'] - 1;
                                                     $month = $months[$numberMonth];
-                                                    ?>
-                                                    <option value="<?php echo $data['mes']."-".$data['año'];?>"><?php echo $month."-".$data['año'];?></option>
-                                                    <?php
+                                                ?>
+                                                    <option value="<?php echo $data['mes'] . "-" . $data['año']; ?>"><?php echo $month . "-" . $data['año']; ?></option>
+                                                <?php
                                                 }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-auto">
-                                        <input type="hidden" name="today" value="<?php echo $today;?>">
-                                        <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser']?>">
-                                        <button type="submit" class="btn btn-outline-primary btn-sm float-right" id="imprimir"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <input type="hidden" name="today" value="<?php echo $today; ?>">
+                                            <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser'] ?>">
+                                            <button type="submit" class="btn btn-outline-primary btn-sm float-right" id="imprimir"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <input type="hidden" id="dataTest" value="">
-                                <input type="hidden" id="user" value="<?php echo $_SESSION['id_biblioteca']?>">
-                                <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
+                                <div class="card-body">
+                                    <input type="hidden" id="dataTest" value="">
+                                    <input type="hidden" id="user" value="<?php echo $currentLibraryId; ?>">
+                                    <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </form>
             <!-- [ Main Content ] end -->
-            
+
         </div>
     </div>
-	<!-- [ Main Content ] end -->
+    <!-- [ Main Content ] end -->
 
 </body>
 <!-- Google Charts -->
@@ -101,4 +106,5 @@
 
 <!-- Script para crear el grafico -->
 <script type="text/javascript" src="assets/js/chart.js"></script>
+
 </html>

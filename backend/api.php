@@ -21,7 +21,15 @@ if (isset($_POST) && !empty($_POST))
         case 'delete':
             unset($_POST['delete']);
             $filename = str_replace(' ', '_', $_POST['filename']);
-            echo (json_encode(array('status' => @unlink(ROOT_PATH . '/src/archivos/' . $filename) && deleteByID("archivos", $_POST["id_archivo"]) == true ? 'ok' : 'failed')));
+            echo (json_encode(array('status' => @unlink(ROOT_PATH . '/src/archivos/' . $filename) && deleteByID("archivos", 'id', $_POST["id_archivo"]) == true ? 'ok' : 'failed')));
+            break;
+        case 'deleteById':
+            unset($_POST['function']);
+            $id_sugerencia = intval($_POST['id_sugerencia']);
+            if (deleteByID('sugerencias','id_sugerencia', $id_sugerencia))
+                echo (json_encode(['status' => 'ok']));
+            else
+                echo (json_encode(['status' => 'fail']));
             break;
         case 'read':
             unset($_POST['function']);
@@ -45,6 +53,7 @@ if (isset($_POST) && !empty($_POST))
             $id_biblioteca = intval($_POST['id_biblioteca']);
             $answers = json_decode(($_POST['respuestas']));
             insert('encuesta', array('fk_id_biblioteca' => $id_biblioteca));
+            global $conn;
             $id_encuesta = $conn->insert_id;
             $sql_array = array();
 
@@ -53,6 +62,14 @@ if (isset($_POST) && !empty($_POST))
             }
             if (multi_insert('respuestas', $sql_array)) echo (json_encode(['status' => 'ok']));
             else echo (json_encode(['status' => 'failed']));
+            break;
+        case 'sugerencia':
+            unset($_POST['function']);
+            $_POST['fk_id_biblioteca'] = intval($_POST['fk_id_biblioteca']);
+            @unlink('../src/archivos/' . $_POST['archivo']);
+            if (insert('sugerencias', $_POST))
+                echo (json_encode(array('status' => 'ok')));
+            else echo (json_encode(array('status' => 'failed')));
             break;
         default:
             # code...

@@ -764,7 +764,7 @@ mark,
 }
 
 .img-fluid {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
 }
 
@@ -24083,6 +24083,7 @@ div.dtk-focus-alt table.dataTable tbody th.focus {
 .auth-wrapper .card {
     margin-bottom: 0;
     padding: 8px;
+    border-radius: 10px;
 }
 
 .auth-wrapper .card .card-body {

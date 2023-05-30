@@ -1,0 +1,51 @@
+RewriteEngine On
+
+# DISABLE DIRECTORY INDEXES
+Options -Indexes
+
+# DIRECTORY INDEX
+DirectoryIndex index.php index.html index.htm
+
+# LIMIT UPLOAD SIZE to 10 MB
+# 10240000 bytes ~ 10 megabytes
+LimitRequestBody 10240000
+
+# protect .htaccess
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+	Order allow,deny
+	Deny from all
+	Satisfy all
+</Files>
+
+# protect .htpasswd
+<Files ~ "^.*\.([Hh][Tt][Pp])">
+	Order allow,deny
+	Deny from all
+	Satisfy all
+</Files>
+
+# Specify the default character set for any file served text/plain or text/html (recommended for usability)
+AddDefaultCharset UTF-8
+
+# Disables the server signature (recommended for better security)
+ServerSignature Off
+
+# Disables the ETag Header (recommended for performance)
+FileETag none
+
+# Extra Security Headers
+<IfModule mod_headers.c>
+    # X-XSS-Protection
+	Header set X-XSS-Protection "1; mode=block"
+    # X-Frame-Options
+	Header always append X-Frame-Options SAMEORIGIN
+    # X-Content-Type nosniff
+	Header set X-Content-Type-Options nosniff
+</IfModule>
+
+# Fingerprinting Attacks
+<IfModule mod_rewrite.c>
+	RewriteCond %{QUERY_STRING} PHP[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12} [NC,OR]
+	RewriteCond %{REQUEST_URI} =PHP[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12} [NC]
+	RewriteRule .* - [F,L]
+</IfModule>
