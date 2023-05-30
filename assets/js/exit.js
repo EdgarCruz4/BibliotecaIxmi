@@ -1,6 +1,7 @@
 $('#buttonExit').click(function(event){
     var exit = "exit";
     var ruta = "exit="+exit;
+    console.log('hola');
     $.ajax({
         url: 'assets/user.php',
         type: 'POST',
@@ -15,4 +16,5 @@ function currentLibraryId(libraryId){
     document.cookie = "currentLibraryId="+libraryId+"; path=/";
     location.href = 'admin/sugerencias.php';
 }
-//AOS.init();
+// Iniciador de animación en la pantalla de bibliotecas 
+AOS.init();
