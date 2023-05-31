@@ -1,5 +1,5 @@
 <?php
-require 'assets/class/consultas.php';
+require '../assets/class/consultas.php';
 $consulta = new consultas();
 $name = $consulta->session_star_menu();
 $currentLibraryId = "";
@@ -23,10 +23,10 @@ $currentLibraryId = "";
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 	<!-- vendor css -->
-	<link rel="stylesheet" href="/bibliotecaixmi/assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
 
 	<!-- Css personalizado -->
-	<link rel="stylesheet" href="/bibliotecaixmi/assets/css/myStyle.css">
+	<link rel="stylesheet" href="../assets/css/myStyle.css">
 
 </head>
 
@@ -60,23 +60,15 @@ $currentLibraryId = "";
 				</div>
 
 				<ul class="nav pcoded-inner-navbar ">
+					<li class="nav-item">
+						<a href="../bibliotecas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Bibliotecas</span></a>
+					</li>
 					<li class="nav-item pcoded-menu-caption">
 						<label>Menú</label>
 					</li>
 					<li class="nav-item">
 						<a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
-					<?php
-					if ($name != 'admin') {
-					?>
-						<li class="nav-item">
-							<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
-						</li>
-					<?php
-					} else {
-						$currentLibraryId = $_COOKIE['currentLibraryId'];
-					}
-					?>
 					<li class="nav-item">
 						<a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-circle"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
 					</li>
@@ -118,11 +110,11 @@ $currentLibraryId = "";
 	<!-- Animación AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- Required Js -->
-	<script src="/BibliotecaIxmi/assets/js/vendor-all.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/plugins/bootstrap.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/ripple.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/pcoded.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/exit.js"></script>
+	<script src="../assets/js/vendor-all.min.js"></script>
+	<script src="../assets/js/plugins/bootstrap.min.js"></script>
+	<script src="../assets/js/ripple.js"></script>
+	<script src="../assets/js/pcoded.min.js"></script>
+	<script src="../assets/js/exit.js"></script>
 
 </body>
 

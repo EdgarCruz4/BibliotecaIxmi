@@ -53,8 +53,7 @@ if (isset($_POST) && !empty($_POST))
             $id_biblioteca = intval($_POST['id_biblioteca']);
             $answers = json_decode(($_POST['respuestas']));
             insert('encuesta', array('fk_id_biblioteca' => $id_biblioteca));
-            global $conn;
-            $id_encuesta = $conn->insert_id;
+            $id_encuesta = mysqli_insert_id($conn);
             $sql_array = array();
 
             foreach ($answers as $key) {

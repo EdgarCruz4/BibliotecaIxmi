@@ -2,7 +2,7 @@
     class consultas
     {
         public function session_star_menu(){
-            session_start();
+            @session_start();
             $name = $_SESSION['user'];
             if(isset($name)){
                 return $name;

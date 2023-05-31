@@ -60,7 +60,9 @@ $name = $consulta->getLibrary();
                                         <div class="portfolio-wrap">
                                             <img src="data:image/jpeg;base64,<?php echo base64_encode($resul['foto_miniatura']) ?>" class="img-fluid" alt="">
                                             <div class="portfolio-links">
-                                                <a title="Más detalles" onclick="currentLibraryId(<?php echo $resul['id_biblioteca'];?>)"><i class="bi bi-link"></i></a>
+                                                <form action="admin/sugerencias.php" method="post">
+                                                <button type="submit" name="currentLibraryId" value="<?php echo $resul['id_biblioteca']; ?>" style="background: none; border: none; background-color: white; border-radius: 100%; width: 30px; height: 30px;"><i class="bi bi-link"></i></button>
+                                                </form>
                                             </div>
                                             <div class="portfolio-info">
                                             </div>

@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+@session_start();
+if ($_SESSION['user'] != 'admin' || empty($_SESSION['user'])) {
+header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+exit();
+}
+?>
 <html lang="es">
 
 <head>
@@ -17,11 +24,14 @@
 <body class="">
 <!-- Menu start -->
 <?php
-include_once '../menu.php';
+include_once 'menu.php';
 $today = date('Y-m-d');
 $time = date('h:i:s');
-@session_start();
-$id_biblioteca = @$_SESSION['currentLibraryId'] ?? 1;
+if (!empty(@$_POST['currentLibraryId']))
+  $_SESSION['currentLibraryId'] = $_POST['currentLibraryId'];
+$id_biblioteca = @$_SESSION['currentLibraryId'];
+if (empty($id_biblioteca))
+  header('/bibliotecas.php');
 ?>
 <!-- Menu end -->
 
@@ -180,7 +190,7 @@ class="feather icon-trash"></i> remove</a></li>
 
 <?php
 require_once("../backend/functions.php");
-$rows = queryAll("sugerencias", "WHERE mostrar=1");
+$rows = queryAll("sugerencias", "WHERE mostrar=1 AND fk_id_biblioteca=$id_biblioteca");
 while ($row = mysqli_fetch_object($rows))
 {
 ?>

@@ -16,14 +16,13 @@
         $result->execute();
         if($result->rowCount() >0){
             $data=$result->fetch(PDO::FETCH_ASSOC);
-            $user = $data['usuario'];
             // almacena el id de la biblioteca actual 
             $id_biblioteca = $data['id_biblioteca'];
             $nameUser = $data['nombre'];
             $_SESSION['id_biblioteca'] = $id_biblioteca;
             $_SESSION['biblioteca'] = $nameUser;
             $_SESSION['foto_miniatura'] = $data['foto_miniatura'];
-            $_SESSION['user'] = $user;
+            $_SESSION['user'] = $data['usuario'];
             $_SESSION['nameUser'] = $nameUser; 
             if($id_biblioteca == 1) {
                 header("location:../bibliotecas.php");

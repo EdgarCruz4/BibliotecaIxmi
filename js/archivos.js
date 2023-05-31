@@ -8,7 +8,7 @@ document.querySelector("#upload-file-form").addEventListener("submit", (e) => {
   uploadFiles(formData);
 });
 
-function uploadFiles(form) {
+function uploadFiles(formData) {
   document.querySelector("#progress-bar").style.display = "block";
   const psbar = document.querySelector("#upload-progress");
   psbar.style.width = "0%"; // set progress to 0%
@@ -50,7 +50,7 @@ function uploadFiles(form) {
     });
   };
   // Execute request
-  request.send(form);
+  request.send(formData);
 }
 
 function insert(response) {

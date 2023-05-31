@@ -299,6 +299,16 @@ for (; $count < $total; $count++)
 </tbody>
 </table>
 </div>
+<?php
+if ($step >= 23)
+{
+?>
+  <div class="form-group my-5">
+  <label for="sugerencia">Sugerencia</label>
+  <textarea minlength="60"  class="form-control" id="sugerencia" name="sugerencia" placeholder=""></textarea>
+  </div>
+<?php
+}?>
 
 <ul class="list-inline pull-right">
 <?php

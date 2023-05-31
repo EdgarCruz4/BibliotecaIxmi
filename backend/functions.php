@@ -150,6 +150,6 @@ function queryAll($table, $flags = '')
 function commit()
 {
     global $conn;
-    return $conn->commit();
+    return mysqli_commit($conn);
 }
 ?>
