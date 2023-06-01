@@ -13,9 +13,6 @@
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
-    <!-- vendor css -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 
 <body class="">
@@ -24,7 +21,7 @@
     include_once 'menu.php';
     $today = date('m-Y');
     $time = date('h:i:s');
-    if(empty($currentLibraryId)){
+    if (empty($currentLibraryId)) {
         $currentLibraryId = $_SESSION['id_biblioteca'];
     }
     ?>
@@ -87,12 +84,33 @@
                                 </div>
                                 <div class="card-body">
                                     <input type="hidden" id="dataTest" value="">
-                                    <input type="hidden" id="user" value="<?php echo $currentLibraryId; ?>">
+                                    <input type="hidden" id="user" name="currentLibraryId" value="<?php echo $currentLibraryId; ?>">
                                     <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Sugerencías</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <input type="hidden" name="suggestions" value="">
+                                    <div id="suggestions">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
             <!-- [ Main Content ] end -->
 

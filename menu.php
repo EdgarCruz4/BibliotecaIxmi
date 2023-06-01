@@ -17,16 +17,16 @@ $currentLibraryId = "";
 	<meta name="keywords" content="">
 	<meta name="author" content="Phoenixcoded" />
 	<!-- Favicon icon -->
-	<link rel="icon" href="/BibliotecaIxmi/assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 	<script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
 	<!-- Animación AOS -->
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 	<!-- vendor css -->
-	<link rel="stylesheet" href="/bibliotecaixmi/assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 
 	<!-- Css personalizado -->
-	<link rel="stylesheet" href="/bibliotecaixmi/assets/css/myStyle.css">
+	<link rel="stylesheet" href="assets/css/myStyle.css">
 
 </head>
 
@@ -118,11 +118,11 @@ $currentLibraryId = "";
 	<!-- Animación AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- Required Js -->
-	<script src="/BibliotecaIxmi/assets/js/vendor-all.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/plugins/bootstrap.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/ripple.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/pcoded.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/exit.js"></script>
+	<script src="assets/js/vendor-all.min.js"></script>
+	<script src="assets/js/plugins/bootstrap.min.js"></script>
+	<script src="assets/js/ripple.js"></script>
+	<script src="assets/js/pcoded.min.js"></script>
+	<script src="assets/js/exit.js"></script>
 
 </body>
 
