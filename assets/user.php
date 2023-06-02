@@ -1,4 +1,6 @@
 <?php
+    // Sets the global variable for root path
+    define('ROOT_PATH', dirname(dirname(__FILE__)));
     include_once 'post.php';
     include 'conexion.php';
     error_reporting(0);

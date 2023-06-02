@@ -91,11 +91,12 @@ if (empty($id_biblioteca))
 					<li class="nav-item">
 						<a href="graficas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
 					</li>
-					<li class="nav-item mt-5 p-2">
-						<form action="../assets/user.php" method="post">
+					<li class="nav-item">
+						<a href="#" class="bg-danger text-white" id="buttonExit"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></a>
+						<!-- <form action="../assets/user.php" method="post">
 							<input type="hidden" name="exit" value="exit">
-							<button type="submit" class="btn btn-danger w-100 text-white"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></button>
-						</form>
+							<button type="submit" class="btn btn-danger w-100 text-white text-left"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></button>
+						</form> -->
 					</li>
 				</ul>
 			</div>
@@ -128,11 +129,25 @@ if (empty($id_biblioteca))
 	<script src="../assets/js/plugins/bootstrap.min.js"></script>
 	<script src="../assets/js/ripple.js"></script>
 	<script src="../assets/js/pcoded.min.js"></script>
-	<script src="../assets/js/exit.js"></script>
 	<script>
 	$(document).on('change', '.custom-file-input', function (event) {
 		$(this).next('.custom-file-label').html(event.target.files[0].name);
 	});
+
+	$('#buttonExit').click(function (event) {
+    console.log('exit');
+
+    var exit = "exit";
+    var ruta = "exit=" + exit;
+    $.ajax({
+        url: '../assets/user.php',
+        type: 'POST',
+        data: ruta,
+        success: function (data) {
+            location.href = '../index.php';
+        }
+    });
+});
 	</script>
 
 </body>

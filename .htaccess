@@ -8,7 +8,7 @@ DirectoryIndex index.php index.html index.htm
 
 # set your rewrite base
 # Edit this in your init method too if you script lives in a subfolder
-RewriteBase /
+RewriteBase /BibliotecaIxmi/
 
 # LIMIT UPLOAD SIZE to 10 MB
 # 10240000 bytes ~ 10 megabytes
