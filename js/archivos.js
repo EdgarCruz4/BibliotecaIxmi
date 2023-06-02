@@ -25,15 +25,16 @@ function uploadFiles(formData) {
     // psbar.innerHTML = `${ps}%`;
   });
 
-  request.onload = () => {
+  request.onload = async () => {
     if (request.readyState == 4 && request.status == 200) {
       // Output the response message
       let result = JSON.parse(request.responseText);
+      formData.delete('files[]');
       for (const response of result) {
         // console.log(response);
-        insert(response);
+        await insert(formData, response);
       }
-      readDatabase();
+      window.location.reload();
     } else {
       $("#modal-upload-error").modal({
         show: true,
@@ -53,108 +54,52 @@ function uploadFiles(formData) {
   request.send(formData);
 }
 
-function insert(response) {
-  var data = new FormData();
-  data.append("function", "create");
-  data.append("table", "archivos");
-  data.append("nombre", response.file);
-  data.append("archivo", "./src/archivos/".concat(response.file));
-  data.append("id_biblioteca", 1);
+async function insert(formData, response) {
+  formData.append("function", "create");
+  formData.append("table", "archivos");
+  formData.append("nombre", response.file);
+  formData.append("archivo", "src/archivos/".concat(response.file));
 
-  fetch(window.location.origin.concat("/bibliotecaixmi/backend/api.php"), {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    body: data, // body data type must match "Content-Type" header
-  })
+  await fetch(window.location.origin.concat("/bibliotecaixmi/backend/api.php"),
+    {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      body: formData, // body data type must match "Content-Type" header
+    }
+  )
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
+    .then((response) => {
+      console.log(response);
+      return response.status == 'ok';
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.error(error);
+      return false;
+    });
 }
 
-document.querySelector("#btn-search").addEventListener("click", (e) => {
-  readDatabase(true);
-});
+document.querySelectorAll(".btn-delete").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let id_archivo = btn.getAttribute("data-id");
+    let archivo = btn.getAttribute("data-name");
+    if (!confirm("¿Borrar?")) return;
 
-function readDatabase(search = false) {
-  var formData = new FormData();
-  if (!search) formData.append("function", "read");
-  else {
-    formData.append("function", "search");
-    let text = document.querySelector("#in-search").value;
-    formData.append("text", text);
-    console.log(text);
-  }
+    var formData = new FormData();
+    formData.append("function", "delete");
+    formData.append("id_archivo", id_archivo);
+    formData.append("filename", archivo);
 
-  let table = document.querySelector("#table-data");
-  table.innerHTML = "";
-
-  fetch(window.location.origin.concat("/bibliotecaixmi/backend/api.php"), {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    body: formData, // body data type must match "Content-Type" header
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      for (const row of data) {
-        table.innerHTML += `
-<tr>
-<td>
-<div class="chk-option">
-<label
-class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
-<input type="checkbox" class="custom-control-input">
-<span class="custom-control-label"></span>
-</label>
-</div>
-</td>
-<td>${row.n}</td>
-<td>
-${row.f}
-</td>
-<td>
-${row.b}
-</td>
-<td class="text-right">
-<form method="POST" action="backend/download.php">
-<button type="submit" class="btn btn-primary btn-sm btn-download">Descargar</button>
-<input type="hidden" name="filename" value="${row.n}">
-</form>
-<button type="button" data-id="${row.i}"
-data-name="${row.n}"
-class="btn btn-danger btn-sm btn-delete">Eliminar</button>
-</td>
-</tr>
-`;
+    fetch(
+      window.location.origin.concat("/bibliotecaixmi/backend/api.php"),
+      {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        body: formData, // body data type must match "Content-Type" header
       }
-
-      document.querySelectorAll(".btn-delete").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          let id_archivo = btn.getAttribute("data-id");
-          let archivo = btn.getAttribute("data-name");
-          if (!confirm("¿Borrar?")) return;
-
-          var formData = new FormData();
-          formData.append("function", "delete");
-          formData.append("id_archivo", id_archivo);
-          formData.append("filename", archivo);
-
-          fetch(
-            window.location.origin.concat("/bibliotecaixmi/backend/api.php"),
-            {
-              method: "POST", // *GET, POST, PUT, DELETE, etc.
-              body: formData, // body data type must match "Content-Type" header
-            }
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              readDatabase();
-            })
-            .catch((error) => console.error(error));
-        });
-      });
-    })
-    .catch((error) => console.error(error));
-}
-
-readDatabase();
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        window.location.reload();
+      })
+      .catch((error) => console.error(error));
+  });
+});

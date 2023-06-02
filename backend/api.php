@@ -1,11 +1,12 @@
 <?php
-require_once("./functions.php");
+require_once("functions.php");
 
-if (isset($_POST) && !empty($_POST))
+if (!empty($_POST))
 {
     switch ($_POST['function'])
     {
         case 'commit':
+            unset($_POST['function']);
             echo (json_encode(array('status' => commit() == true ? 'ok' : 'failed')));
             break;
         case 'create':
@@ -15,11 +16,11 @@ if (isset($_POST) && !empty($_POST))
             echo (json_encode(array('status' => insert($table, $_POST) == true ? 'ok' : 'failed')));
             break;
         case 'update':
-            unset($_POST['update']);
+            unset($_POST['function']);
             # code...
             break;
         case 'delete':
-            unset($_POST['delete']);
+            unset($_POST['function']);
             $filename = str_replace(' ', '_', $_POST['filename']);
             echo (json_encode(array('status' => @unlink(ROOT_PATH . '/src/archivos/' . $filename) && deleteByID("archivos", 'id', $_POST["id_archivo"]) == true ? 'ok' : 'failed')));
             break;
@@ -40,7 +41,7 @@ if (isset($_POST) && !empty($_POST))
             echo (json_encode($rows));
             break;
         case 'search':
-            unset($_POST['search']);
+            unset($_POST['function']);
             $text = $_POST['text'];
             $rows = array();
             $result = db_query("SELECT archivos.id AS i, archivos.nombre AS n, archivos.fecha AS f, bibliotecas.nombre AS b FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca WHERE archivos.nombre LIKE '%" . $text . "%'");
@@ -70,8 +71,14 @@ if (isset($_POST) && !empty($_POST))
                 echo (json_encode(array('status' => 'ok')));
             else echo (json_encode(array('status' => 'failed')));
             break;
+        case 'upload':
+            unset($_POST['function']);
+            if (insert('archivos', $_POST))
+                echo (json_encode(array('status' => 'ok')));
+            else echo (json_encode(array('status' => 'failed')));
+            break;
         default:
-            # code...
+            json_encode(array('status' => 'function not defined.'));
             break;
     }
 

@@ -1,13 +1,5 @@
-<?php
-$name = @$_SESSION['user'];
-if ($name == 'admin')
-{
-    header("location: index.php", true, 301);
-    exit();
-}
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title>Auditoria de biblioteca
@@ -29,6 +21,19 @@ if ($name == 'admin')
 <link rel="stylesheet" href="css/auditoria.css">
 </head>
 <body>
+<!-- Menu start -->
+<?php
+include_once 'menu.php';
+$today = date('Y-m-d');
+$time = date('h:i:s');
+$count = 0;
+$id_biblioteca = @$_SESSION['id_biblioteca'];
+$result = $consulta->getForm();
+$total = count($result);
+$step = 1;
+?>
+<!-- Menu end -->
+
 <!-- Modal -->
 <div class="modal fade" id="encuesta-finalizada" tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -48,18 +53,6 @@ if ($name == 'admin')
     </div>
   </div>
 </div>
-<!-- Menu start -->
-<?php
-include_once 'menu.php';
-$today = date('Y-m-d');
-$time = date('h:i:s');
-$count = 0;
-$id_biblioteca = @$_SESSION['id_biblioteca'];
-$result = $consulta->getForm();
-$total = count($result);
-$step = 1;
-?>
-<!-- Menu end -->
 
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">

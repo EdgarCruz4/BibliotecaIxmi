@@ -35,6 +35,7 @@
     }
     if(isset($_POST['exit'])){
         session_destroy();
+        header('location: ../index.php');
         exit();
     }else{
         echo"ocurrio un error";

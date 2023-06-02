@@ -1,13 +1,21 @@
-<?php
-require '../assets/class/consultas.php';
-$consulta = new consultas();
-$name = $consulta->session_star_menu();
-$currentLibraryId = "";
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<?php
+@session_start();
+if (empty($_SESSION['user']) || $_SESSION['user'] != 'admin') {
+header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+exit();
+}
 
+if (!empty(@$_POST['currentLibraryId']))
+{
+	$_SESSION['currentLibraryId'] = $_POST['currentLibraryId'];
+	$_SESSION['foto_miniatura'] = $_POST['foto_miniatura'];
+}
+$id_biblioteca = @$_SESSION['currentLibraryId'];
+if (empty($id_biblioteca))
+  header('../bibliotecas.php');
+?>
+<html lang="es">
 <head>
 	<title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
 	<meta charset="utf-8">
@@ -17,7 +25,7 @@ $currentLibraryId = "";
 	<meta name="keywords" content="">
 	<meta name="author" content="Phoenixcoded" />
 	<!-- Favicon icon -->
-	<link rel="icon" href="/BibliotecaIxmi/assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
 	<script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
 	<!-- Animación AOS -->
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -43,23 +51,26 @@ $currentLibraryId = "";
 		<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div ">
 
-				<div class="">
-					<div class="main-menu-header">
-						<!-- <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image"> -->
-						<?php
-						echo '<img class="img-radius" src="data:image/jpeg;base64,' . base64_encode(@$_SESSION['foto_miniatura'] ?? '') . '" alt="thumbnail"/>';
-						?>
+				<div class="p-1">
+					<div class="main-menu-header" style="background-size: cover; background-image: url(../<?php echo (@$_SESSION['foto_miniatura']) ?>); background-repeat:none; background-position:center;">
+						<!-- <img class="img-radius" style="min-width: 100%; min-height: 100%;" src="../<?php echo(@$_SESSION['foto_miniatura']) ?>" alt="foto">
+						<div class="user-details">
+							<div id="more-details"><i class="fa fa-caret-down"></i></div>
+						</div> -->
 					</div>
-					<div class="collapse" id="nav-user-link">
+					<!-- <div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
 							<li class="list-group-item"><a href="user-profile.php"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
 							<li class="list-group-item"><a href="#!"><i class="feather icon-settings m-r-5"></i>Settings</a></li>
 							<li class="list-group-item"><a href="auth-normal-sign-in.php"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 
 				<ul class="nav pcoded-inner-navbar ">
+				<li class="nav-item pcoded-menu-caption">
+					    <label>Dashboard</label>
+					</li>
 					<li class="nav-item">
 						<a href="../bibliotecas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Bibliotecas</span></a>
 					</li>
@@ -80,8 +91,11 @@ $currentLibraryId = "";
 					<li class="nav-item">
 						<a href="graficas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
 					</li>
-					<li class="nav-item mt-5">
-						<a href="#" class="bg-danger text-white" id="buttonExit"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></a>
+					<li class="nav-item mt-5 p-2">
+						<form action="../assets/user.php" method="post">
+							<input type="hidden" name="exit" value="exit">
+							<button type="submit" class="btn btn-danger w-100 text-white"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></button>
+						</form>
 					</li>
 				</ul>
 			</div>
@@ -115,6 +129,11 @@ $currentLibraryId = "";
 	<script src="../assets/js/ripple.js"></script>
 	<script src="../assets/js/pcoded.min.js"></script>
 	<script src="../assets/js/exit.js"></script>
+	<script>
+	$(document).on('change', '.custom-file-input', function (event) {
+		$(this).next('.custom-file-label').html(event.target.files[0].name);
+	});
+	</script>
 
 </body>
 

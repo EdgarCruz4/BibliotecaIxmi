@@ -98,12 +98,12 @@
 
                                     <?php
                                     require_once("backend/functions.php");
-                                    $rows = queryAll("sugerencias", "WHERE mostrar=1");
+                                    $rows = queryAll("sugerencias", "WHERE mostrar=1 AND fk_id_biblioteca=" . $_SESSION['id_biblioteca']);
                                     while ($row = mysqli_fetch_object($rows)) {
                                     ?>
 
                                         <div class="col-lg-6 mx-auto">
-                                            <div class="card">
+                                            <div class="card" style="height: 360px;">
                                                 <div class="card-header">
                                                     <!-- Featured -->
                                                 </div>
@@ -112,10 +112,12 @@
                                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                                     <a href="#" class="btn btn-primary">Go somewhere</a> -->
                                                     <div class="form-group">
-                                                        <textarea readonly style="background: none; resize:none;" rows="5" class="form-control border-0" aria-label="With textarea">
-                                                    <?php echo ($row->sugerencia); ?>
-                                                    </textarea>
+                                                    <textarea readonly style="background: none; resize:none; text-align: left;" rows="5" class="form-control border-0" aria-label="With textarea"><?php echo ($row->sugerencia); ?></textarea>
                                                     </div>
+                                                    <?php
+                                                    if (!empty($row->archivo))
+                                                    {
+                                                    ?>
                                                     <div class="d-flex flex-row">
                                                         <b>Archivo</b>
                                                     </div>
@@ -126,6 +128,9 @@
                                                             <button type="submit" class="btn btn-primary">Descargar</button>
                                                         </div>
                                                     </form>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
                                                 <div class="card-footer text-muted">
                                                     <?php echo ($row->fecha); ?>

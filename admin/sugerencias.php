@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<?php
-@session_start();
-if ($_SESSION['user'] != 'admin' || empty($_SESSION['user'])) {
-header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-exit();
-}
-?>
 <html lang="es">
 
 <head>
@@ -27,11 +20,7 @@ exit();
 include_once 'menu.php';
 $today = date('Y-m-d');
 $time = date('h:i:s');
-if (!empty(@$_POST['currentLibraryId']))
-  $_SESSION['currentLibraryId'] = $_POST['currentLibraryId'];
-$id_biblioteca = @$_SESSION['currentLibraryId'];
-if (empty($id_biblioteca))
-  header('/bibliotecas.php');
+$_POST = array();
 ?>
 <!-- Menu end -->
 
@@ -69,7 +58,7 @@ if (empty($id_biblioteca))
 <h5 class="m-b-10"><?php echo ($_SESSION['nameUser']); ?></h5>
 </div>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.php"><i class="feather icon-home"></i></a>
+<li class="breadcrumb-item"><a href="../bibliotecas.php"><i class="feather icon-home"></i></a>
 </li>
 <li class="breadcrumb-item"><a href="#!">Sugerencías</a></li>
 
@@ -173,7 +162,7 @@ class="feather icon-trash"></i> remove</a></li>
 
 </div>
       <div class="modal-footer">
-        <input type="hidden" name="fk_id_biblioteca" value="<?php echo($id_biblioteca); ?>">
+        <input type="hidden" name="fk_id_biblioteca" value="<?php echo(strval($id_biblioteca)); ?>">
         <button type="button" class="btn btn-secondary" id="btn-abort" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-primary">Crear sugerencia</button>
       </div>
@@ -190,13 +179,13 @@ class="feather icon-trash"></i> remove</a></li>
 
 <?php
 require_once("../backend/functions.php");
-$rows = queryAll("sugerencias", "WHERE mostrar=1 AND fk_id_biblioteca=$id_biblioteca");
+$rows = queryAll("sugerencias", "WHERE mostrar=1 AND fk_id_biblioteca=" . strval($id_biblioteca));
 while ($row = mysqli_fetch_object($rows))
 {
 ?>
 
 <div class="col-lg-6">
-<div class="card">
+<div class="card" style="height: 360px;">
 <div class="card-header">
 
 <button type="button" data-file="<?php echo($row->archivo); ?>" data-id="<?php echo($row->id_sugerencia); ?>" class="bg-transparent border-0 btn-borrar" aria-label="borrar" style="float: right;">
@@ -213,6 +202,10 @@ while ($row = mysqli_fetch_object($rows))
 <?php echo($row->sugerencia); ?>
 </textarea>
 </div>
+<?php
+if (!empty($row->archivo))
+{
+?>
 <div class="d-flex flex-row">
 <b>Archivo</b>
 </div>
@@ -223,6 +216,7 @@ while ($row = mysqli_fetch_object($rows))
 <button type="submit" class="btn btn-primary">Descargar</button>
 </div>
 </form>
+<?php } ?>
 </div>
 <div class="card-footer text-muted">
 <?php echo($row->fecha); ?>
@@ -324,10 +318,6 @@ function uploadFiles(formData)
 
 window.onload = function()
 {
-
-$(document).on('change', '.custom-file-input', function (event) {
-    $(this).next('.custom-file-label').html(event.target.files[0].name);
-});
 
 $('#exampleModal').on('show.bs.modal', (e) => {
 document.querySelector('#sugerencias-form').reset();

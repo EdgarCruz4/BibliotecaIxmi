@@ -1,12 +1,21 @@
 <?php
+@session_start();
+$name = @$_SESSION['user'];
+if ($name == 'admin')
+{
+    header("location: bibliotecas.php", true);
+    exit();
+}
+?>
+
+<?php
 require 'assets/class/consultas.php';
 $consulta = new consultas();
 $name = $consulta->session_star_menu();
-$currentLibraryId = "";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
@@ -17,16 +26,16 @@ $currentLibraryId = "";
 	<meta name="keywords" content="">
 	<meta name="author" content="Phoenixcoded" />
 	<!-- Favicon icon -->
-	<link rel="icon" href="/BibliotecaIxmi/assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 	<script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
 	<!-- Animación AOS -->
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 	<!-- vendor css -->
-	<link rel="stylesheet" href="/bibliotecaixmi/assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 
 	<!-- Css personalizado -->
-	<link rel="stylesheet" href="/bibliotecaixmi/assets/css/myStyle.css">
+	<link rel="stylesheet" href="assets/css/myStyle.css">
 
 </head>
 
@@ -44,11 +53,11 @@ $currentLibraryId = "";
 			<div class="navbar-content scroll-div ">
 
 				<div class="">
-					<div class="main-menu-header">
-						<!-- <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image"> -->
-						<?php
-						echo '<img class="img-radius" src="data:image/jpeg;base64,' . base64_encode(@$_SESSION['foto_miniatura'] ?? '') . '" alt="thumbnail"/>';
-						?>
+				<div class="main-menu-header" style="background-size: cover; background-image: url(<?php echo (@$_SESSION['foto_miniatura']) ?>); background-repeat:none; background-position:center;">
+						<!-- <img class="img-radius" style="min-width: 100%; min-height: 100%;" src="../<?php echo(@$_SESSION['foto_miniatura']) ?>" alt="foto">
+						<div class="user-details">
+							<div id="more-details"><i class="fa fa-caret-down"></i></div>
+						</div> -->
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
@@ -66,17 +75,11 @@ $currentLibraryId = "";
 					<li class="nav-item">
 						<a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
-					<?php
-					if ($name != 'admin') {
-					?>
-						<li class="nav-item">
-							<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
-						</li>
-					<?php
-					} else {
-						$currentLibraryId = $_COOKIE['currentLibraryId'];
-					}
-					?>
+
+					<li class="nav-item">
+						<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
+					</li>
+
 					<li class="nav-item">
 						<a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-circle"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
 					</li>
@@ -118,11 +121,16 @@ $currentLibraryId = "";
 	<!-- Animación AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- Required Js -->
-	<script src="/BibliotecaIxmi/assets/js/vendor-all.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/plugins/bootstrap.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/ripple.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/pcoded.min.js"></script>
-	<script src="/BibliotecaIxmi/assets/js/exit.js"></script>
+	<script src="assets/js/vendor-all.min.js"></script>
+	<script src="assets/js/plugins/bootstrap.min.js"></script>
+	<script src="assets/js/ripple.js"></script>
+	<script src="assets/js/pcoded.min.js"></script>
+	<script src="assets/js/exit.js"></script>
+	<script>
+	$(document).on('change', '.custom-file-input', function (event) {
+		$(this).next('.custom-file-label').html(event.target.files[0].name);
+	});
+	</script>
 
 </body>
 

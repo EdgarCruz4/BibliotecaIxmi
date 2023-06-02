@@ -10,9 +10,9 @@
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
     <!-- vendor css -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 
@@ -22,6 +22,7 @@
     include_once 'menu.php';
     $today = date('Y-m-d');
     $time = date('h:i:s');
+    require_once('../backend/functions.php');
     ?>
     <!-- Menu end -->
     <!-- [ Main Content ] start -->
@@ -36,7 +37,7 @@
                                 <h5 class="m-b-10"><?php echo(@$_SESSION['nameUser']); ?></h5>
                             </div>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.php"><i class="feather icon-home"></i></a>
+                                <li class="breadcrumb-item"><a href="../bibliotecas.php"><i class="feather icon-home"></i></a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="#!">Archivos</a></li>
                             </ul>
@@ -93,17 +94,15 @@
 
                                 <div class="row justify-content-between p-2">
                                     <form method="post" class="input-group col-md-4 m-1">
-                                        <input id="in-search" type="text" name="search" class="form-control" placeholder="Buscar archivo">
-                                        <button id="btn-search" type="submit" class="btn btn-primary">Buscar</button>
+                                        <input type="text" class="form-control" name="search" placeholder="Buscar archivo">
+                                        <button type="submit" class="btn btn-primary">Buscar</button>
                                     </form>
-                                    <form method="post" enctype="multipart/form-data" id="upload-file-form" class="input-group col-md-4 m-1">
-                                        <!-- <input type="file" class="form-control" aria-label="Upload"> -->
+                                    <form method="post" enctype="multipart/form-data" class="input-group col-md-4 m-1" id="upload-file-form">
                                         <div class="custom-file">
-                                            <input type="file" name="files[]" multiple class="custom-file-input"
-                                                id="upload-btn" required>
+                                            <input type="file" name="files[]" multiple class="custom-file-input" id="upload-btn" required>
                                             <label class="custom-file-label" for="upload-btn">Elegir archivo...</label>
                                         </div>
-                                        <input type="hidden" name="id_biblioteca" value="<?php echo($_SESSION['id_biblioteca']) ?>">
+                                        <input type="hidden" name="id_biblioteca" value="<?php echo (strval($id_biblioteca)); ?>">
                                         <button class="btn btn-primary" type="submit">Subir</button>
                                     </form>
                                 </div>
@@ -116,27 +115,27 @@
                                 </div>
 
 
-                                <div class="input-group m-10"></div>
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <div class="chk-option">
-                                                        <label
-                                                            class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
-                                                            <input type="checkbox" class="custom-control-input">
-                                                            <span class="custom-control-label"></span>
-                                                        </label>
-                                                    </div>
-                                                </th>
-                                                <th>Nombre</th>
-                                                <th>Fecha</th>
-                                                <th>Biblioteca</th>
-                                                <th class="text-right">Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="table-data">
+<div class="input-group m-10"></div>
+<div class="table-responsive">
+<table class="table table-hover mb-0">
+<thead>
+<tr>
+<th>
+<div class="chk-option">
+<label
+class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
+<input type="checkbox" class="custom-control-input">
+<span class="custom-control-label"></span>
+</label>
+</div>
+</th>
+<th>Nombre</th>
+<th>Fecha</th>
+<th>Biblioteca</th>
+<th class="text-right">Acción</th>
+</tr>
+</thead>
+<tbody>
 <?php
 function getResults($rows)
 {
@@ -157,7 +156,7 @@ class="check-task custom-control custom-checkbox d-flex justify-content-center d
 <td><?php echo ($row->fecha); ?></td>
 <td><?php echo ($row->biblioteca); ?></td>
 <td class="text-right">
-<form method="POST" action="backend/download.php">
+<form method="POST" action="../backend/download.php">
 <button type="submit" class="btn btn-primary btn-sm btn-download">Descargar</button>
 <input type="hidden" name="filename" value="<?php echo ($row->nombre); ?>">
 </form>
@@ -174,79 +173,109 @@ class="btn btn-danger btn-sm btn-delete">Eliminar</button>
 
 <?php
 if (!empty($_POST['search'])) {
-    require_once('backend/functions.php');
+    require_once('../backend/functions.php');
     $search = $_POST['search'];
-    $rows = db_query("SELECT archivos.id AS id, archivos.nombre AS nombre, archivos.fecha AS fecha, bibliotecas.nombre AS biblioteca FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca WHERE archivos.nombre LIKE '%" . $search . "%' AND archivos.id_biblioteca = " . $_SESSION['id_biblioteca']);
+    $rows = db_query("SELECT archivos.id AS id, archivos.nombre AS nombre, archivos.fecha AS fecha, bibliotecas.nombre AS biblioteca FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca WHERE archivos.nombre LIKE '%" . $search . "%' AND archivos.id_biblioteca = " . $id_biblioteca);
     getResults($rows);
 }
 else
 {
-    require_once('backend/functions.php');
-    $rows = db_query("SELECT archivos.id AS id, archivos.nombre AS nombre, archivos.fecha AS fecha, bibliotecas.nombre AS biblioteca FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca WHERE archivos.id_biblioteca = " . $_SESSION['id_biblioteca']);
+    require_once('../backend/functions.php');
+    $rows = db_query("SELECT archivos.id AS id, archivos.nombre AS nombre, archivos.fecha AS fecha, bibliotecas.nombre AS biblioteca FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca WHERE archivos.id_biblioteca = " . $id_biblioteca);
     getResults($rows);
 }
 ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                </div>
-                    </div>
-                </div>
-            </div>
-            <!-- [ Main Content ] end -->
-
-
-            <!-- Modal-success -->
-            <div class="modal fade" id="modal-upload-success" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Completado</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal-error -->
-            <div class="modal fade" id="modal-upload-error" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Error</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h6>Uh-oh, ocurrio un error.</h6>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal-message" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title"></h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
     </div>
-
-
-
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+</div>
     <!-- [ Main Content ] end -->
+<script>
 
-    <script src="js/archivos.js"></script>
+document.querySelector('#upload-file-form').addEventListener('submit', async (e) =>
+{
+    e.preventDefault();
+    var formData = new FormData(e.target);
+    // URL.createObjectURL(blob);
+    formData.append('function', 'upload');
+    let file = formData.get('files[]');
+    formData.append('nombre', file.name);
+    formData.append('archivo', 'src/archivos/' + file.name);
+    if (await uploadFiles(formData)) fetch('../backend/api.php', { method:'POST', body:formData })
+    .then(response => response.json())
+    .then(response => {
+        console.log(response);
+        window.location.replace(window.location.href);
+    })
+    .catch(error => console.log(error));
+});
 
+async function uploadFiles(formData) {
+    let isUploaded = false;
+    await fetch('../backend/upload.php', { method: 'POST', body: formData })
+    .then(response => response.json())
+    .then(response => {
+        isUploaded = response[0].status == 'ok';
+    })
+    .catch(error => {
+        console.log(error);
+        isUploaded = false;
+    });
+    formData.delete('files[]');
+    return isUploaded;
+}
+
+document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+
+        if(!confirm('Borrar?')) return;
+
+        let formData = new FormData();
+        let id_archivo = btn.getAttribute('data-id');
+        let filename = btn.getAttribute('data-name');
+
+        formData.append('function', 'delete');
+        formData.append('id_archivo', id_archivo);
+        formData.append('filename', filename);
+
+        fetch('../backend/api.php', {method: 'POST', body: formData })
+        .then(response => response.json())
+        .then(response => {
+            if (response.status == 'ok')
+            {
+                $('#modal-message').on('shown.bs.modal', function(e) {
+                    $('#modal-message .modal-body').html('Archivo borrado.');
+                }).on('hidden.bs.modal', function (e) {
+                    window.location.replace(window.location.href);
+                }).modal('show');
+            }
+        })
+        .catch(error => console.log(error));
+    });
+});
+</script>
 </body>
-
 </html>
