@@ -27,14 +27,17 @@ $name = $consulta->session_star_menu();
 	<meta name="author" content="Phoenixcoded" />
 	<!-- Favicon icon -->
 	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 	<script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
 	<!-- Animación AOS -->
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 	<!-- vendor css -->
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 
 	<!-- Css personalizado -->
+	<link rel="stylesheet" href="assets/css/myStyle.css">
 	<link rel="stylesheet" href="assets/css/myStyle.css">
 
 </head>

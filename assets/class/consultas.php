@@ -48,16 +48,17 @@
             return $data;
         }
 
-        public function testResults($mes, $año,$library){
-            include_once 'conexion.php';
+        public function testResults($mes, $año,$library,$ruta){
+            include_once $ruta.'conexion.php';
             $objeto = new Conexion();
             $conexion = $objeto->Conectar();
+            
             if($library == 1){
-            $query= "SELECT * FROM encuesta, respuestas 
-                WHERE MONTH(fecha) = '$mes' and YEAR(fecha) = '$año' and id_encuesta = fk_encuesta;";
+            $query= "SELECT * FROM encuesta, respuestas, preguntas 
+                WHERE MONTH(fecha) = '$mes' and YEAR(fecha) = '$año' and id_encuesta = fk_encuesta and id = fk_pregunta;";
             }else{
-                $query= "SELECT * FROM encuesta, respuestas 
-                WHERE fk_id_biblioteca = '$library' AND MONTH(fecha) = '$mes' and YEAR(fecha) = '$año' and id_encuesta = fk_encuesta;";
+                $query= "SELECT * FROM encuesta, respuestas, preguntas 
+                WHERE fk_id_biblioteca = '$library' AND MONTH(fecha) = '$mes' and YEAR(fecha) = '$año' and id_encuesta = fk_encuesta and id = fk_pregunta;;";
             }
             $resultado = $conexion->prepare($query);
             $resultado->execute();
@@ -71,6 +72,19 @@
             $conexion = $objeto->Conectar();
 
             $consulta = "SELECT * FROM bibliotecas WHERE id_biblioteca BETWEEN 2 AND 11;";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
+
+        public function getSuggestions($mes, $año, $library,$ruta){
+            include_once $ruta.'conexion.php';
+            $objeto = new Conexion();
+            $conexion = $objeto->Conectar();
+
+            $consulta = "SELECT * FROM sugerencias 
+            WHERE fk_id_biblioteca = '$library' AND MONTH(fecha) = '$mes' and YEAR(fecha) = '$año';";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

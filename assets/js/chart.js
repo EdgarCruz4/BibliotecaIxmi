@@ -1,45 +1,75 @@
 $(document).ready(function () {
     startReading();
 });
-$(function(){
-    $("#tyme").on('change', function(){
-        var tyme = $("#tyme").val();
-        var user = $("#user").val();
-        var flag = true;
-        var ruta = "tyme="+tyme+"&flag="+flag+"&user="+user;
-        $.ajax({
-        url: 'assets/updateGraph.php',
-        type: 'POST',
-        data: ruta,
-        success:function(data){
-            $("#dataTest").val(data);
-            readChart();
-        }
-    })
-    })
-})
 
 function startReading(){
     var today = new Date();
     var currentMonth = today.getMonth()+1;
     var currentYear = today.getFullYear();
+     // Se ingresa a la vista 
     var flag = false;
+    var suggestion = false;
     var user = $("#user").val();
-    var ruta = "currentMonth="+currentMonth+"&currentYear="+currentYear+"&flag="+flag+"&user="+user;
+    var ruta = "currentMonth="+currentMonth+"&currentYear="+currentYear+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
     $.ajax({
         url: 'assets/updateGraph.php',
         type: 'POST',
         data: ruta,
         success:function(data){
             $("#dataTest").val(data);
-            readChart();
+            readChart(flag);
+        }
+    })
+    suggestion = true;
+    var ruta = "currentMonth="+currentMonth+"&currentYear="+currentYear+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
+    $.ajax({
+        url: 'assets/updateGraph.php',
+        type: 'POST',
+        data: ruta,
+        success:function(data){
+            $('#suggestions').append(data);
         }
     })
 }
 
-function readChart(){
+$(function(){
+    $("#tyme").on('change', function(){
+        var div = document.getElementById('suggestions');
+        var tyme = $("#tyme").val();
+        var user = $("#user").val();
+        // Se selecciona de botón select
+        var flag = true;
+        var suggestion = false;
+        var ruta = "tyme="+tyme+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
+        $.ajax({
+        url: 'assets/updateGraph.php',
+        type: 'POST',
+        data: ruta,
+        success:function(data){
+            $("#dataTest").val(data);
+            readChart(flag);
+            }
+        })
+        suggestion = true;
+        var ruta = "tyme="+tyme+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
+        $.ajax({
+        url: 'assets/updateGraph.php',
+        type: 'POST',
+        data: ruta,
+        success:function(data){
+            div.innerHTML = '';
+            $("#suggestions").append(data);
+            }
+        })
+    })
+})
+
+function readChart(flag){
     var dataTest = $("#dataTest").val();
-    var currentData = $("#currentData").val();
+    var title = "";
+    if(flag === false){
+        title = "Mes actual";
+    }
 
     let data = dataTest.split('-');
     var excellent = parseInt(data[0]);
@@ -65,6 +95,7 @@ function readChart(){
                             role: "annotation" },
                         2])
         var options = {
+            title: title,
             bar: {groupWidth: "60%"},
             legend: { position: "none" },
         };
