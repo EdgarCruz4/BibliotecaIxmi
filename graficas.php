@@ -77,7 +77,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-auto">
-                                            <input type="text" name="today" id="today" value="<?php echo $today."-".$surveyDate; ?>">
+                                            <input type="hidden" name="today" id="today" value="<?php echo $today."-".$surveyDate; ?>">
                                             <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser'] ?>">
                                             <button type="submit" class="btn btn-outline-primary btn-sm float-right" id="imprimir"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
                                         </div>
