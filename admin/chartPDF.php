@@ -1,6 +1,6 @@
 <?php
-    require 'assets/class/consultas.php';
-    require('assets/fpdf/fpdf.php');
+    require '../assets/class/consultas.php';
+    require('../assets/fpdf/fpdf.php');
     date_default_timezone_set('America/El_Salvador');
     $consultas = new consultas();
     class PDF extends FPDF
@@ -21,7 +21,7 @@
     $today = $_POST['today'];
     $pastel = $_POST['bar'];
     $tyme = $_POST['tyme'];
-    $ruta = 'assets/';
+    $ruta = '../assets/';
 
     // Condicion de ingreso de información para la impreción
     if ($tyme == "Fecha de auditoria") {

@@ -1,3 +1,8 @@
+<?php
+    require '../assets/class/consultas.php';
+    $consulta = new consultas();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +16,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
 
 </head>
 
@@ -20,9 +25,8 @@
     <?php
     include_once 'menu.php';
     $today = date('m-Y');
-    $ruta = "assets/";
-    $currentLibraryId = $_SESSION['id_biblioteca'];
-    $surveyDate = $consulta->lastMonthSurvey($currentLibraryId,$ruta);
+    $ruta = "../assets/";
+    $surveyDate = $consulta->lastMonthSurvey($id_biblioteca,$ruta);
     ?>
     <!-- Menu end -->
 
@@ -63,7 +67,7 @@
                                                 <option selected hidden>Fecha de auditoria</option>
                                                 <?php
                                                 $months = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-                                                $result = $consulta->getSurveyDate($currentLibraryId);
+                                                $result = $consulta->getSurveyDate($id_biblioteca);
                                                 $i = 0;
                                                 foreach ($result as $data) {
                                                     $i++;
@@ -77,7 +81,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-auto">
-                                            <input type="text" name="today" id="today" value="<?php echo $today."-".$surveyDate; ?>">
+                                            <input type="hidden" name="today" id="today" value="<?php echo $today."-".$surveyDate; ?>">
                                             <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser'] ?>">
                                             <button type="submit" class="btn btn-outline-primary btn-sm float-right" id="imprimir"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
                                         </div>
@@ -85,7 +89,7 @@
                                 </div>
                                 <div class="card-body">
                                     <input type="hidden" id="dataTest" value="">
-                                    <input type="hidden" id="user" name="currentLibraryId" value="<?php echo $currentLibraryId; ?>">
+                                    <input type="hidden" id="user" name="currentLibraryId" value="<?php echo $id_biblioteca; ?>">
                                     <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
                                 </div>
                             </div>
@@ -124,6 +128,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <!-- Script para crear el grafico -->
-<script type="text/javascript" src="assets/js/chart.js"></script>
+<script type="text/javascript" src="../assets/js/chart2.js"></script>
 
 </html>
