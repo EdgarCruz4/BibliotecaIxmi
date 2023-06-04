@@ -2,7 +2,8 @@
 <?php
 @session_start();
 if (empty($_SESSION['user']) || $_SESSION['user'] != 'admin') {
-header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+// header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+header('location: ../index.php');
 exit();
 }
 
@@ -13,11 +14,14 @@ if (!empty(@$_POST['currentLibraryId']))
 }
 $id_biblioteca = @$_SESSION['currentLibraryId'];
 if (empty($id_biblioteca))
-  header('../bibliotecas.php');
+{
+	header('location:../bibliotecas.php');
+	exit();
+}
 ?>
 <html lang="es">
 <head>
-	<title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
+	<title>Menu</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />

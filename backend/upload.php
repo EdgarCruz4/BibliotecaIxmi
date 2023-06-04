@@ -26,6 +26,4 @@ if (isset($_FILES['files']) && !empty($_FILES['files']))
         echo (json_encode($status));
     }
 }
-
-// how to unpolad a file in php?
 ?>

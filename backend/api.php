@@ -52,15 +52,22 @@ if (!empty($_POST))
         case 'answers':
             unset($_POST['function']);
             $id_biblioteca = intval($_POST['id_biblioteca']);
+            $comentario = $_POST['comentario'];
             $answers = json_decode(($_POST['respuestas']));
-            insert('encuesta', array('fk_id_biblioteca' => $id_biblioteca));
+            $result = insert('encuesta', array('fk_id_biblioteca' => $id_biblioteca, 'comentario' => $comentario));
+            if ($result == false)
+            {
+                echo (json_encode(['status' => 'failed']));
+                break;
+            }
+
             $id_encuesta = mysqli_insert_id($conn);
             $sql_array = array();
 
             foreach ($answers as $key) {
                 array_push($sql_array, array('fk_encuesta' => $id_encuesta, 'fk_pregunta' => intval($key->fk_pregunta), 'respuesta' => intval($key->respuesta)));
             }
-            if (multi_insert('respuestas', $sql_array)) echo (json_encode(['status' => 'ok']));
+            if (multi_insert('respuestas', $sql_array) != false) echo (json_encode(['status' => 'ok']));
             else echo (json_encode(['status' => 'failed']));
             break;
         case 'sugerencia':
