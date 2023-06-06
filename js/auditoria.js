@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     });
     
-    // $('.nav-tabs > li a[title]').tooltip('show');
+    $('.nav-tabs > li a[title]').tooltip('show');
     
     // Wizard
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -85,39 +85,36 @@ document.querySelector('#form-encuesta').onsubmit = function(e) {
     
     formData.append('id_biblioteca', e.target.getAttribute("data-id-biblioteca"));
     formData.append('function', 'answers');
+    formData.append('comentario', document.querySelector('#comentario').value);
     
     document.querySelectorAll('#form-encuesta input[type="radio"]').forEach(radio => {
         if (radio.checked) {
             answers.push({'fk_pregunta': radio.getAttribute('data-id'), 'respuesta': radio.getAttribute('data-answer')});
         }
     });
-    if (answers.length > 0 && saveAnswers()) {
-        $('#encuesta-finalizada').on('hidden.bs.modal', function (e) {
-            window.location.href = '../auditoria.php';
-        }).modal('show');
-    }
-    else
-    {
-        $('#encuesta-finalizada').on('show.bs.modal', function (e) {
-            var modal = $(this)
-        }).modal('show');
-    }
-            modal.find('.modal-body h6').html('Ocurrió un error.\nPorfavor intenta más tarde.');
+    saveAnswers();
 };
 
-async function saveAnswers()
+function saveAnswers()
 {
     formData.append('respuestas', JSON.stringify(answers));
-    await fetch(API_URL, {
+    fetch(API_URL, {
         method: 'POST',
         body: formData
     }
     ).then(response => response.json()
     ).then(data => {
-        if (data?.status == 'ok') return true;
-        else return false;
+        if (data?.status == 'ok') {
+            $('#encuesta-finalizada').on('hidden.bs.modal', function (e)
+            {
+                window.location.replace(window.location.href);
+            }).modal('show');
+        }
     }
     ).catch(error => {
-        return false;
+        $('#encuesta-finalizada').on('show.bs.modal', function (e) {
+            var modal = $(this)
+            modal.find('.modal-body h6').html('Ocurrió un error.\nPorfavor intenta más tarde.');
+        }).modal('show');
     });
 }

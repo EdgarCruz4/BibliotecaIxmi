@@ -1,7 +1,7 @@
 <?php
 define('ROOT_PATH', dirname(dirname(__FILE__)));
 // Make sure the captured data exists
-if (isset($_FILES['files']) && !empty($_FILES['files']))
+if (!empty($_FILES['files']))
 {
     // Upload destination directory
     $upload_destination = ROOT_PATH . '/src/archivos/';
@@ -26,6 +26,4 @@ if (isset($_FILES['files']) && !empty($_FILES['files']))
         echo (json_encode($status));
     }
 }
-
-// how to unpolad a file in php?
 ?>

@@ -5,7 +5,7 @@ $name = $consulta->session_star_menu();
 $name = $consulta->getLibrary();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
@@ -55,12 +55,15 @@ $name = $consulta->getLibrary();
                                 <?php
                                 foreach ($name as $resul) {
                                 ?>
-                                    <div class="col-lg-3 col-md-5 portfolio-item filter-app" data-aos="fade-up">
+                                    <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-aos="fade-up">
                                         <h5 class="text-center"><?php echo $resul['nombre']; ?></h5>
                                         <div class="portfolio-wrap">
-                                            <img src="data:image/jpeg;base64,<?php echo base64_encode($resul['foto_miniatura']) ?>" class="img-fluid" alt="">
+                                            <img style="width: 100%; height: 40vh; object-fit:cover;" src="<?php echo($resul['foto_miniatura']) ?>" class="img-fluid lazy embed-responsive-4by3" alt="">
                                             <div class="portfolio-links">
-                                                <a title="Más detalles" onclick="currentLibraryId(<?php echo $resul['id_biblioteca'];?>)"><i class="bi bi-link"></i></a>
+                                                <form action="admin/sugerencias.php" method="post">
+                                                <input type="hidden" name="foto_miniatura" value="<?php echo($resul['foto_miniatura']) ?>">
+                                                <button type="submit" name="currentLibraryId" value="<?php echo $resul['id_biblioteca']; ?>" style="background: none; border: none; background-color: white; border-radius: 100%; width: 30px; height: 30px;"><i class="bi bi-link"></i></button>
+                                                </form>
                                             </div>
                                             <div class="portfolio-info">
                                             </div>

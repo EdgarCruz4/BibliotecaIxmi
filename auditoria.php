@@ -1,17 +1,8 @@
-<?php
-$name = @$_SESSION['user'];
-if ($name == 'admin')
-{
-    header("location: index.php", true, 301);
-    exit();
-}
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <title>Auditoria de biblioteca
-    </title>
+    <title>Auditoria</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,25 +20,6 @@ if ($name == 'admin')
 <link rel="stylesheet" href="css/auditoria.css">
 </head>
 <body>
-<!-- Modal -->
-<div class="modal fade" id="encuesta-finalizada" tabindex="-1" role="dialog" aria-hidden="false">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Auditoria</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <h6>Encuesta finalizada</h6>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Menu start -->
 <?php
 include_once 'menu.php';
@@ -60,6 +32,26 @@ $total = count($result);
 $step = 1;
 ?>
 <!-- Menu end -->
+
+<!-- Modal -->
+<div class="modal fade" id="encuesta-finalizada" tabindex="-1" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Auditoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Has finalizado la encuesta.</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
@@ -135,7 +127,7 @@ $step = 1;
 <div class="connecting-line"></div>
     <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active section-1">
-    <a data-toggle="tab" aria-controls="#step1" data-title="Visión" role="tab"><span class="round-tab">1 </span> <i></i></a>
+    <a data-toggle="tab" aria-controls="#step1" data-title="Visión" role="tab"><span class="round-tab">1</span> <i></i></a>
     </li>
     <li role="presentation" class="disabled section-1">
     <a data-toggle="tab" aria-controls="#step2" data-title="Misión" role="tab"><span class="round-tab">2</span> <i></i></a>
@@ -206,7 +198,7 @@ $step = 1;
     </ul>
 </div>
 
-<form id="form-encuesta" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form" novalidate>
+<form id="form-encuesta" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form">
 <div class="tab-content">
 <?php
 for (; $step <= 23; $step++) {
@@ -299,6 +291,16 @@ for (; $count < $total; $count++)
 </tbody>
 </table>
 </div>
+<?php
+if ($step >= 23)
+{
+?>
+  <div class="form-group my-5 w-50 h-25" style="border: 1px solid #cccccc;">
+  <label for="comentario">Comentario</label>
+  <textarea minlength="60"  class="form-control" id="comentario" name="comentario" placeholder=""></textarea>
+  </div>
+<?php
+}?>
 
 <ul class="list-inline pull-right">
 <?php

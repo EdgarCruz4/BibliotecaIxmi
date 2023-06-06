@@ -1,20 +1,17 @@
-$('#buttonExit').click(function(event){
+$('#buttonExit').click(function (event) {
+    console.log('exit');
+
     var exit = "exit";
-    var ruta = "exit="+exit;
-    console.log('hola');
+    var ruta = "exit=" + exit;
     $.ajax({
         url: 'assets/user.php',
         type: 'POST',
         data: ruta,
-        success:function(data){
-            document.cookie = "currentLibraryId=; path=/;";
+        success: function (data) {
             location.href = 'index.php';
         }
-    })
-})
-function currentLibraryId(libraryId){
-    document.cookie = "currentLibraryId="+libraryId+"; path=/";
-    location.href = 'admin/sugerencias.php';
-}
+    });
+});
+
 // Iniciador de animación en la pantalla de bibliotecas 
 AOS.init();

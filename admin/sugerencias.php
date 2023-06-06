@@ -17,11 +17,10 @@
 <body class="">
 <!-- Menu start -->
 <?php
-include_once '../menu.php';
+include_once 'menu.php';
 $today = date('Y-m-d');
 $time = date('h:i:s');
-@session_start();
-$id_biblioteca = @$_SESSION['currentLibraryId'] ?? 1;
+$_POST = array();
 ?>
 <!-- Menu end -->
 
@@ -59,7 +58,7 @@ $id_biblioteca = @$_SESSION['currentLibraryId'] ?? 1;
 <h5 class="m-b-10"><?php echo ($_SESSION['nameUser']); ?></h5>
 </div>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.php"><i class="feather icon-home"></i></a>
+<li class="breadcrumb-item"><a href="../bibliotecas.php"><i class="feather icon-home"></i></a>
 </li>
 <li class="breadcrumb-item"><a href="#!">Sugerencías</a></li>
 
@@ -163,7 +162,7 @@ class="feather icon-trash"></i> remove</a></li>
 
 </div>
       <div class="modal-footer">
-        <input type="hidden" name="fk_id_biblioteca" value="<?php echo($id_biblioteca); ?>">
+        <input type="hidden" name="fk_id_biblioteca" value="<?php echo(strval($id_biblioteca)); ?>">
         <button type="button" class="btn btn-secondary" id="btn-abort" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-primary">Crear sugerencia</button>
       </div>
@@ -180,13 +179,13 @@ class="feather icon-trash"></i> remove</a></li>
 
 <?php
 require_once("../backend/functions.php");
-$rows = queryAll("sugerencias", "WHERE mostrar=1");
+$rows = queryAll("sugerencias", "WHERE mostrar=1 AND fk_id_biblioteca=" . strval($id_biblioteca));
 while ($row = mysqli_fetch_object($rows))
 {
 ?>
 
 <div class="col-lg-6">
-<div class="card">
+<div class="card" style="height: 360px;">
 <div class="card-header">
 
 <button type="button" data-file="<?php echo($row->archivo); ?>" data-id="<?php echo($row->id_sugerencia); ?>" class="bg-transparent border-0 btn-borrar" aria-label="borrar" style="float: right;">
@@ -203,16 +202,21 @@ while ($row = mysqli_fetch_object($rows))
 <?php echo($row->sugerencia); ?>
 </textarea>
 </div>
+<?php
+if (!empty($row->archivo))
+{
+?>
 <div class="d-flex flex-row">
 <b>Archivo</b>
 </div>
 <form action="../backend/download.php" method="post">
 <div class="d-flex flex-row justify-content-between">
 <p style="width: 70%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="<?php echo(basename($row->archivo)); ?>" ><?php echo(basename($row->archivo)); ?></p>
-<input type="hidden" name="filename" value="<?php echo(basename($row->archivo)) ?>">
+<input type="hidden" name="filename" value="<?php echo (basename($row->archivo)) ?>">
 <button type="submit" class="btn btn-primary">Descargar</button>
 </div>
 </form>
+<?php } ?>
 </div>
 <div class="card-footer text-muted">
 <?php echo($row->fecha); ?>
@@ -237,7 +241,7 @@ while ($row = mysqli_fetch_object($rows))
 <!-- [ Main Content ] end -->
 
 <script>
-document.querySelector('#sugerencias-form').addEventListener('submit', (e) =>
+document.querySelector('#sugerencias-form').addEventListener('submit', async (e) =>
 {
   e.preventDefault();
   let formData = new FormData(e.target);
@@ -247,15 +251,17 @@ document.querySelector('#sugerencias-form').addEventListener('submit', (e) =>
   {
     formData.append('archivo', formData.get('files[]').name.replace(' ', '_'));
     document.querySelector('#sugerencias-form [type="submit"]').setAttribute('disabled', 'true');
-    uploadFiles(formData);
+    await postData(formData);
+
+    await uploadFiles(formData);
   }
   else postData(formData);
 });
 
 
-function postData(formData)
+async function postData(formData)
 {
-  fetch("../backend/api.php", {
+  await fetch("../backend/api.php", {
   body: formData,
   method: 'POST'
   }).then (response => { return response.json(); })
@@ -265,7 +271,7 @@ function postData(formData)
     setTimeout(() => {
     document.querySelector('#sugerencias-form [type="submit"]').removeAttribute('disabled');
     $('#exampleModal').modal('hide');
-    window.location.reload();
+    window.location.replace(window.location.href);
     }, 2000);
   }
   }).catch (error => {
@@ -277,12 +283,15 @@ function postData(formData)
 function uploadFiles(formData)
 {
   var request = new XMLHttpRequest();
-  request.timeout = 180000; // 3 minutes
+  // request.timeout = 180000; // 3 minutes
   request.open('POST', '../backend/upload.php', true);
+  request.send(formData);
 
   request.onload = function() {
-    formData.delete('files[]');
-    postData(formData);
+    if (request.readyState === XMLHttpRequest.DONE && request.status == 200) {
+      // The request has been completed successfully
+      console.log('upload complete.');
+    }
   }
 
   request.onprogress = function(e) {
@@ -308,16 +317,11 @@ function uploadFiles(formData)
   document.querySelector('#btn-abort').addEventListener('click', (e) => {
     request.abort();
   });
-  request.send(formData);
 }
 
 
 window.onload = function()
 {
-
-$(document).on('change', '.custom-file-input', function (event) {
-    $(this).next('.custom-file-label').html(event.target.files[0].name);
-});
 
 $('#exampleModal').on('show.bs.modal', (e) => {
 document.querySelector('#sugerencias-form').reset();
@@ -349,7 +353,7 @@ $('#input-files').removeClass('is-invalid');
     }).then(response => response.json())
     .then(response => {
     modal.modal('hide');
-    window.location.reload();
+    window.location.replace(window.location.href);
     }).catch(error => console.log(error));
   });
 
@@ -358,6 +362,7 @@ $('#input-files').removeClass('is-invalid');
     btn.addEventListener('click', () => {
     var modal = $('#confirm-modal');
     modal.find('#btn-delete').attr('data-id', btn.getAttribute('data-id'));
+    modal.find('#btn-delete').attr('data-file', btn.getAttribute('data-file'));
     modal.modal('show');
     });
   });

@@ -1,41 +1,36 @@
 <?php
-/**
- * Load the external configuration file
- */
+// Load the external configuration file
 require_once('config.php');
 // Sets the global variable for root path
 define('ROOT_PATH', dirname(dirname(__FILE__)));
 
 function init() {
     # PHP error reporting. supported values are given below.
-    # 0 - Turn off all error reporting
-    # 1 - Running errors
-    # 2 - Running errors + notices
-    # 3 - All errors except notices and warnings
-    # 4 - All errors except notices
-    # 5 - All errors
+    /*
+        0 - Turn off all error reporting
+        1 - Running errors
+        2 - Running errors + notices
+        3 - All errors except notices and warnings
+        4 - All errors except notices
+        5 - All errors
+    */
     error_reporting(5);
     @session_start();
-    global $host;
-    global $username;
-    global $password;
-    global $dbname;
-    global $port;
-    global $conn;
+    global $host, $username, $password, $dbname, $port, $conn;
     if (isset($_SESSION["username"]) && isset($_SESSION["password"]))
     {
         $username = $_SESSION["username"];
         $password = $_SESSION["password"];
     }
     /*
-     If mysqli error reporting is enabled (MYSQLI_REPORT_ERROR) and the requested operation fails, a warning is generated.
-     If, in addition, the mode is set to MYSQLI_REPORT_STRICT, a mysqli_sql_exception is thrown instead.
-     */
+        If mysqli error reporting is enabled (MYSQLI_REPORT_ERROR) and the requested operation fails, a warning is generated.
+        If, in addition, the mode is set to MYSQLI_REPORT_STRICT, a mysqli_sql_exception is thrown instead.
+    */
     // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     // mysqli_report(MYSQLI_REPORT_OFF);
     $conn = @mysqli_connect($host, $username, $password, $dbname, $port);
-    return $conn;
     // mysqli_autocommit($conn, false);
+    return $conn;
 }
 /**
  * @param string $query
@@ -150,6 +145,6 @@ function queryAll($table, $flags = '')
 function commit()
 {
     global $conn;
-    return $conn->commit();
+    return mysqli_commit($conn);
 }
 ?>

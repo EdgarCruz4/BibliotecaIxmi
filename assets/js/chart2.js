@@ -13,7 +13,7 @@ function startReading(){
     var ruta = "today="+today+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
     // Insert de la grafica
     $.ajax({
-        url: 'assets/updateGraph.php',
+        url: '../assets/updateGraph.php',
         type: 'POST',
         data: ruta,
         success:function(data){
@@ -25,7 +25,7 @@ function startReading(){
     suggestion = true;
     var ruta = "today="+today+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
     $.ajax({
-        url: 'assets/updateGraph.php',
+        url: '../assets/updateGraph.php',
         type: 'POST',
         data: ruta,
         success:function(data){
@@ -46,7 +46,7 @@ $(function(){
         var ruta = "tyme="+tyme+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
         // Actualización de graficas
         $.ajax({
-        url: 'assets/updateGraph.php',
+        url: '../assets/updateGraph.php',
         type: 'POST',
         data: ruta,
         success:function(data){
@@ -58,7 +58,7 @@ $(function(){
         suggestion = true;
         var ruta = "tyme="+tyme+"&flag="+flag+"&user="+user+"&suggestion="+suggestion;
         $.ajax({
-        url: 'assets/updateGraph.php',
+        url: '../assets/updateGraph.php',
         type: 'POST',
         data: ruta,
         success:function(data){
