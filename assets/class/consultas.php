@@ -30,8 +30,7 @@
             $conexion = $objeto->Conectar();
 
             $query = "SELECT id_encuesta, MONTH(Fecha) AS mes, YEAR(Fecha) AS año
-            FROM encuesta WHERE fk_id_biblioteca = '$id_biblioteca'
-            GROUP BY YEAR(Fecha), MONTH(Fecha);";
+            FROM encuesta WHERE fk_id_biblioteca = '$id_biblioteca';";
             
             $resultado = $conexion->prepare($query);
             $resultado->execute();
