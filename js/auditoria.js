@@ -105,8 +105,9 @@ function saveAnswers()
     ).then(response => response.json()
     ).then(data => {
         if (data?.status == 'ok') {
-            $('#encuesta-finalizada').on('hidden.bs.modal', function (e) {
-                window.location.href = '/auditoria.php';
+            $('#encuesta-finalizada').on('hidden.bs.modal', function (e)
+            {
+                window.location.replace(window.location.href);
             }).modal('show');
         }
     }
