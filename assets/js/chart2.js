@@ -88,10 +88,10 @@ function readChart(flag){
     function drawChartColumn() {
         var data = google.visualization.arrayToDataTable([
             ["Element", "Density", { role: "style" } ],
-            ["Siempre", excellent, "#3366CC"],
-            ["Casi siempre", good, "#109618"],
+            ["Inexistente", nonExistent, "color: #DC3912"],
             ["Algunas veces", regular, "#FF9900"],
-            ["Inexistente", nonExistent, "color: #DC3912"]
+            ["Casi siempre", good, "#109618"],
+            ["Siempre", excellent, "#3366CC"],
         ])
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,
