@@ -124,7 +124,7 @@
                                                     <form action="backend/download.php" method="post">
                                                         <div class="d-flex flex-row justify-content-between">
                                                             <p><?php echo (basename($row->archivo)); ?></p>
-                                                            <input type="hidden" name="filename" data-src="<?php echo (basename($row->archivo)) ?>">
+                                                            <input type="hidden" name="filename" value="<?php echo (basename($row->archivo)) ?>">
                                                             <button type="submit" class="btn btn-primary">Descargar</button>
                                                         </div>
                                                     </form>
