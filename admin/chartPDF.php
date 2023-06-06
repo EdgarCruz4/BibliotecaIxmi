@@ -73,11 +73,7 @@
     $pdf->SetFont('Arial', 'B', 16);
     $pdf->Cell(180, 10, $caption, 0, 1, 'C', 0);
     $pdf->ln();
-
-    $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(180, 10, $caption, 0, 1, 'C', 0);
-    $pdf->ln();
-
+    
     $dataTest = $consultas->testResults($partes[0], $year, $currentLibraryId, $ruta, $idEncuesta);
     foreach ($dataTest as $result) {
         $pdf->SetFont('Arial', 'B', 14);
