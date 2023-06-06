@@ -27,7 +27,8 @@ if (!empty($_POST))
         case 'deleteById':
             unset($_POST['function']);
             $id_sugerencia = intval($_POST['id_sugerencia']);
-            if (deleteByID('sugerencias','id_sugerencia', $id_sugerencia))
+            $filename = str_replace(' ', '_', $_POST['archivo']);
+            if (deleteByID('sugerencias','id_sugerencia', $id_sugerencia) && @unlink(ROOT_PATH . '/src/archivos/' . $filename))
                 echo (json_encode(['status' => 'ok']));
             else
                 echo (json_encode(['status' => 'fail']));

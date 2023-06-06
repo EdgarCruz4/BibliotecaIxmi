@@ -212,7 +212,7 @@ if (!empty($row->archivo))
 <form action="../backend/download.php" method="post">
 <div class="d-flex flex-row justify-content-between">
 <p style="width: 70%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="<?php echo(basename($row->archivo)); ?>" ><?php echo(basename($row->archivo)); ?></p>
-<input type="hidden" name="filename" value="<?php echo(basename($row->archivo)) ?>">
+<input type="hidden" name="filename" value="<?php echo (basename($row->archivo)) ?>">
 <button type="submit" class="btn btn-primary">Descargar</button>
 </div>
 </form>
@@ -241,7 +241,7 @@ if (!empty($row->archivo))
 <!-- [ Main Content ] end -->
 
 <script>
-document.querySelector('#sugerencias-form').addEventListener('submit', (e) =>
+document.querySelector('#sugerencias-form').addEventListener('submit', async (e) =>
 {
   e.preventDefault();
   let formData = new FormData(e.target);
@@ -251,15 +251,17 @@ document.querySelector('#sugerencias-form').addEventListener('submit', (e) =>
   {
     formData.append('archivo', formData.get('files[]').name.replace(' ', '_'));
     document.querySelector('#sugerencias-form [type="submit"]').setAttribute('disabled', 'true');
-    uploadFiles(formData);
+    await postData(formData);
+
+    await uploadFiles(formData);
   }
   else postData(formData);
 });
 
 
-function postData(formData)
+async function postData(formData)
 {
-  fetch("../backend/api.php", {
+  await fetch("../backend/api.php", {
   body: formData,
   method: 'POST'
   }).then (response => { return response.json(); })
@@ -269,7 +271,7 @@ function postData(formData)
     setTimeout(() => {
     document.querySelector('#sugerencias-form [type="submit"]').removeAttribute('disabled');
     $('#exampleModal').modal('hide');
-    window.location.reload();
+    window.location.replace(window.location.href);
     }, 2000);
   }
   }).catch (error => {
@@ -281,12 +283,15 @@ function postData(formData)
 function uploadFiles(formData)
 {
   var request = new XMLHttpRequest();
-  request.timeout = 180000; // 3 minutes
+  // request.timeout = 180000; // 3 minutes
   request.open('POST', '../backend/upload.php', true);
+  request.send(formData);
 
   request.onload = function() {
-    formData.delete('files[]');
-    postData(formData);
+    if (request.readyState === XMLHttpRequest.DONE && request.status == 200) {
+      // The request has been completed successfully
+      console.log('upload complete.');
+    }
   }
 
   request.onprogress = function(e) {
@@ -312,7 +317,6 @@ function uploadFiles(formData)
   document.querySelector('#btn-abort').addEventListener('click', (e) => {
     request.abort();
   });
-  request.send(formData);
 }
 
 
@@ -349,7 +353,7 @@ $('#input-files').removeClass('is-invalid');
     }).then(response => response.json())
     .then(response => {
     modal.modal('hide');
-    window.location.reload();
+    window.location.replace(window.location.href);
     }).catch(error => console.log(error));
   });
 
@@ -358,6 +362,7 @@ $('#input-files').removeClass('is-invalid');
     btn.addEventListener('click', () => {
     var modal = $('#confirm-modal');
     modal.find('#btn-delete').attr('data-id', btn.getAttribute('data-id'));
+    modal.find('#btn-delete').attr('data-file', btn.getAttribute('data-file'));
     modal.modal('show');
     });
   });
