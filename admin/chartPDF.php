@@ -74,122 +74,149 @@
     $pdf->Cell(180, 10, $caption, 0, 1, 'C', 0);
     $pdf->ln();
 
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(180, 10, $caption, 0, 1, 'C', 0);
+    $pdf->ln();
+
     $dataTest = $consultas->testResults($partes[0], $year, $currentLibraryId, $ruta, $idEncuesta);
     foreach ($dataTest as $result) {
         $pdf->SetFont('Arial', 'B', 14);
         $pdf->SetTextColor(0, 0, 0); 
         if ($result['id'] <= 7) {
             if ($result['id'] == 1) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Visión'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 11) {
             if ($result['id'] == 8) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Misión'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 23) {
             if ($result['id'] == 12) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Objetivos'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 30) {
             if ($result['id'] == 24) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Metas'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 54) {
             if ($result['id'] == 31) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Procesos'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 78) {
             if ($result['id'] == 55) {
+
                 $pdf->MultiCell(0, 10, utf8_decode('Procedimientos'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 112) {
             if ($result['id'] == 79) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Programas'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 117) {
             if ($result['id'] == 113) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Metas'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 134) {
             if ($result['id'] == 118) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Organización'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 148) {
             if ($result['id'] == 135) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('División y distribución de funciones'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 168) {
             if ($result['id'] == 149) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Cultura organizacional'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 179) {
             if ($result['id'] == 169) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Recursos humanos'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 190) {
             if ($result['id'] == 180) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Reclutamiento, selección, contratación, inducción y socializacion'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 194) {
             if ($result['id'] == 191) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Normatividad'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 197) {
             if ($result['id'] == 195) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Renumeracion del personal'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 212) {
             if ($result['id'] == 198) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Capacitación y desarrollo'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 220) {
             if ($result['id'] == 213) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Seguridad e higiene'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 224) {
             if ($result['id'] == 221) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Evaluación del desempeño'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 227) {
             if ($result['id'] == 225) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Inteligencia emocional'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 233) {
             if ($result['id'] == 228) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Valores'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 236) {
             if ($result['id'] == 234) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Ética'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 249) {
             if ($result['id'] == 237) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Cambio organizacional'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         } elseif ($result['id'] <= 259) {
             if ($result['id'] == 250) {
+                $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Instrumentos técnicos de apoyo'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
@@ -202,6 +229,7 @@
     {
         $pdf->SetFont('Arial', '', 12);
         $pdf->MultiCell(0, 10, utf8_decode($id.') '.$pregunta));
+        $pdf->SetFont('Arial', 'B', 12);
         $pdf->SetTextColor(70, 128, 255); 
         switch ($rest) {
             case 1:

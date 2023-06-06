@@ -29,8 +29,9 @@
             $objeto = new Conexion();
             $conexion = $objeto->Conectar();
 
-            $query = "SELECT id_encuesta, MONTH(Fecha) AS mes, YEAR(Fecha) AS año
-            FROM encuesta WHERE fk_id_biblioteca = '$id_biblioteca';";
+            $query = "SELECT id_encuesta, DAY(Fecha) AS dia, MONTH(Fecha) AS mes, YEAR(Fecha) AS año
+            FROM encuesta
+            WHERE fk_id_biblioteca = '$id_biblioteca';";
             
             $resultado = $conexion->prepare($query);
             $resultado->execute();
@@ -68,16 +69,16 @@
             return $data;
         }
 
-        public function getSuggestions($mes, $año, $library,$ruta){
+        public function getSuggestions($ruta,$idEncuesta){
             include_once $ruta.'conexion.php';
             $objeto = new Conexion();
             $conexion = $objeto->Conectar();
 
-            $consulta = "SELECT * FROM sugerencias 
-            WHERE fk_id_biblioteca = '$library' AND MONTH(fecha) = '$mes' and YEAR(fecha) = '$año';";
+            $consulta= "SELECT * FROM encuesta 
+                WHERE id_encuesta = '$idEncuesta';";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
-            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $data=$resultado->fetch(PDO::FETCH_ASSOC);
             return $data;
         }
 
