@@ -30,8 +30,7 @@
             $conexion = $objeto->Conectar();
 
             $query = "SELECT id_encuesta, MONTH(Fecha) AS mes, YEAR(Fecha) AS año
-            FROM encuesta WHERE fk_id_biblioteca = '$id_biblioteca'
-            GROUP BY YEAR(Fecha), MONTH(Fecha);";
+            FROM encuesta WHERE fk_id_biblioteca = '$id_biblioteca';";
             
             $resultado = $conexion->prepare($query);
             $resultado->execute();
@@ -62,7 +61,7 @@
             $objeto = new Conexion();
             $conexion = $objeto->Conectar();
 
-            $consulta = "SELECT * FROM bibliotecas WHERE id_biblioteca BETWEEN 2 AND 12;";
+            $consulta = "SELECT * FROM bibliotecas WHERE id_biblioteca BETWEEN 2 AND 11;";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
