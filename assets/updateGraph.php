@@ -41,25 +41,23 @@
         if ($_POST['flag'] == "true") {
             $tyme = $_POST['tyme'];
             $partes = explode("-", $tyme);
-            $data = $consultas->getSuggestions($partes[0], $partes[1], $_POST['user'],$ruta);
+            $data = $consultas->getSuggestions($ruta,$partes[2]);
         } elseif ($_POST['flag'] == "false") {
             $today = $_POST['today'];
             $partes = explode("-", $today);
-            $data = $consultas->getSuggestions($partes[0], $partes[1], $_POST['user'],$ruta);
+            $data = $consultas->getSuggestions($ruta,$partes[2]);
         }
 
-        foreach ($data as $result) {
         ?>
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <input type="hidden" name="suggestions" value="<?php echo $result['sugerencia']; ?>">
-                        <?php echo $result['sugerencia']; ?>
+                        <input type="hidden" name="suggestions" value="<?php echo $data['comentario']; ?>">
+                        <?php echo $data['comentario']; ?>
                     </div>
                 </div>
             </div>
         <?php
-            }
     }
 
 
