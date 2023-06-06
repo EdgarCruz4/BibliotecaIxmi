@@ -47,7 +47,7 @@
             $partes = explode("-", $today);
             $data = $consultas->getSuggestions($ruta,$partes[2]);
         }
-
+        if(!empty($data)){
         ?>
             <div class="col">
                 <div class="card">
@@ -58,6 +58,7 @@
                 </div>
             </div>
         <?php
+        }
     }
 
 
