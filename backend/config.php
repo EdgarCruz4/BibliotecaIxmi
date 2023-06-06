@@ -1,8 +1,8 @@
 <?php
-$host = 'MYSQL5045.site4now.net';
-$dbname = 'db_a96468_audit';
-$username = 'a96468_audit';
-$password = 'Aud1t0r1@';
+$host = 'mysql5048.site4now.net';
+$dbname = 'db_a9a775_ixmi';
+$username = 'a9a775_ixmi';
+$password = '@ud1t0r!a';
 $port = 3306;
 $conn = false;
 ?>

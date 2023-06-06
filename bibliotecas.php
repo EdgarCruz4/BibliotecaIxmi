@@ -8,7 +8,7 @@ $name = $consulta->getLibrary();
 <html lang="es">
 
 <head>
-    <title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
+    <title>Bibliotecas</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -16,6 +16,7 @@ $name = $consulta->getLibrary();
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

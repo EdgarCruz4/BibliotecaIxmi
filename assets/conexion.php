@@ -5,10 +5,10 @@
 
 Class Conexion{
 	public static function Conectar(){
-		define('servidor','MYSQL5045.site4now.net');
-		define('nombre_bd', 'db_a96468_audit');
-		define('usuario','a96468_audit');
-		define('password','Aud1t0r1@');
+		define('servidor','mysql5048.site4now.net');
+		define('nombre_bd', 'db_a9a775_ixmi');
+		define('usuario','a9a775_ixmi');
+		define('password','@ud1t0r!a');
 
 		$opciones =array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
 
