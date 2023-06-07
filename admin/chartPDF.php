@@ -63,13 +63,13 @@
     $pdf->Cell(200, 10, utf8_decode('Planeación'), 0, 50, 'L', 0);
     $img1 = explode(',', $pastel1, 2)[1];
     $pic1 = 'data://text/plain;base64,' . $img1;
-    $pdf->image($pic1, 0, 60, 200, 80, 'png');
+    $pdf->image($pic1, 0, 60, 200, 75, 'png');
 
     $pdf->Ln(80);
     $pdf->Cell(200, 10, utf8_decode('Organización'), 0, 50, 'L', 0);
     $img2 = explode(',', $pastel2, 2)[1];
     $pic2 = 'data://text/plain;base64,' . $img2;
-    $pdf->image($pic2, 0, 150, 200, 80, 'png');
+    $pdf->image($pic2, 0, 150, 200, 75, 'png');
 
     // Segunda página
     $pdf->AddPage();
@@ -77,13 +77,13 @@
     $pdf->Cell(200, 10, utf8_decode('Dirección'), 0, 50, 'L', 0);
     $img3 = explode(',', $pastel3, 2)[1];
     $pic3 = 'data://text/plain;base64,' . $img3;
-    $pdf->image($pic3, 0, 30, 200, 80, 'png');
+    $pdf->image($pic3, 0, 30, 200, 75, 'png');
 
     $pdf->Ln(80);
     $pdf->Cell(200, 10, 'Control', 0, 50, 'L', 0);
     $img4 = explode(',', $pastel4, 2)[1];
     $pic4 = 'data://text/plain;base64,' . $img4;
-    $pdf->image($pic4, 0, 120, 200, 80, 'png');
+    $pdf->image($pic4, 0, 120, 200, 75, 'png');
 
     $pdf->Ln(90);
     $pdf->Cell(200, 10, 'Observaciones y comentarios:', 0, 1, 'L', 0);
