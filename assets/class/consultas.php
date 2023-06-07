@@ -62,7 +62,7 @@
             $objeto = new Conexion();
             $conexion = $objeto->Conectar();
 
-            $consulta = "SELECT * FROM bibliotecas WHERE id_biblioteca BETWEEN 2 AND 11;";
+            $consulta = "SELECT * FROM bibliotecas WHERE id_biblioteca BETWEEN 2 AND 12;";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

@@ -78,11 +78,26 @@ function readChart(flag){
     }
 
     let data = dataTest.split('-');
-    var excellent = parseInt(data[0]);
-    var good = parseInt(data[1]);
-    var regular = parseInt(data[2]);
-    var nonExistent = parseInt(data[3]);
+    var excellent = "";
+    var good = "";
+    var regular = "";
+    var nonExistent = "";
+    var i = 0;
+    var n = 0;
+    while(i < 4){
+        i++;
+        console.log(i);
+            excellent = parseInt(data[n++]);
+        good = parseInt(data[n++]);
+        regular = parseInt(data[n++]);
+        nonExistent = parseInt(data[n++]);
+        graphing(excellent,good,regular,nonExistent,title,i);
+    }
+}
 
+
+function graphing(excellent,good,regular,nonExistent,title,i){
+    // console.log(excellent);
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChartColumn)
     function drawChartColumn() {
@@ -105,8 +120,8 @@ function readChart(flag){
             bar: {groupWidth: "60%"},
             legend: { position: "none" },
         };
-        var chart = new google.visualization.ColumnChart(document.getElementById("bar"));
+        var chart = new google.visualization.ColumnChart(document.getElementById('bar'+i));
         chart.draw(view, options);
-        document.getElementById('barImg').value=chart.getImageURI()
+        document.getElementById('barImg'+i).value=chart.getImageURI()
     }
 }

@@ -1,6 +1,6 @@
 <?php
-    require '../assets/class/consultas.php';
-    $consulta = new consultas();
+require '../assets/class/consultas.php';
+$consulta = new consultas();
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
     include_once 'menu.php';
     $today = date('m-Y');
     $ruta = "../assets/";
-    $surveyDate = $consulta->lastMonthSurvey($id_biblioteca,$ruta);
+    $surveyDate = $consulta->lastMonthSurvey($id_biblioteca, $ruta);
     ?>
     <!-- Menu end -->
 
@@ -59,8 +59,8 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <h5>Resultados de auditoria</h5>
-                                            <input type="hidden" id="barImg" name="bar">
+                                            <h5>Planeación</h5>
+                                            <input type="hidden" id="barImg1" name="bar1">
                                         </div>
                                         <div class="col-md-auto">
                                             <select class="custom-select custom-select-sm float-right" id="tyme" name="tyme">
@@ -74,14 +74,14 @@
                                                     $numberMonth = $data['mes'] - 1;
                                                     $month = $months[$numberMonth];
                                                 ?>
-                                                    <option value="<?php echo $data['mes'] . "-" . $data['año']. "-" . $data['id_encuesta']; ?>"><?php echo "Encuesta N°".$i.", ".$month . "-" . $data['año']; ?></option>
+                                                    <option value="<?php echo $data['mes'] . "-" . $data['año'] . "-" . $data['id_encuesta']; ?>"><?php echo "Encuesta N°" . $i . ", " . $data['dia'] . "-" . $month . "-" . $data['año']; ?></option>
                                                 <?php
                                                 }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="col-md-auto">
-                                            <input type="hidden" name="today" id="today" value="<?php echo $today."-".$surveyDate; ?>">
+                                            <input type="hidden" name="today" id="today" value="<?php echo $today . "-" . $surveyDate; ?>">
                                             <input type="hidden" name="userName" value="<?php echo $_SESSION['nameUser'] ?>">
                                             <button type="submit" class="btn btn-outline-primary btn-sm float-right" id="imprimir"><i class="fa-solid fa-print fa-lg" title="Imprimir"></i> &nbsp Imprimir</button>
                                         </div>
@@ -90,7 +90,68 @@
                                 <div class="card-body">
                                     <input type="hidden" id="dataTest" value="">
                                     <input type="hidden" id="user" name="currentLibraryId" value="<?php echo $id_biblioteca; ?>">
-                                    <div id="bar" class=" text-center" style="width: 100%; height: 400px;"></div>
+                                    <div id="bar1" class=" text-center" style="width: 100%; height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Organización</h5>
+                                            <input type="hidden" id="barImg2" name="bar2">
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="card-body">
+                                    <input type="hidden" id="dataTest2" value="">
+                                    <div id="bar2" class=" text-center" style="width: 100%; height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Dirección</h5>
+                                            <input type="hidden" id="barImg3" name="bar3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <input type="hidden" id="dataTest3" value="">
+                                    <div id="bar3" class=" text-center" style="width: 100%; height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Control</h5>
+                                            <input type="hidden" id="barImg4" name="bar4">
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="card-body">
+                                    <input type="hidden" id="dataTest4" value="">
+                                    <div id="bar4" class=" text-center" style="width: 100%; height: 400px;"></div>
                                 </div>
                             </div>
                         </div>
