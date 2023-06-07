@@ -173,15 +173,14 @@ class="btn btn-danger btn-sm btn-delete">Eliminar</button>
 ?>
 
 <?php
-if (!empty($_POST['search'])) {
     require_once('backend/functions.php');
+if (!empty($_POST['search'])) {
     $search = $_POST['search'];
     $rows = db_query("SELECT archivos.id AS id, archivos.nombre AS nombre, archivos.fecha AS fecha, bibliotecas.nombre AS biblioteca FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca WHERE archivos.nombre LIKE '%" . $search . "%' AND archivos.id_biblioteca = " . $_SESSION['id_biblioteca']);
     getResults($rows);
 }
 else
 {
-    require_once('backend/functions.php');
     $rows = db_query("SELECT archivos.id AS id, archivos.nombre AS nombre, archivos.fecha AS fecha, bibliotecas.nombre AS biblioteca FROM archivos INNER JOIN bibliotecas ON archivos.id_biblioteca = bibliotecas.id_biblioteca WHERE archivos.id_biblioteca = " . $_SESSION['id_biblioteca']);
     getResults($rows);
 }

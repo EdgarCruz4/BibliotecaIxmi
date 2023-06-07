@@ -1,7 +1,3 @@
-const API_URL = window.location.origin.concat(
-  "/bibliotecaixmi/backend/upload.php"
-);
-
 document.querySelector("#upload-file-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -16,7 +12,7 @@ function uploadFiles(formData) {
   // Initiate the AJAX request
   let request = new XMLHttpRequest();
   // Ensure the request method is POST
-  request.open("POST", API_URL);
+  request.open("POST", '../backend/upload.php');
   // Attach the progress event handler to the AJAX request
   request.upload.addEventListener("progress", (event) => {
     // Add the current progress to the button
@@ -26,7 +22,7 @@ function uploadFiles(formData) {
   });
 
   request.onload = async () => {
-    if (request.readyState == 4 && request.status == 200) {
+    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
       // Output the response message
       let result = JSON.parse(request.responseText);
       formData.delete('files[]');
@@ -34,7 +30,7 @@ function uploadFiles(formData) {
         // console.log(response);
         await insert(formData, response);
       }
-      window.location.reload();
+      window.location.replace(window.location.href);
     } else {
       $("#modal-upload-error").modal({
         show: true,
@@ -60,16 +56,16 @@ async function insert(formData, response) {
   formData.append("nombre", response.file);
   formData.append("archivo", "src/archivos/".concat(response.file));
 
-  await fetch(window.location.origin.concat("/bibliotecaixmi/backend/api.php"),
+  await fetch("../backend/api.php",
     {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       body: formData, // body data type must match "Content-Type" header
     }
   )
-    .then((response) => response.json())
+    .then((response) => response?.json())
     .then((response) => {
       console.log(response);
-      return response.status == 'ok';
+      return response?.status === 'ok';
     })
     .catch((error) => {
       console.error(error);
@@ -89,17 +85,16 @@ document.querySelectorAll(".btn-delete").forEach((btn) => {
     formData.append("id_archivo", id_archivo);
     formData.append("filename", archivo);
 
-    fetch(
-      window.location.origin.concat("/bibliotecaixmi/backend/api.php"),
+    fetch('../backend/api.php',
       {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         body: formData, // body data type must match "Content-Type" header
       }
     )
-      .then((response) => response.json())
-      .then((data) => {
-        window.location.reload();
+    .then((response) => response.json())
+    .then((data) => {
+        window.location.replace(window.location.href);
       })
-      .catch((error) => console.error(error));
+    .catch((error) => console.error(error));
   });
 });

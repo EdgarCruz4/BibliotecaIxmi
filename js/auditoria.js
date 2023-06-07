@@ -1,5 +1,3 @@
-const API_URL = window.location.origin.concat('/bibliotecaixmi').concat('/backend/api.php');
-
 // ------------step-wizard-------------
 $(document).ready(function () {
     $(function () {
@@ -76,8 +74,8 @@ document.querySelector('#form-encuesta').addEventListener('submit', (e) => e.pre
 document.querySelector('#form-encuesta').onsubmit = function(e) {
     if (!e.target.checkValidity()) {
         $('#encuesta-finalizada').on('show.bs.modal', function (e) {
-        var modal = $(this);
-        modal.find('.modal-body h6').text('Aún no has completado la encuesta.');
+            const modal = $(this);
+            modal.find('.modal-body h6').text('Aún no has completado la encuesta.');
         }).modal('show');
         e.target.classList.add('was-validated');
         return false;
@@ -98,13 +96,13 @@ document.querySelector('#form-encuesta').onsubmit = function(e) {
 function saveAnswers()
 {
     formData.append('respuestas', JSON.stringify(answers));
-    fetch(API_URL, {
+    fetch('../backend/api.php', {
         method: 'POST',
         body: formData
     }
     ).then(response => response.json()
     ).then(data => {
-        if (data?.status == 'ok') {
+        if (data?.status === 'ok') {
             $('#encuesta-finalizada').on('hidden.bs.modal', function (e)
             {
                 window.location.replace(window.location.href);
@@ -113,7 +111,7 @@ function saveAnswers()
     }
     ).catch(error => {
         $('#encuesta-finalizada').on('show.bs.modal', function (e) {
-            var modal = $(this)
+            const modal = $(this);
             modal.find('.modal-body h6').html('Ocurrió un error.\nPorfavor intenta más tarde.');
         }).modal('show');
     });

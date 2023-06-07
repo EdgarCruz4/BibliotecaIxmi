@@ -1,3 +1,4 @@
+# Enable apache rewrite engine
 RewriteEngine On
 
 # DISABLE DIRECTORY INDEXES
@@ -8,7 +9,15 @@ DirectoryIndex index.php index.html index.htm
 
 # set your rewrite base
 # Edit this in your init method too if you script lives in a subfolder
-RewriteBase /BibliotecaIxmi/
+# RewriteBase /BibliotecaIxmi/
+
+# Deliver the folder or file directly if it exists on the server
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+ 
+# Push every request to index.php
+# RewriteRule ^(.php)$ index.php [QSA]
+# RewriteRule ^(.*)$ index.php [L,QSA]
 
 # LIMIT UPLOAD SIZE to 10 MB
 # 10240000 bytes ~ 10 megabytes
