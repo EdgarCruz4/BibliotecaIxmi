@@ -78,21 +78,21 @@ $name = $consulta->session_star_menu();
 						<a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
 
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
-					</li>
+					</li> -->
 
 					<li class="nav-item">
 						<a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-circle"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
 					</li>
 
-					<li class="nav-item pcoded-menu-caption">
+					<!-- <li class="nav-item pcoded-menu-caption">
 						<label>Alcances</label>
 					</li>
 
 					<li class="nav-item">
 						<a href="graficas.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graficas</span></a>
-					</li>
+					</li> -->
 					<li class="nav-item mt-5">
 						<a href="#" class="bg-danger text-white" id="buttonExit"><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Salir</span></a>
 					</li>
