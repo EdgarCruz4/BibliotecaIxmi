@@ -1,65 +1,77 @@
 <?php
-    require 'class/consultas.php';
-    $consultas = new consultas();
-    // Script intermediario que permite procesar los datos de la vista de graficas
-    $ruta = '';
-    if ($_POST['suggestion'] == "false") {
-        // Se habilita la ruta para procesamiento de información para la grafica 
-        if ($_POST['flag'] == "true") {
-            $tyme = $_POST['tyme'];
-            $partes = explode("-", $tyme);
-            $data = $consultas->testResults($partes[0], $partes[1], $_POST['user'],$ruta,$partes[2]);
-        } elseif ($_POST['flag'] == "false") {
-            $today = $_POST['today'];
-            $partes = explode("-", $today);
-            $data = $consultas->testResults($partes[0], $partes[1], $_POST['user'],$ruta,$partes[2]);
-        }
+require 'class/consultas.php';
+$consultas = new consultas();
+// Script intermediario que permite procesar los datos de la vista de graficas
+$ruta = '';
+if ($_POST['suggestion'] == "false") {
+    // Se habilita la ruta para procesamiento de información para la grafica 
+    if ($_POST['flag'] == "true") {
+        $tyme = $_POST['tyme'];
+        $partes = explode("-", $tyme);
+        $data = $consultas->testResults($partes[0], $partes[1], $_POST['user'], $ruta, $partes[2]);
+    } elseif ($_POST['flag'] == "false") {
+        $today = $_POST['today'];
+        $partes = explode("-", $today);
+        $data = $consultas->testResults($partes[0], $partes[1], $_POST['user'], $ruta, $partes[2]);
+    }
 
-        $excellent = 0;
-        $good = 0;
-        $regular = 0;
-        $nonExistent = 0;
+    $excellent = 0;
+    $good = 0;
+    $regular = 0;
+    $nonExistent = 0;
+    $chart = "";
+    $jsonData = "";
 
-        foreach ($data as $result) {
-            $score = $result['respuesta'];
-            if ($score == 1) {
-                $excellent++;
-            } elseif ($score == 2) {
-                $good++;
-            } elseif ($score == 3) {
-                $regular++;
-            } elseif ($score == 4) {
-                $nonExistent++;
-            } else {
-                echo "ocurrio un error";
-            }
+    foreach ($data as $result) {
+        $idQuestion = $result['id'];
+        $score = $result['respuesta'];
+        if ($score == 1) {
+            $excellent++;
+        } elseif ($score == 2) {
+            $good++;
+        } elseif ($score == 3) {
+            $regular++;
+        } elseif ($score == 4) {
+            $nonExistent++;
+        } else {
+            echo "ocurrio un error";
         }
-
-        echo $jsonData = $excellent . "-" . $good . "-" . $regular . "-" . $nonExistent;
-    } else {
-        // Se habilita la ruta para el procesamiento de información para los comentarios
-        if ($_POST['flag'] == "true") {
-            $tyme = $_POST['tyme'];
-            $partes = explode("-", $tyme);
-            $data = $consultas->getSuggestions($ruta,$partes[2]);
-        } elseif ($_POST['flag'] == "false") {
-            $today = $_POST['today'];
-            $partes = explode("-", $today);
-            $data = $consultas->getSuggestions($ruta,$partes[2]);
-        }
-        if(!empty($data)){
-        ?>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <input type="hidden" name="suggestions" value="<?php echo $data['comentario']; ?>">
-                        <?php echo $data['comentario']; ?>
-                    </div>
-                </div>
-            </div>
-        <?php
+        if ($idQuestion == 118 || $idQuestion == 259 || $idQuestion == 338 || $idQuestion == 391) {
+            $chart = $excellent . "-" . $good . "-" . $regular . "-" . $nonExistent. "-";
+            $jsonData = $jsonData . $chart;
+            $chart = "";
+            $excellent = 0;
+            $good = 0;
+            $regular = 0;
+            $nonExistent = 0;
         }
     }
+
+    echo $jsonData;
+} else {
+    // Se habilita la ruta para el procesamiento de información para los comentarios
+    if ($_POST['flag'] == "true") {
+        $tyme = $_POST['tyme'];
+        $partes = explode("-", $tyme);
+        $data = $consultas->getSuggestions($ruta, $partes[2]);
+    } elseif ($_POST['flag'] == "false") {
+        $today = $_POST['today'];
+        $partes = explode("-", $today);
+        $data = $consultas->getSuggestions($ruta, $partes[2]);
+    }
+    if (!empty($data)) {
+?>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <input type="hidden" name="suggestions" value="<?php echo $data['comentario']; ?>">
+                    <?php echo $data['comentario']; ?>
+                </div>
+            </div>
+        </div>
+<?php
+    }
+}
 
 
 ?>
