@@ -30,7 +30,6 @@ require_once('../backend/functions.php');
 $rows = queryAll('preguntas');
 $count = 0;
 $step = 1;
-$title = 'I. Planeación';
 ?>
 <!-- Menu end -->
 
@@ -126,7 +125,7 @@ $title = 'I. Planeación';
 <div class="wizard">
 <div class="form-group">
         <div class="d-flex justify-content-center">
-            <h5><?php echo ($title); ?></h5>
+            <h5 id="main-title">I. Planeación</h5>
         </div>
     </div>
 <div class="wizard-inner ">

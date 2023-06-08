@@ -30,16 +30,19 @@ $(document).ready(function () {
         {
             $('li.section-1').hide();
             $('li.section-2').show();
+            $('#main-title').text('II. Organización');
         }
         if (el.hasClass('section-3'))
         {
             $('li.section-2').hide();
             $('li.section-3').show();
+            $('#main-title').text('III. Dirección');
         }
         if (el.hasClass('section-4'))
         {
             $('li.section-3').hide();
             $('li.section-4').show();
+            $('#main-title').text('IV. Control');
         }
         el.removeClass('disabled');
         el.addClass('active');
@@ -54,16 +57,19 @@ $(document).ready(function () {
         {
             $('li.section-2').hide();
             $('li.section-1').show();
+            $('#main-title').text('I. Planeación');
         }
         if (el.hasClass('section-2'))
         {
             $('li.section-3').hide();
             $('li.section-2').show();
+            $('#main-title').text('II. Organización');
         }
         if (el.hasClass('section-3'))
         {
             $('li.section-4').hide();
             $('li.section-3').show();
+            $('#main-title').text('III. Dirección');
         }
         el.addClass('disabled');
         el.addClass('active');
