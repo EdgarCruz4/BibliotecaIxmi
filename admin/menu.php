@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 @session_start();
+$id_biblioteca = null;
 if (empty($_SESSION['user']) || $_SESSION['user'] != 'admin') {
 // header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 header('location: ../index.php');
@@ -84,8 +85,13 @@ if (empty($id_biblioteca))
 					<li class="nav-item">
 						<a href="archivos.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-folder"></i></span><span class="pcoded-mtext">Archivos</span></a>
 					</li>
+					
 					<li class="nav-item">
 						<a href="sugerencias.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-circle"></i></span><span class="pcoded-mtext">Sugerencias</span></a>
+					</li>
+
+					<li class="nav-item">
+						<a href="auditoria.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Auditoria</span></a>
 					</li>
 
 					<li class="nav-item pcoded-menu-caption">

@@ -17,7 +17,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="css/auditoria.css">
+<link rel="stylesheet" href="../css/auditoria.css">
 </head>
 <body>
 <!-- Menu start -->
@@ -25,11 +25,12 @@
 include_once 'menu.php';
 $today = date('Y-m-d');
 $time = date('h:i:s');
+
+require_once('../backend/functions.php');
+$rows = queryAll('preguntas');
 $count = 0;
-$id_biblioteca = @$_SESSION['id_biblioteca'];
-$result = $consulta->getForm();
-$total = count($result);
 $step = 1;
+$title = 'I. Planeación';
 ?>
 <!-- Menu end -->
 
@@ -123,6 +124,11 @@ $step = 1;
 <!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
 <section class="signup-step-container">
 <div class="wizard">
+<div class="form-group">
+        <div class="d-flex justify-content-center">
+            <h5><?php echo ($title); ?></h5>
+        </div>
+    </div>
 <div class="wizard-inner ">
 <div class="connecting-line"></div>
     <ul class="nav nav-tabs" role="tablist">
@@ -195,13 +201,58 @@ $step = 1;
     <li role="presentation" class="disabled section-2">
     <a data-toggle="tab" aria-controls="#step23" role="tab" data-title="Instrumentos técnicos de apoyo"><span class="round-tab">23</span><i></i></a>
     </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step24" role="tab" data-title="Liderazgo"><span class="round-tab">24</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step25" role="tab" data-title="Comunicación"><span class="round-tab">25</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step26" role="tab" data-title="Motivación"><span class="round-tab">26</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step27" role="tab" data-title="Grupos y equipos de trabajo"><span class="round-tab">27</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step28" role="tab" data-title="Manejo del estrés, el conflicto y la crisis"><span class="round-tab">28</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step29" role="tab" data-title="Tecnología de la información"><span class="round-tab">29</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step30" role="tab" data-title="Toma de decisiones"><span class="round-tab">30</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-3">
+    <a data-toggle="tab" aria-controls="#step31" role="tab" data-title="Creatividad e innovación"><span class="round-tab">31</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-4">
+    <a data-toggle="tab" aria-controls="#step32" role="tab" data-title="Naturaleza"><span class="round-tab">32</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-4">
+    <a data-toggle="tab" aria-controls="#step33" role="tab" data-title="Sistemas"><span class="round-tab">33</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-4">
+    <a data-toggle="tab" aria-controls="#step34" role="tab" data-title="Niveles"><span class="round-tab">34</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-4">
+    <a data-toggle="tab" aria-controls="#step35" role="tab" data-title="Proceso"><span class="round-tab">35</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-4">
+    <a data-toggle="tab" aria-controls="#step36" role="tab" data-title="Áreas de aplicación"><span class="round-tab">36</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-4">
+    <a data-toggle="tab" aria-controls="#step37" role="tab" data-title="Herramientas"><span class="round-tab">37</span><i></i></a>
+    </li>
+    <li role="presentation" class="disabled section-4">
+    <a data-toggle="tab" aria-controls="#step38" role="tab" data-title="Calidad"><span class="round-tab">38</span><i></i></a>
+    </li>
     </ul>
 </div>
 
 <form id="form-encuesta" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form">
 <div class="tab-content">
 <?php
-for (; $step <= 23; $step++) {
+for (; $step <= 38; $step++) {
 ?>
 
 <div class="tab-pane <?php if ($step == 1)
@@ -221,8 +272,9 @@ for (; $step <= 23; $step++) {
 </thead>
 <tbody>
 <?php
-for (; $count < $total; $count++)
-    {
+// for (; $count < $total; $count++)
+while ($result = mysqli_fetch_array($rows, MYSQLI_ASSOC))
+{
         if ($step == 1 && $count > 7    ||
             $step == 2 && $count > 11   ||
             $step == 3 && $count > 23   ||
@@ -230,7 +282,7 @@ for (; $count < $total; $count++)
             $step == 5 && $count > 54   ||
             $step == 6 && $count > 78   ||
             $step == 7 && $count > 112  ||
-            $step == 8 && $count > 117  ||
+            $step == 8 && $count > 117  || // I. Planeación: 1-118
             $step == 9 && $count > 134  ||
             $step == 10 && $count > 148 ||
             $step == 11 && $count > 168 ||
@@ -245,35 +297,52 @@ for (; $count < $total; $count++)
             $step == 20 && $count > 233 ||
             $step == 21 && $count > 236 ||
             $step == 22 && $count > 249 ||
-            $step == 23 && $count > 259)
+            $step == 23 && $count > 258 || // II. Organización: 119- 259
+            $step == 24 && $count > 270 ||
+            $step == 25 && $count > 288 ||
+            $step == 26 && $count > 300 ||
+            $step == 27 && $count > 303 ||
+            $step == 28 && $count > 315 ||
+            $step == 29 && $count > 323 ||
+            $step == 30 && $count > 329 ||
+            $step == 31 && $count > 337 || // III. Dirección: 260-338
+            $step == 32 && $count > 342 ||
+            $step == 33 && $count > 348 ||
+            $step == 34 && $count > 352 ||
+            $step == 35 && $count > 360 ||
+            $step == 36 && $count > 366 ||
+            $step == 37 && $count > 372 ||
+            $step == 38 && $count > 390    // IV. Control: 339-391
+            )
             break;
+            $count++;
 ?>
 <tr>
 <td>
-<?php echo $result[$count]['pregunta']; ?>
+<?php echo ($count . '.- ' . $result['pregunta']); ?>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="1" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" required class="form-check-input"  type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="1" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" required class="form-check-input"  type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-tooltip">*</div> -->
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="2" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="2" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="3" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="3" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="4" data-id="<?php echo $result[$count]['id']; ?>" data-question="<?php echo $result[$count]['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="4" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>
@@ -292,7 +361,7 @@ for (; $count < $total; $count++)
 </table>
 </div>
 <?php
-if ($step >= 23)
+if ($step >= 38)
 {
 ?>
   <div class="form-group my-5 w-50 h-25" style="border: 1px solid #cccccc;">
@@ -310,7 +379,7 @@ if ($step > 1)
 <li><button type="button" class="btn btn-dark prev-step">Back</button></li>
 <?php
 }
-if ($step >= 23)
+if ($step >= 38)
 {
 ?>
 <li><button type="submit" class="btn btn-success btn-submit">Finalizar</button></li>
@@ -342,6 +411,6 @@ if ($step >= 23)
                 </div>
             </div>
         <!-- [ Main Content ] end -->
-        <script src="js/auditoria.js"></script>
+        <script src="../js/auditoria.js"></script>
     </body>
 </html>

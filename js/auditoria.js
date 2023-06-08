@@ -17,6 +17,8 @@ $(document).ready(function () {
     });
     
     $('li.section-2').hide();
+    $('li.section-3').hide();
+    $('li.section-4').hide();
 
     $("#form-encuesta .next-step").click(function (e) {
 
@@ -28,6 +30,16 @@ $(document).ready(function () {
         {
             $('li.section-1').hide();
             $('li.section-2').show();
+        }
+        if (el.hasClass('section-3'))
+        {
+            $('li.section-2').hide();
+            $('li.section-3').show();
+        }
+        if (el.hasClass('section-4'))
+        {
+            $('li.section-3').hide();
+            $('li.section-4').show();
         }
         el.removeClass('disabled');
         el.addClass('active');
@@ -42,6 +54,16 @@ $(document).ready(function () {
         {
             $('li.section-2').hide();
             $('li.section-1').show();
+        }
+        if (el.hasClass('section-2'))
+        {
+            $('li.section-3').hide();
+            $('li.section-2').show();
+        }
+        if (el.hasClass('section-3'))
+        {
+            $('li.section-4').hide();
+            $('li.section-3').show();
         }
         el.addClass('disabled');
         el.addClass('active');

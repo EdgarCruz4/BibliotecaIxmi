@@ -41,8 +41,7 @@ function db_query($query)
 {
     if (!$conn = init())
         return null;
-    $result = @mysqli_query($conn, $query);
-    return $result;
+    return @mysqli_query($conn, $query);
 }
 function multi_insert($table, $sql_array)
 {
