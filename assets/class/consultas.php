@@ -31,7 +31,7 @@
 
             $query = "SELECT id_encuesta, DAY(Fecha) AS dia, MONTH(Fecha) AS mes, YEAR(Fecha) AS año
             FROM encuesta
-            WHERE fk_id_biblioteca = '$id_biblioteca';";
+            WHERE fk_id_biblioteca = '$id_biblioteca' AND YEAR(Fecha) = YEAR(CURRENT_DATE());";
             
             $resultado = $conexion->prepare($query);
             $resultado->execute();
