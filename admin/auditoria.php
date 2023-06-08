@@ -27,9 +27,11 @@ $today = date('Y-m-d');
 $time = date('h:i:s');
 
 require_once('../backend/functions.php');
-$rows = queryAll('preguntas');
-$count = 0;
+$result = queryAll('preguntas', 'ORDER BY id');
+$rows = mysqli_fetch_all($result);
 $step = 1;
+$count = 0;
+$total = count($rows);
 ?>
 <!-- Menu end -->
 
@@ -248,7 +250,7 @@ $step = 1;
     </ul>
 </div>
 
-<form id="form-encuesta" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form">
+<form id="form-encuesta" method="post" data-id-biblioteca="<?php echo($id_biblioteca) ?>" role="form" novalidate>
 <div class="tab-content">
 <?php
 for (; $step <= 38; $step++) {
@@ -271,77 +273,76 @@ for (; $step <= 38; $step++) {
 </thead>
 <tbody>
 <?php
-// for (; $count < $total; $count++)
-while ($result = mysqli_fetch_array($rows, MYSQLI_ASSOC))
+// while ($result = mysqli_fetch_array($result, MYSQLI_ASSOC))
+for (; $count < $total; $count++)
 {
-        if ($step == 1 && $count > 7    ||
-            $step == 2 && $count > 11   ||
-            $step == 3 && $count > 23   ||
-            $step == 4 && $count > 30   ||
-            $step == 5 && $count > 54   ||
-            $step == 6 && $count > 78   ||
-            $step == 7 && $count > 112  ||
-            $step == 8 && $count > 117  || // I. Planeación: 1-118
-            $step == 9 && $count > 134  ||
-            $step == 10 && $count > 148 ||
-            $step == 11 && $count > 168 ||
-            $step == 12 && $count > 179 ||
-            $step == 13 && $count > 190 ||
-            $step == 14 && $count > 194 ||
-            $step == 15 && $count > 197 ||
-            $step == 16 && $count > 212 ||
-            $step == 17 && $count > 220 ||
-            $step == 18 && $count > 224 ||
-            $step == 19 && $count > 227 ||
-            $step == 20 && $count > 233 ||
-            $step == 21 && $count > 236 ||
-            $step == 22 && $count > 249 ||
-            $step == 23 && $count > 258 || // II. Organización: 119- 259
-            $step == 24 && $count > 270 ||
-            $step == 25 && $count > 288 ||
-            $step == 26 && $count > 300 ||
-            $step == 27 && $count > 303 ||
-            $step == 28 && $count > 315 ||
-            $step == 29 && $count > 323 ||
-            $step == 30 && $count > 329 ||
-            $step == 31 && $count > 337 || // III. Dirección: 260-338
-            $step == 32 && $count > 342 ||
-            $step == 33 && $count > 348 ||
-            $step == 34 && $count > 352 ||
-            $step == 35 && $count > 360 ||
-            $step == 36 && $count > 366 ||
-            $step == 37 && $count > 372 ||
-            $step == 38 && $count > 390    // IV. Control: 339-391
+        if ($step == 1 && $count > 7 ||
+            $step == 2 && $count > 11 ||
+            $step == 3 && $count > 23 ||
+            $step == 4 && $count > 30 ||
+            $step == 5 && $count > 54 ||
+            $step == 6 && $count > 78 ||
+            $step == 7 && $count > 111 ||
+            $step == 8 && $count > 116 || // I. Planeación: 1-118
+            $step == 9 && $count > 133 ||
+            $step == 10 && $count > 147 ||
+            $step == 11 && $count > 167 ||
+            $step == 12 && $count > 178 ||
+            $step == 13 && $count > 189 ||
+            $step == 14 && $count > 193 ||
+            $step == 15 && $count > 196 ||
+            $step == 16 && $count > 211 ||
+            $step == 17 && $count > 219 ||
+            $step == 18 && $count > 223 ||
+            $step == 19 && $count > 226 ||
+            $step == 20 && $count > 232 ||
+            $step == 21 && $count > 235 ||
+            $step == 22 && $count > 248 ||
+            $step == 23 && $count > 257 || // II. Organización: 119- 259
+            $step == 24 && $count > 269 ||
+            $step == 25 && $count > 287 ||
+            $step == 26 && $count > 299 ||
+            $step == 27 && $count > 302 ||
+            $step == 28 && $count > 314 ||
+            $step == 29 && $count > 322 ||
+            $step == 30 && $count > 328 ||
+            $step == 31 && $count > 336 || // III. Dirección: 260-338
+            $step == 32 && $count > 341 ||
+            $step == 33 && $count > 347 ||
+            $step == 34 && $count > 351 ||
+            $step == 35 && $count > 359 ||
+            $step == 36 && $count > 365 ||
+            $step == 37 && $count > 371 ||
+            $step == 38 && $count > 389 // IV. Control: 339-391
             )
             break;
-            $count++;
 ?>
 <tr>
 <td>
-<?php echo ($count . '.- ' . $result['pregunta']); ?>
+<?php echo ($rows[$count][0] . '.- ' . $rows[$count][1]); ?>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="1" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" required class="form-check-input"  type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="1" data-id="<?php echo $rows[$count][0]; ?>" data-question="<?php echo $rows[$count][1]; ?>" required class="form-check-input"  type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-tooltip">*</div> -->
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="2" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="2" data-id="<?php echo $rows[$count][0]; ?>" data-question="<?php echo $rows[$count][1]; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="3" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="3" data-id="<?php echo $rows[$count][0]; ?>" data-question="<?php echo $rows[$count][1]; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>
 <td>
 <div class="form-check">
-<input data-answer="4" data-id="<?php echo $result['id']; ?>" data-question="<?php echo $result['pregunta']; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
+<input data-answer="4" data-id="<?php echo $rows[$count][0]; ?>" data-question="<?php echo $rows[$count][1]; ?>" class="form-check-input" type="radio" name="pregunta<?php echo $count ?>">
 <!-- <div class="invalid-feedback">*</div> -->
 </div>
 </td>

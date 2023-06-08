@@ -99,7 +99,7 @@ var answers = new Array();
 
 document.querySelector('#form-encuesta').addEventListener('submit', (e) => e.preventDefault() );
 
-document.querySelector('#form-encuesta').onsubmit = function(e) {
+document.querySelector('#form-encuesta').onsubmit = function (e) {
     if (!e.target.checkValidity()) {
         $('#encuesta-finalizada').on('show.bs.modal', function (e) {
             const modal = $(this);
