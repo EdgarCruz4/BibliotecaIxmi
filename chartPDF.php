@@ -216,9 +216,7 @@
                 $pdf->MultiCell(0, 10, utf8_decode('Instrumentos técnicos de apoyo'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
-        }
-
-        elseif ($result['id'] <= 271) {
+        }elseif ($result['id'] <= 271) {
             if ($result['id'] == 260) {
                 $pdf->ln();
                 $pdf->MultiCell(0, 10, utf8_decode('Liderazgo'));

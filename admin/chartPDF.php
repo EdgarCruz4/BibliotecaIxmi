@@ -240,6 +240,92 @@
                 $pdf->MultiCell(0, 10, utf8_decode('Instrumentos técnicos de apoyo'));
             }
             casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 271) {
+            if ($result['id'] == 260) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Liderazgo'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 290) {
+            if ($result['id'] == 272) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Comunicación'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 302) {
+            if ($result['id'] == 291) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Motivación'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 305) {
+            if ($result['id'] == 303) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Grupos y equipos de trabajo'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 317) {
+            if ($result['id'] == 306) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Manejo del estrés, el conflicto y la crisis'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 325) {
+            if ($result['id'] == 318) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Tecnología de la información'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 331) {
+            if ($result['id'] == 326) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Toma de decisiones'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 339) {
+            if ($result['id'] == 332) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Creatividad e innovación'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }
+
+        elseif ($result['id'] <= 350) {
+            if ($result['id'] == 340) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Naturaleza'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 354) {
+            if ($result['id'] == 351) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Niveles'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 362) {
+            if ($result['id'] == 355) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Proceso'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 368) {
+            if ($result['id'] == 363) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Áreas de aplicación'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 374) {
+            if ($result['id'] == 369) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Herramientas'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
+        }elseif ($result['id'] <= 395) {
+            if ($result['id'] == 375) {
+                $pdf->ln();
+                $pdf->MultiCell(0, 10, utf8_decode('Calidad'));
+            }
+            casos($result['respuesta'], $result['pregunta'], $result['id'], $pdf);
         }
     }
 
