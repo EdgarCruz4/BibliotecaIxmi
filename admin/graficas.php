@@ -42,7 +42,7 @@ $consulta = new consultas();
                                 <h5 class="m-b-10"><?php echo $_SESSION['nameUser']; ?></h5>
                             </div>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.php"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="../bibliotecas.php"><i class="feather icon-home"></i></a></li>
                                 <li class="breadcrumb-item"><a href="#!">Graficas</a></li>
                             </ul>
                         </div>
