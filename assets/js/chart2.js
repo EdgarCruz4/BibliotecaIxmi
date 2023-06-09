@@ -86,7 +86,6 @@ function readChart(flag){
     var n = 0;
     while(i < 4){
         i++;
-        console.log(i);
             excellent = parseInt(data[n++]);
         good = parseInt(data[n++]);
         regular = parseInt(data[n++]);
@@ -97,7 +96,6 @@ function readChart(flag){
 
 
 function graphing(excellent,good,regular,nonExistent,title,i){
-    // console.log(excellent);
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChartColumn)
     function drawChartColumn() {
