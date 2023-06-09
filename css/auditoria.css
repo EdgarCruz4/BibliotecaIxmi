@@ -152,6 +152,12 @@ span.round-tab i{
     }
 }
 
+#opciones{
+    top: 0;
+    z-index: 2790;
+    position: sticky;
+}
+
 table {
 table-layout: fixed;
 width: 100%;
