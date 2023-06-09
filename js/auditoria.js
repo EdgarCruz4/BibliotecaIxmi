@@ -47,6 +47,8 @@ $(document).ready(function () {
         el.removeClass('disabled');
         el.addClass('active');
         nextTab(active, '#form-encuesta');
+
+        window.scrollTo(0, 0);
     });
     $("#form-encuesta .prev-step").click(function (e) {
 
@@ -74,6 +76,7 @@ $(document).ready(function () {
         el.addClass('disabled');
         el.addClass('active');
         prevTab(active, '#form-encuesta');
+        window.scrollTo(0, 0);
     });
 });
 
