@@ -33,10 +33,10 @@ $name = $consulta->getLibrary();
 </head>
 
 <body class="" style="background-color: #ecf0f5;">
-    <div class="text-center pt-4" style="background-color: #4680ff; height: 130px; border-radius: 5px;">
-        <h1 class="font-weight-bold text-white">Sistema administrativo de auditorias </h1>
+    <div class="text-center pt-4 titleBox">
+        <h1 class="font-weight-bold text-white titulo">Sistema administrativo de auditorias </h1>
         <h4>
-            <p class="font-weight-normal text-white">Ixmiquilpan</p>
+            <p class="font-weight-normal text-white subtitulo">Ixmiquilpan</p>
         </h4>
     </div>
     <div class="container">
@@ -59,7 +59,7 @@ $name = $consulta->getLibrary();
                                     <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-aos="fade-up">
                                         <h5 class="text-center"><?php echo $resul['nombre']; ?></h5>
                                         <div class="portfolio-wrap">
-                                            <img style="width: 100%; height: 40vh; object-fit:cover;" src="<?php echo($resul['foto_miniatura']) ?>" class="img-fluid lazy embed-responsive-4by3" alt="">
+                                            <img src="<?php echo($resul['foto_miniatura']) ?>" class="img-fluid lazy embed-responsive-4by3 library" alt="">
                                             <div class="portfolio-links">
                                                 <form action="admin/sugerencias.php" method="post">
                                                 <input type="hidden" name="foto_miniatura" value="<?php echo($resul['foto_miniatura']) ?>">

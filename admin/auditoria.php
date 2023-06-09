@@ -265,10 +265,10 @@ for (; $step <= 38; $step++) {
 <thead>
 <tr>
 <th></th>
-<th>1<ul><li>Inexistente</li><li>Nunca</li><li>No y N/A</li></ul></th>
-<th>2<ul><li>No se encuentra definido</li><li>Algunas veces</li><li>Inadecuado</li></ul></th>
-<th>3<ul><li>Regular</li><li>Casi siempre</li></ul></th>
-<th>4<ul><li>totalmente</li><li>siempre</li><li>muy eficaz</li><li>sí</li></ul></th>
+<th><b>1</b> Inexistente</th>
+<th><b>2</b> Algunas veces</th>
+<th><b>3</b> Casi siempre</th>
+<th><b>4</b> Siempre</th>
 </tr>
 </thead>
 <tbody></tbody>
